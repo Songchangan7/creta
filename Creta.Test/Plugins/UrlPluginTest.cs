@@ -13,6 +13,8 @@ namespace Creta.Test.Plugins
             var plugin = new Main();
             ClassicAssert.IsTrue(plugin.IsURL("http://www.google.com"));
             ClassicAssert.IsTrue(plugin.IsURL("https://www.google.com"));
+            ClassicAssert.IsTrue(plugin.IsURL("https://chatgpt.com"));
+            ClassicAssert.IsTrue(plugin.IsURL("chatgpt.com"));
             ClassicAssert.IsTrue(plugin.IsURL("http://google.com"));
             ClassicAssert.IsTrue(plugin.IsURL("www.google.com"));
             ClassicAssert.IsTrue(plugin.IsURL("google.com"));

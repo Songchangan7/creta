@@ -1675,19 +1675,9 @@ namespace Creta.ViewModel
                 return QueryBuilder.Build(string.Empty, string.Empty, PluginManager.GetNonGlobalPlugins());
             }
 
-            var queryBuilder = new StringBuilder(queryText);
+            var expandedCustomQuery = QueryShortcutHelper.ExpandCustomShortcuts(queryText, customShortcuts);
+            var queryBuilder = new StringBuilder(expandedCustomQuery);
             var queryBuilderTmp = new StringBuilder(queryText);
-
-            // Sorting order is important here, the reason is for matching longest shortcut by default
-            foreach (var shortcut in customShortcuts.OrderByDescending(x => x.Key.Length))
-            {
-                if (queryBuilder.Equals(shortcut.Key))
-                {
-                    queryBuilder.Replace(shortcut.Key, shortcut.Expand());
-                }
-
-                queryBuilder.Replace('@' + shortcut.Key, shortcut.Expand());
-            }
 
             // Applying builtin shortcuts
             await BuildQueryAsync(builtInShortcuts, queryBuilder, queryBuilderTmp);
