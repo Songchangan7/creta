@@ -5,11 +5,13 @@ param(
 Write-Host "Config: $config"
 
 function Build-Version {
-    if ([string]::IsNullOrEmpty($env:flowVersion)) {
+    if (![string]::IsNullOrEmpty($env:CretaVersion)) {
+        $v = $env:CretaVersion
+    } elseif (![string]::IsNullOrEmpty($env:flowVersion)) {
+        $v = $env:flowVersion
+    } else {
         $targetPath = Join-Path $solution "Output/Release/Creta.dll" -Resolve
         $v = (Get-Command ${targetPath}).FileVersionInfo.FileVersion
-    } else {
-        $v = $env:flowVersion
     }
 
     Write-Host "Build Version: $v"
