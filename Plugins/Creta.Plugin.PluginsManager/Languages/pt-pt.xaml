@@ -15,7 +15,7 @@
     <system:String x:Key="plugin_pluginsmanager_uninstall_title">Desinstalador de plugins</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_title">Manter definições</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_subtitle">Deseja manter as definições do plugin para o caso de o voltar a instalar?</system:String>
-    <system:String x:Key="plugin_pluginsmanager_install_success_restart">Plugin {0} instalado com sucesso. Estamos a reiniciar Flow launcher. Por favor aguarde.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_success_restart">Plugin {0} instalado com sucesso. Estamos a reiniciar Creta. Por favor aguarde.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_errormetadatafile">Não foi possível localizar o ficheiro plugin.json a partir do ficheiro extraído.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_duplicate">Erro: já está instalado um plugin com uma versão igual ou superior a {0}.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_title">Erro ao instalar o plugin</system:String>

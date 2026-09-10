@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow ha detectado que tiene instalado(s) {0} complemento(s), que necesita(n) {1} para funcionar. ¿Desea descargar {1}?
+        Creta ha detectado que tiene instalado(s) {0} complemento(s), que necesita(n) {1} para funcionar. ¿Desea descargar {1}?
         {2}{2}
         Haga clic en no si ya está instalado, y seleccione la carpeta que contiene el ejecutable {1}
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         Pulsar Sí, si desea seleccionar de nuevo el ejecutable {0}. Pulsar No, si desea descargar {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">No se puede establecer la ruta del ejecutable {0}, por favor inténtelo desde la configuración de Flow (desplácese hacia abajo).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">No se puede establecer la ruta del ejecutable {0}, por favor inténtelo desde la configuración de Creta (desplácese hacia abajo).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Fallo al iniciar los complementos</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Complemento: {0} - no se pudo cargar y se desactivará, póngase en contacto con el creador del complemento para obtener ayuda</system:String>
 
@@ -115,7 +115,7 @@
     <system:String x:Key="selectNodeExecutable">Seleccionar el ejecutable de Node.js</system:String>
     <system:String x:Key="selectPythonExecutable">Seleccionar pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Empezar a escribir siempre en modo inglés</system:String>
-    <system:String x:Key="typingStartEnTooltip">Cambia temporalmente el método de entrada al modo inglés cuando se activa Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Cambia temporalmente el método de entrada al modo inglés cuando se activa Creta.</system:String>
     <system:String x:Key="autoUpdates">Actualización automática</system:String>
     <system:String x:Key="autoUpdatesTooltip">Comprueba y actualiza automáticamente la aplicación cuando esté disponible</system:String>
     <system:String x:Key="select">Seleccionar</system:String>
@@ -145,10 +145,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Ayúdenos a traducir Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Ayúdenos a traducir Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Mostrar siempre vista previa</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Muestra siempre el panel de vista previa al iniciar Flow. Pulsar {0} para mostrar/ocultar la vista previa.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Muestra siempre el panel de vista previa al iniciar Creta. Pulsar {0} para mostrar/ocultar la vista previa.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">El efecto de sombra no está permitido si el tema actual tiene activado el efecto de desenfoque</system:String>
     <system:String x:Key="searchDelay">Retardo de búsqueda</system:String>
     <system:String x:Key="searchDelayToolTip">Añade un breve retardo al escribir para reducir el parpadeo de la interfaz de usuario y la carga de resultados. Recomendado si la velocidad de escritura es media.</system:String>
@@ -187,7 +187,7 @@
     <system:String x:Key="executedHistory">Historial de últimas aperturas</system:String>
     <system:String x:Key="homeToggleBoxToolTip">Esto solo se puede editar si el complemento soporta la función de Inicio y la Página de Inicio está activada.</system:String>
     <system:String x:Key="showAtTopmost">Mostrar ventana de búsqueda en primer plano</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Anula el ajuste «Siempre arriba» de otros programas y muestra Flow en primer plano.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Anula el ajuste «Siempre arriba» de otros programas y muestra Creta en primer plano.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Reiniciar después de modificar el complemento a través de la Tienda de complementos</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Reinicia Creta automáticamente después de instalar/desinstalar/actualizar el complemento a través de la Tienda de complementos</system:String>
     <system:String x:Key="showUnknownSourceWarning">Mostrar advertencia de fuente desconocida</system:String>
@@ -235,14 +235,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Fallo al eliminar la caché del complemento</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Complementos: {0} - Fallo al eliminar los archivos de caché del complemento, por favor elimínelos manualmente</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} ya está modificado</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Reiniciar Flow antes de realizar más cambios</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Reiniciar Creta antes de realizar más cambios</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Fallo al instalar {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Fallo al desinstalar {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">No se puede encontrar plugin.json en el archivo zip extraído, o esta ruta {0} no existe</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">Ya existe un complemento con el mismo ID y versión, o la versión es superior a la de este complemento descargado</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Error al crear el panel de configuración para el complemento {0}:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requiere la versión {1} de Flow para ejecutarse</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow no cumple los requisitos mínimos de versión para ejecutar {0}. ¿Desea continuar con la instalación?{1}{1}Recomendamos actualizar Flow a la última versión para garantizar que {0} funcione sin problemas.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requiere la versión {1} de Creta para ejecutarse</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta no cumple los requisitos mínimos de versión para ejecutar {0}. ¿Desea continuar con la instalación?{1}{1}Recomendamos actualizar Creta a la última versión para garantizar que {0} funcione sin problemas.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">No se pudo instalar el complemento porque plugin.json no es válido o está dañado</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Error al actualizar el complemento</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Mantener la configuración del complemento</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">¿Desea mantener la configuración del complemento para el próximo uso?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Complemento {0} instalado correctamente. Por favor, reinicie Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Complemento {0} desinstalado correctamente. Por favor, reinicie Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Complemento {0} actualizado correctamente. Por favor, reinicie Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Complemento {0} instalado correctamente. Por favor, reinicie Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Complemento {0} desinstalado correctamente. Por favor, reinicie Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Complemento {0} actualizado correctamente. Por favor, reinicie Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Instalar complemento</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} por {1} {2}{2}¿Desea instalar este complemento?</system:String>
     <system:String x:Key="UninstallPromptTitle">Desinstalar complemento</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">Actualizaciones de complementos disponibles</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Actualizar complementos</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Comprobar actualizaciones de los complementos</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Los complementos se han actualizado correctamente. Por favor, reinicie Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Los complementos se han actualizado correctamente. Por favor, reinicie Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Tema</system:String>
@@ -331,7 +331,7 @@
     <system:String x:Key="SoundEffectTip">Reproduce un pequeño sonido cuando se abre el cuadro de búsqueda</system:String>
     <system:String x:Key="SoundEffectVolume">Volumen del efecto de sonido</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Ajusta el volumen del efecto de sonido</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player no está disponible y es necesario para el ajuste del volumen de Flow. Por favor, compruebe su instalación si necesita ajustar el volumen.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player no está disponible y es necesario para el ajuste del volumen de Creta. Por favor, compruebe su instalación si necesita ajustar el volumen.</system:String>
     <system:String x:Key="Animation">Animación</system:String>
     <system:String x:Key="AnimationTip">Usa animación en la Interfaz de Usuario</system:String>
     <system:String x:Key="AnimationSpeed">Velocidad de animación</system:String>

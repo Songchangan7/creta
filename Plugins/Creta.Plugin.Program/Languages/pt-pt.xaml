@@ -21,7 +21,7 @@
     <system:String x:Key="creta_plugin_program_index_source">Origens de índices</system:String>
     <system:String x:Key="creta_plugin_program_index_option">Opções</system:String>
     <system:String x:Key="creta_plugin_program_index_uwp">Aplicações UWP</system:String>
-    <system:String x:Key="creta_plugin_program_index_uwp_tooltip">Se ativa, Flow launcher irá carregar as aplicações UWP</system:String>
+    <system:String x:Key="creta_plugin_program_index_uwp_tooltip">Se ativa, Creta irá carregar as aplicações UWP</system:String>
     <system:String x:Key="creta_plugin_program_index_start">Menu Iniciar</system:String>
     <system:String x:Key="creta_plugin_program_index_start_tooltip">Se ativada, Creta irá carregar os programas do menu Iniciar</system:String>
     <system:String x:Key="creta_plugin_program_index_registry">Registo</system:String>
@@ -33,7 +33,7 @@
     <system:String x:Key="creta_plugin_program_enable_hideuninstallers">Ocultar desinstaladores</system:String>
     <system:String x:Key="creta_plugin_program_enable_hideuninstallers_tooltip">Ocultar programas com nomes de desinstalador como, por exemplo, unins000.exe</system:String>
     <system:String x:Key="creta_plugin_program_enable_description">Pesquisar na descrição dos programas</system:String>
-    <system:String x:Key="creta_plugin_program_enable_description_tooltip">Flow irá pesquisar na descrição do programa</system:String>
+    <system:String x:Key="creta_plugin_program_enable_description_tooltip">Creta irá pesquisar na descrição do programa</system:String>
     <system:String x:Key="creta_plugin_program_enable_hideduplicatedwindowsapp">Ocultar aplicações duplicadas</system:String>
     <system:String x:Key="creta_plugin_program_enable_hideduplicatedwindowsapp_tooltip">Ocultar aplicações Win32 duplicadas que existem lista UWP</system:String>
     <system:String x:Key="creta_plugin_program_suffixes_header">Sufixos</system:String>

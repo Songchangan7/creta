@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow виявив, що ви встановили плагіни {0}, для запуску яких потрібно {1}. Бажаєте завантажити {1}?
+        Creta виявив, що ви встановили плагіни {0}, для запуску яких потрібно {1}. Бажаєте завантажити {1}?
         {2}{2}
         Клацніть Ні, якщо воно вже встановлене, і вам буде запропоновано вибрати теку, яка містить виконуваник {1}
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         Щоб знову вибрати виконуваний файл {0}, натисніть «Так». Натисніть «Ні», щоб завантажити {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Не вдається встановити шлях до виконуваника {0}, будласка спробуйте в налаштуваннях Flow (прокрутіть вниз до кінця).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Не вдається встановити шлях до виконуваника {0}, будласка спробуйте в налаштуваннях Creta (прокрутіть вниз до кінця).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Невдача ініціалізації плагінів</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Плагіни: {0} - не вдалося підвантажити і буде вимкнено, зверніться за допомогою до автора плагіна</system:String>
 
@@ -115,7 +115,7 @@
     <system:String x:Key="selectNodeExecutable">Виберіть виконуваний файл Node.js</system:String>
     <system:String x:Key="selectPythonExecutable">Виберіть pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Завжди починати введення тексту в англійському режимі</system:String>
-    <system:String x:Key="typingStartEnTooltip">Тимчасово змінити спосіб введення на англійський при активації Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Тимчасово змінити спосіб введення на англійський при активації Creta.</system:String>
     <system:String x:Key="autoUpdates">Автоматичне оновлення</system:String>
     <system:String x:Key="autoUpdatesTooltip">Автоматично перевіряти та оновлювати застосунок, коли це можливо</system:String>
     <system:String x:Key="select">Вибрати</system:String>
@@ -145,10 +145,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Сін Кон Цзянь Дао</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Да Ню</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Сяо Лан</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Допоможіть нам перекласти Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Допоможіть нам перекласти Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Завжди переглядати</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Завжди відкривати панель попереднього перегляду при активації Flow. Натисніть {0}, щоб переключити попередній перегляд.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Завжди відкривати панель попереднього перегляду при активації Creta. Натисніть {0}, щоб переключити попередній перегляд.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">Ефект тіні не дозволено, коли поточна тема має ефект розмиття</system:String>
     <system:String x:Key="searchDelay">Затримка пошуку</system:String>
     <system:String x:Key="searchDelayToolTip">Додає невелику затримку під час набору тексту, щоб зменшити мерехтіння інтерфейсу та навантаження на результати. Рекомендується, якщо у вас середня швидкість друкування.</system:String>
@@ -187,7 +187,7 @@
     <system:String x:Key="executedHistory">Остання відкрита історія</system:String>
     <system:String x:Key="homeToggleBoxToolTip">Це можна редагувати тільки в тому випадку, якщо плагін підтримує функцію «Головна сторінка» і вона ввімкнена.</system:String>
     <system:String x:Key="showAtTopmost">Показувати вікно пошуку на передньому плані</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Перекриває налаштування «Завжди зверху» інших програм і виводить Flow на передній план.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Перекриває налаштування «Завжди зверху» інших програм і виводить Creta на передній план.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Перезапустіть після модифікації плагіну через Магазин плагінів</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Автоматично перезапускати Creta після встановлення / видалення / оновлення плагіну через Магазин плагінів</system:String>
     <system:String x:Key="showUnknownSourceWarning">Показувати попередження про невідоме джерело</system:String>
@@ -235,14 +235,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Не вдалося видалити кеш плагіну</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Плагіни: {0} — Не вдалося видалити файли кешу плагінів, видаліть їх вручну</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} вже змінено</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Перезапустіть Flow перед тим, як вносити будь-які подальші зміни.</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Перезапустіть Creta перед тим, як вносити будь-які подальші зміни.</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Не вдалося встановити {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Не вдалося видалити {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">Не вдалося знайти файл plugin.json у розпакованому zip-файлі або цей шлях {0} не існує.</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">Вже існує плагін з таким самим ідентифікатором та версією, або версія цього плагіну вища за версію завантаженого.</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Помилка створення панелі налаштувань для плагіну {0}: {1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">Для роботи {0} необхідна {1} версія Flow</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow не відповідає мінімальним вимогам версії для запуску {0}. Чи хочете ви продовжити його встановлення?{1}{1}Ми рекомендуємо оновити Flow до останньої версії, аби забезпечити безперебійну роботу {0}.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">Для роботи {0} необхідна {1} версія Creta</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta не відповідає мінімальним вимогам версії для запуску {0}. Чи хочете ви продовжити його встановлення?{1}{1}Ми рекомендуємо оновити Creta до останньої версії, аби забезпечити безперебійну роботу {0}.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Не вдалося встановити плагін, оскільки файл plugin.json є недійсним або пошкодженим</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Помилка під час оновлення плагіну</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Зберегти налаштування плагіну</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Ви хочете зберегти налаштування плагіну для наступного використання?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Плагін {0} успішно встановлено. Будь ласка, перезапустіть Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Плагін {0} успішно видалено. Будь ласка, перезапустіть Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Плагін {0} успішно оновлено. Будь ласка, перезапустіть Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Плагін {0} успішно встановлено. Будь ласка, перезапустіть Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Плагін {0} успішно видалено. Будь ласка, перезапустіть Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Плагін {0} успішно оновлено. Будь ласка, перезапустіть Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Встановлення плагіна</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} від {1} {2}{2}Бажаєте встановити цей плагін?</system:String>
     <system:String x:Key="UninstallPromptTitle">Видалення плагіну</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">Доступні оновлення плагінів</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Оновити плагіни</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Перевірити оновлення плагінів</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Плагіни успішно оновлено. Перезапустіть Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Плагіни успішно оновлено. Перезапустіть Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Тема</system:String>
@@ -331,7 +331,7 @@
     <system:String x:Key="SoundEffectTip">Відтворювати невеликий звук при відкритті вікна пошуку</system:String>
     <system:String x:Key="SoundEffectVolume">Гучність звукового ефекту</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Налаштуйте гучність звукового ефекту</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player недоступний та необхідний для регулювання гучності Flow. Будласка перевірте вашу інсталяцію, якщо вам потрібно відрегулювати гучність.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player недоступний та необхідний для регулювання гучності Creta. Будласка перевірте вашу інсталяцію, якщо вам потрібно відрегулювати гучність.</system:String>
     <system:String x:Key="Animation">Анімація</system:String>
     <system:String x:Key="AnimationTip">Використовувати анімацію в інтерфейсі</system:String>
     <system:String x:Key="AnimationSpeed">Швидкість анімації</system:String>
@@ -526,7 +526,7 @@
 
     <!--  DefaultBrowser Setting Dialog  -->
     <system:String x:Key="defaultBrowserTitle">Типовий веббраузер</system:String>
-    <system:String x:Key="defaultBrowser_tips">Типові налаштування відповідають налаштуванню типового браузера в операційній системі. Якщо вказано окремо, Flow використовує цей браузер.</system:String>
+    <system:String x:Key="defaultBrowser_tips">Типові налаштування відповідають налаштуванню типового браузера в операційній системі. Якщо вказано окремо, Creta використовує цей браузер.</system:String>
     <system:String x:Key="defaultBrowser_name">Браузер</system:String>
     <system:String x:Key="defaultBrowser_profile_name">Назва браузера</system:String>
     <system:String x:Key="defaultBrowser_path">Шлях до браузера</system:String>

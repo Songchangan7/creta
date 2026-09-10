@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Поточне ключове слово дії</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Готово</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Увімкнено</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Якщо вимкнено, Flow не виконуватиме цей параметр пошуку і додатково повернеться до «*», щоб звільнити ключове слово дії</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Якщо вимкнено, Creta не виконуватиме цей параметр пошуку і додатково повернеться до «*», щоб звільнити ключове слово дії</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Індекс Windows</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Пряме перерахування</system:String>

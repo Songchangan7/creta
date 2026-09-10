@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Choisir</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Application(*.exe)|*.exe|Tous les fichiers|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Utiliser un navigateur personnalisé au lieu du navigateur par défaut de Flow</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Utiliser un navigateur personnalisé au lieu du navigateur par défaut de Creta</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Chemin du navigateur</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Nouvel onglet</system:String>

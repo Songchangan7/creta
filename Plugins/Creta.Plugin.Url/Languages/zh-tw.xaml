@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">選擇</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">應用程式(*.exe)|*.exe|檔案|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">使用自訂瀏覽器而非Flow的預設瀏覽器</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">使用自訂瀏覽器而非Creta的預設瀏覽器</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">瀏覽器路徑</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">新增分頁</system:String>

@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">目前觸發關鍵字</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">確</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">已啟用</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">停用此選項後，Flow 將不會執行此搜尋選項，並會還原為「*」以釋放操作關鍵字</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">停用此選項後，Creta 將不會執行此搜尋選項，並會還原為「*」以釋放操作關鍵字</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows Index</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Direct Enumeration</system:String>

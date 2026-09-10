@@ -187,8 +187,8 @@ if __name__ == "__main__":
         print("Error: GITHUB_TOKEN environment variable not set.")
         exit(1)
 
-    repository_owner = "flow-launcher"
-    repository_name = "flow.launcher"
+    repository_owner = "Songchangan7"
+    repository_name = "creta"
     state = "all"
 
     print(f"Fetching {state} PRs for {repository_owner}/{repository_name} ...")

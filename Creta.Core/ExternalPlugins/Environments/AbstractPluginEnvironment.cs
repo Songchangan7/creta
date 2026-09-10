@@ -57,7 +57,7 @@ namespace Creta.Core.ExternalPlugins.Environments
             var resolvedPath = ResolvedPluginsSettingsFilePath;
             if (!string.IsNullOrEmpty(resolvedPath) && FilesFolders.FileExists(resolvedPath))
             {
-                // Ensure latest only if user is using Flow's environment setup.
+                // Ensure latest only if user is using Creta's environment setup.
                 if (resolvedPath.StartsWith(EnvPath, StringComparison.OrdinalIgnoreCase))
                     EnsureLatestInstalled(ExecutablePath, resolvedPath, EnvPath);
 

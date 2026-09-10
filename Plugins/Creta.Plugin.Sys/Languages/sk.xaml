@@ -29,7 +29,7 @@
     <system:String x:Key="creta_plugin_sys_open_docs_tips_cmd">Tipy pre Creta</system:String>
     <system:String x:Key="creta_plugin_sys_open_userdata_location_cmd">Používateľský priečinok Cretaa</system:String>
     <system:String x:Key="creta_plugin_sys_toggle_game_mode_cmd">Prepnúť herný režim</system:String>
-    <system:String x:Key="creta_plugin_sys_theme_selector_cmd">Nastaviť motív pre Flow Laucher</system:String>
+    <system:String x:Key="creta_plugin_sys_theme_selector_cmd">Nastaviť motív pre Creta</system:String>
 
     <system:String x:Key="creta_plugin_sys_edit">Upraviť</system:String>
 

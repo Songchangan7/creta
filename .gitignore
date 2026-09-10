@@ -286,6 +286,7 @@ paket-files/
 *.VC.db
 
 ## Creta specific
+/tmp_restore_official/
 Output/*
 /Python.Runtime.dll
 Thumbs.db

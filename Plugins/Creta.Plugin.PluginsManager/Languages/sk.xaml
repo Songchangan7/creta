@@ -5,9 +5,9 @@
     <system:String x:Key="plugin_pluginsmanager_downloading_plugin">Sťahovanie pluginu</system:String>
     <system:String x:Key="plugin_pluginsmanager_download_success">Úspešne stiahnuté {0}</system:String>
     <system:String x:Key="plugin_pluginsmanager_download_error">Chyba: Nepodarilo sa stiahnuť plugin</system:String>
-    <system:String x:Key="plugin_pluginsmanager_uninstall_prompt">{0} od {1} {2}{3}Chcete odinštalovať tento plugin? Po odinštalovaní sa Flow automaticky reštartuje.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_uninstall_prompt">{0} od {1} {2}{3}Chcete odinštalovať tento plugin? Po odinštalovaní sa Creta automaticky reštartuje.</system:String>
     <system:String x:Key="plugin_pluginsmanager_uninstall_prompt_no_restart">{0} od {1} {2}{2}Chcete odinštalovať tento plugin?</system:String>
-    <system:String x:Key="plugin_pluginsmanager_install_prompt">{0} od {1} {2}{3}Chcete nainštalovať tento plugin? Po nainštalovaní sa Flow automaticky reštartuje.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_prompt">{0} od {1} {2}{3}Chcete nainštalovať tento plugin? Po nainštalovaní sa Creta automaticky reštartuje.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_prompt_no_restart">{0} od {1} {2}{2}Chcete nainštalovať tento plugin?</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_title">Inštalovať plugin</system:String>
     <system:String x:Key="plugin_pluginsmanager_installing_plugin">Inštaluje sa plugin</system:String>
@@ -15,7 +15,7 @@
     <system:String x:Key="plugin_pluginsmanager_uninstall_title">Odinštalovať plugin</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_title">Ponechať nastavenia pluginu</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_subtitle">Chcete zachovať nastavenia pluginu na ďalšie použitie?</system:String>
-    <system:String x:Key="plugin_pluginsmanager_install_success_restart">Plugin {0} bol úspešne nainštalovaný. Reštartuje sa Flow, čakajte, prosím...</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_success_restart">Plugin {0} bol úspešne nainštalovaný. Reštartuje sa Creta, čakajte, prosím...</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_errormetadatafile">Inštalácia zlyhala: nepodarilo sa nájsť metadáta súboru plugin.json z extrahovaného súboru ZIP.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_duplicate">Chyba: Plugin s rovnakou alebo vyššou verziou ako {0} už existuje.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_title">Chyba inštalácie pluginu</system:String>
@@ -23,7 +23,7 @@
     <system:String x:Key="plugin_pluginsmanager_uninstall_error_title">Chyba odinštalácie pluginu</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_noresult_title">Nie je k dispozícii žiadna aktualizácia</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_noresult_subtitle">Všetky pluginy sú aktuálne</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_prompt">{0} od {1} {2}{3}Chcete aktualizovať tento plugin? Po aktualizácii sa Flow automaticky reštartuje.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_prompt">{0} od {1} {2}{3}Chcete aktualizovať tento plugin? Po aktualizácii sa Creta automaticky reštartuje.</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_prompt_no_restart">{0} od {1} {2}{2}Chcete aktualizovať tento plugin?</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_title">Aktualizácia pluginu</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_alreadyexists">Tento plugin je už nainštalovaný</system:String>
@@ -33,16 +33,16 @@
     <system:String x:Key="plugin_pluginsmanager_update_all_subtitle">Chcete aktualizovať všetky pluginy?</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_all_prompt">Chcete aktualizovať pluginy ({0})?{1}Po aktualizácii všetkých pluginov sa Creta reštartuje.</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_all_prompt_no_restart">Chcete aktualizovať pluginy ({0})?</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_all_success_restart">Pluginy úspešne aktualizované ({0}). Flow sa reštartuje, čakajte…</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_success_restart">Plugin {0} bol úspešne aktualizovaný. Reštartuje sa Flow, čakajte, prosím...</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_all_success_restart">Pluginy úspešne aktualizované ({0}). Creta sa reštartuje, čakajte…</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_success_restart">Plugin {0} bol úspešne aktualizovaný. Reštartuje sa Creta, čakajte, prosím...</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_unknown_source_warning_title">Inštalácia z neznámeho zdroja</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_unknown_source_warning">Tento plugin inštalujete z neznámeho zdroja a môže obsahovať potenciálne riziká!{0}{0}Uistite sa, že rozumiete, odkiaľ tento plugin pochádza, a že je bezpečný.{0}{0}Chcete pokračovať?{0}{0}(Toto upozornenie môžete vypnúť v nastaveniach)</system:String>
 
-    <system:String x:Key="plugin_pluginsmanager_install_success_no_restart">Plugin {0} bol úspešne nainštalovaný. Prosím, reštartujte Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_uninstall_success_no_restart">Plugin {0} bol úspešne odinštalovaný. Prosím, reštartujte Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_success_no_restart">Plugin {0} bol úspešne aktualizovaný. Prosím, reštartujte Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_all_success_no_restart">Pluginy úspešne aktualizované ({0}). Reštartuje Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error">Plugin {0} už bol upravený. Prosím, reštartujte Flow pred ďalšími zmenami.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_success_no_restart">Plugin {0} bol úspešne nainštalovaný. Prosím, reštartujte Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_uninstall_success_no_restart">Plugin {0} bol úspešne odinštalovaný. Prosím, reštartujte Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_success_no_restart">Plugin {0} bol úspešne aktualizovaný. Prosím, reštartujte Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_all_success_no_restart">Pluginy úspešne aktualizované ({0}). Reštartuje Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error">Plugin {0} už bol upravený. Prosím, reštartujte Creta pred ďalšími zmenami.</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_modified_error_title">Plugin {0} už bol upravený</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_modified_error_message">Pred vykonaním ďalších zmien reštartujte Creta</system:String>
 
@@ -61,8 +61,8 @@
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_gotosourcecode_subtitle">Zobraziť zdrojový kód pluginu</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_newissue_title">Navrhnúť vylepšenie alebo nahlásiť chybu</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_newissue_subtitle">Navrhnúť vylepšenie alebo nahlásiť chybu vývojárovi pluginu</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_title">Prejsť na repozitár pluginov spúšťača Flow</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_subtitle">Prejsť na repozitár pluginov spúšťača Flow a zobraziť príspevky komunity</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_title">Prejsť na repozitár pluginov spúšťača Creta</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_subtitle">Prejsť na repozitár pluginov spúšťača Creta a zobraziť príspevky komunity</system:String>
 
     <!--  Settings menu items  -->
     <system:String x:Key="plugin_pluginsmanager_plugin_settings_unknown_source">Upozornenie na inštaláciu z neznámeho zdroja</system:String>

@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Autocompletar datos desde:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Por favor, seleccione una búsqueda web</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">¿Está seguro de que desea eliminar {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Si desea añadir a Flow una búsqueda de un sitio web concreto, introduzca primero una cadena de texto ficticia en la barra de búsqueda de ese sitio web, y ejecute la búsqueda. Luego copie el contenido de la barra de direcciones del navegador y péguelo en el campo de la URL indicado a continuación. Por ejemplo, si busca Casino en Netflix, su barra de direcciones debe decir:</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Si desea añadir a Creta una búsqueda de un sitio web concreto, introduzca primero una cadena de texto ficticia en la barra de búsqueda de ese sitio web, y ejecute la búsqueda. Luego copie el contenido de la barra de direcciones del navegador y péguelo en el campo de la URL indicado a continuación. Por ejemplo, si busca Casino en Netflix, su barra de direcciones debe decir:</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Ahora copie la cadena de entrada anterior y péguela en el campo de la URL indicado más abajo.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">La palabra clave de acción ya está en uso, por favor, introduzca una diferente</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Correcto</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">No se ha podido actualizar la fuente de búsqueda. Es posible que el elemento haya sido eliminado.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Sugerencia: No es necesario colocar imágenes personalizadas en esta carpeta, al actualizar Flow se perderán. Flow copiará automáticamente cualquier imagen externa a esta carpeta en la ubicación de imágenes personalizada de WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Sugerencia: No es necesario colocar imágenes personalizadas en esta carpeta, al actualizar Creta se perderán. Creta copiará automáticamente cualquier imagen externa a esta carpeta en la ubicación de imágenes personalizada de WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Búsquedas Web</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Permite realizar búsquedas web</system:String>

@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Saisir automatiquement les données à partir de :</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Veuillez sélectionner une recherche web</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Êtes-vous sûr de vouloir supprimer {0} ?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Si vous souhaitez ajouter une recherche sur un site Web particulier à Flow, entrez d'abord une chaîne de texte indicatif dans la barre de recherche de ce site et lancez la recherche. Copiez maintenant le contenu de la barre d'adresse du navigateur et collez-le dans le champ URL ci-dessous. Remplacez votre chaîne de texte indicatif par {q}. Par exemple, si vous recherchez casino sur Netflix, sa barre d'adresse indiquera</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Si vous souhaitez ajouter une recherche sur un site Web particulier à Creta, entrez d'abord une chaîne de texte indicatif dans la barre de recherche de ce site et lancez la recherche. Copiez maintenant le contenu de la barre d'adresse du navigateur et collez-le dans le champ URL ci-dessous. Remplacez votre chaîne de texte indicatif par {q}. Par exemple, si vous recherchez casino sur Netflix, sa barre d'adresse indiquera</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Maintenant copiez la chaîne de texte entière et collez-la dans le champ URL ci-dessous.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Le mot clé existe déjà, veuillez en saisir un autre</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Ajout</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Impossible de mettre à jour la source de recherche. L'élément a peut-être été supprimé.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Astuce : Vous n'avez pas besoin de placer des images personnalisées dans ce dossier, si la version de Flow est mise à jour, elles seront perdues. Flow copiera automatiquement toutes les images en dehors de ce dossier dans l'emplacement de l'image personnalisée de la Recherche Web.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Astuce : Vous n'avez pas besoin de placer des images personnalisées dans ce dossier, si la version de Creta est mise à jour, elles seront perdues. Creta copiera automatiquement toutes les images en dehors de ce dossier dans l'emplacement de l'image personnalisée de la Recherche Web.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Recherches web</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Permet d'effectuer des recherches web</system:String>

@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Автозаповнення даних з:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Будь ласка, виберіть пошуковий запит в Інтернеті</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Ви впевнені, що хочете видалити {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Якщо ви хочете додати до Flow пошук певного вебсайту, спочатку введіть фіктивний текстовий рядок у пошуковий рядок цього вебсайту і розпочніть пошук. Тепер скопіюйте вміст адресного рядка браузера і вставте його в поле URL нижче. Замініть тестовий рядок на {q}. Наприклад, якщо ви шукаєте казино на сайті Netflix, його адресний рядок матиме такий вигляд</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Якщо ви хочете додати до Creta пошук певного вебсайту, спочатку введіть фіктивний текстовий рядок у пошуковий рядок цього вебсайту і розпочніть пошук. Тепер скопіюйте вміст адресного рядка браузера і вставте його в поле URL нижче. Замініть тестовий рядок на {q}. Наприклад, якщо ви шукаєте казино на сайті Netflix, його адресний рядок матиме такий вигляд</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Тепер скопіюйте весь цей рядок і вставте його в поле URL нижче.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Ключове слово дії вже існує, будь ласка, введіть інше</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Успішно</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Не вдалося оновити джерело пошуку. Елемент, можливо, було видалено.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Підказка: Вам не потрібно розміщувати власні зображення в цьому каталозі, якщо версія Flow оновиться, вони будуть втрачені. Flow автоматично копіює всі зображення з цього каталогу до спеціального каталогу WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Підказка: Вам не потрібно розміщувати власні зображення в цьому каталозі, якщо версія Creta оновиться, вони будуть втрачені. Creta автоматично копіює всі зображення з цього каталогу до спеціального каталогу WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Вебпошук</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Дозволяє здійснювати вебпошук</system:String>

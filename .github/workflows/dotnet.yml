@@ -16,7 +16,7 @@ jobs:
 
     runs-on: windows-latest
     env:
-      FlowVersion: 1.20.2
+      CretaVersion: 1.20.2
       NUGET_CERT_REVOCATION_MODE: offline
       BUILD_NUMBER: ${{ github.run_number }}
     steps:
@@ -27,7 +27,7 @@ jobs:
         with:
           file: |
             "**/SolutionAssemblyInfo.cs"
-          version: ${{ env.FlowVersion }}.${{ env.BUILD_NUMBER }}
+          version: ${{ env.CretaVersion }}.${{ env.BUILD_NUMBER }}
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
@@ -37,7 +37,7 @@ jobs:
 #            Creta/packages.lock.json
 #            Creta.Core/packages.lock.json            
 #            Creta.Infrastructure/packages.lock.json
-#            Flow.Launcher.Plugin/packages.lock.json
+#            Creta.Plugin/packages.lock.json
       - name: Install vpk
         run: dotnet tool install -g vpk
       - name: Restore dependencies
@@ -63,7 +63,7 @@ jobs:
       - name: Upload Setup
         uses: actions/upload-artifact@v7
         with:
-          name: Flow Installer
+          name: Creta Installer
           path: |
             Output\Packages\Creta-*.exe
           compression-level: 0

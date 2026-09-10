@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Обрати</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Application(*.exe)|*.exe|Усі файли|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Використовувати власний веббраузер замість стандартного браузера Flow</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Використовувати власний веббраузер замість стандартного браузера Creta</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Шлях до браузера</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Нова вкладка</system:String>

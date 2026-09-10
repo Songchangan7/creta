@@ -4,7 +4,7 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow detected you have installed {0} plugins, which will require {1} to run. Would you like to download {1}?
+        Creta detected you have installed {0} plugins, which will require {1} to run. Would you like to download {1}?
         {2}{2}
         Click no if it's already installed, and you will be prompted to select the folder that contains the {1} executable
     </system:String>
@@ -14,7 +14,7 @@
         {2}{2}
         Click yes if you would like select the {0} executable again. Click no if you would like to download {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Unable to set {0} executable path, please try from Flow's settings (scroll down to the bottom).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Unable to set {0} executable path, please try from Creta's settings (scroll down to the bottom).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Fail to Init Plugins</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Plugins: {0} - fail to load and would be disabled, please contact plugin creator for help</system:String>
 
@@ -117,7 +117,7 @@
     <system:String x:Key="selectNodeExecutable">Please select the Node.js executable</system:String>
     <system:String x:Key="selectPythonExecutable">Please select pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Always Start Typing in English Mode</system:String>
-    <system:String x:Key="typingStartEnTooltip">Temporarily change your input method to English mode when activating Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Temporarily change your input method to English mode when activating Creta.</system:String>
     <system:String x:Key="autoUpdates">Auto Update</system:String>
     <system:String x:Key="autoUpdatesTooltip">Automatically check and update the app when available</system:String>
     <system:String x:Key="select">Select</system:String>
@@ -147,10 +147,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Help us translate Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Help us translate Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Always Preview</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Always open preview panel when Flow activates. Press {0} to toggle preview.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Always open preview panel when Creta activates. Press {0} to toggle preview.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">Shadow effect is not allowed while current theme has blur effect enabled</system:String>
     <system:String x:Key="searchDelay">Search Delay</system:String>
     <system:String x:Key="searchDelayToolTip">Adds a short delay while typing to reduce UI flicker and result load. Recommended if your typing speed is average.</system:String>
@@ -182,7 +182,7 @@
     <system:String x:Key="executedHistory">Last opened history</system:String>
     <system:String x:Key="homeToggleBoxToolTip">This can only be edited if plugin supports Home feature and Home Page is enabled.</system:String>
     <system:String x:Key="showAtTopmost">Show Search Window at Foremost</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Overrides other programs' 'Always on Top' setting and displays Flow in the foremost position.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Overrides other programs' 'Always on Top' setting and displays Creta in the foremost position.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Restart after modifying plugin via Plugin Store</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Restart Creta automatically after installing/uninstalling/updating plugin via Plugin Store</system:String>
     <system:String x:Key="showUnknownSourceWarning">Show unknown source warning</system:String>
@@ -230,14 +230,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Fail to remove plugin cache</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Plugins: {0} - Fail to remove plugin cache files, please remove them manually</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} modified already</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Please restart Flow before making any further changes</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Please restart Creta before making any further changes</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Fail to install {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Fail to uninstall {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">Unable to find plugin.json from the extracted zip file, or this path {0} does not exist</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">A plugin with the same ID and version already exists, or the version is greater than this downloaded plugin</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Error creating setting panel for plugin {0}:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Flow version {1} to run</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Flow to the latest version to ensure that {0} works without issues.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Creta version {1} to run</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Creta to the latest version to ensure that {0} works without issues.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Failed to install plugin because plugin.json is invalid or corrupted</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -264,9 +264,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Error updating plugin</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Keep plugin settings</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Do you want to keep the settings of the plugin for the next usage?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} successfully installed. Please restart Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} successfully uninstalled. Please restart Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} successfully updated. Please restart Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} successfully installed. Please restart Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} successfully uninstalled. Please restart Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} successfully updated. Please restart Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Plugin install</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} by {1} {2}{2}Would you like to install this plugin?</system:String>
     <system:String x:Key="UninstallPromptTitle">Plugin uninstall</system:String>
@@ -286,7 +286,7 @@
     <system:String x:Key="updateAllPluginsTitle">Plugin updates available</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Update plugins</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Check plugin updates</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins are successfully updated. Please restart Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins are successfully updated. Please restart Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Theme</system:String>
@@ -326,7 +326,7 @@
     <system:String x:Key="SoundEffectTip">Play a small sound when the search window opens</system:String>
     <system:String x:Key="SoundEffectVolume">Sound Effect Volume</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Adjust the volume of the sound effect</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player is unavailable and is required for Flow's volume adjustment. Please check your installation if you need to adjust volume.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player is unavailable and is required for Creta's volume adjustment. Please check your installation if you need to adjust volume.</system:String>
     <system:String x:Key="Animation">Animation</system:String>
     <system:String x:Key="AnimationTip">Use Animation in UI</system:String>
     <system:String x:Key="AnimationSpeed">Animation Speed</system:String>

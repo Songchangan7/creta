@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Chọn</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Ứng dụng(*.exe)|*.exe|Tất cả các tệp|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Use custom instead of Flow's default web browser</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Use custom instead of Creta's default web browser</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Browser path</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Thêm Tab mới</system:String>

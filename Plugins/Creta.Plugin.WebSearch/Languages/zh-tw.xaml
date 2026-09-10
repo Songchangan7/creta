@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">從以下位置自動填入資料：</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">請選擇一項</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">你確認要刪除{0}嗎</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">If you want to add a search for a particular website to Flow, first enter a dummy text string in the search bar of that website, and launch the search. Now copy the contents of the browser's address bar, and paste it in the URL field below. Replace your test string with {q}. For example, if you search for casino on Netflix, its address bar reads</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">If you want to add a search for a particular website to Creta, first enter a dummy text string in the search bar of that website, and launch the search. Now copy the contents of the browser's address bar, and paste it in the URL field below. Replace your test string with {q}. For example, if you search for casino on Netflix, its address bar reads</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Now copy this entire string and paste it in the URL field below.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">觸發關鍵字已經存在，請選擇一個新的關鍵字</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">操作成功</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">提示：您無需將自訂圖片放置在此目錄中，如果 Flow 版本更新，這些圖片將會遺失。 Flow 會自動將此目錄以外的所有圖片複製到 WebSearch 的自訂圖片位置。</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">提示：您無需將自訂圖片放置在此目錄中，如果 Creta 版本更新，這些圖片將會遺失。 Creta 會自動將此目錄以外的所有圖片複製到 WebSearch 的自訂圖片位置。</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">網頁搜尋</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">提供網頁搜尋功能</system:String>

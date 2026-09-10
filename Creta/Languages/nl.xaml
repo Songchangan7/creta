@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow detected you have installed {0} plugins, which will require {1} to run. Would you like to download {1}?
+        Creta detected you have installed {0} plugins, which will require {1} to run. Would you like to download {1}?
         {2}{2}
         Click no if it's already installed, and you will be prompted to select the folder that contains the {1} executable
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         Click yes if you would like select the {0} executable again. Click no if you would like to download {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Unable to set {0} executable path, please try from Flow's settings (scroll down to the bottom).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Unable to set {0} executable path, please try from Creta's settings (scroll down to the bottom).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Fail to Init Plugins</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Plugins: {0} - fail to load and would be disabled, please contact plugin creator for help</system:String>
 
@@ -115,7 +115,7 @@
     <system:String x:Key="selectNodeExecutable">Selecteer de Node.js uitvoerbare</system:String>
     <system:String x:Key="selectPythonExecutable">Selecteer pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Begin altijd met typen in Engelse modus</system:String>
-    <system:String x:Key="typingStartEnTooltip">Verander tijdelijk je invoermethode in de Engelse modus bij het activeren van Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Verander tijdelijk je invoermethode in de Engelse modus bij het activeren van Creta.</system:String>
     <system:String x:Key="autoUpdates">Automatische Update</system:String>
     <system:String x:Key="autoUpdatesTooltip">Automatically check and update the app when available</system:String>
     <system:String x:Key="select">Selecteer</system:String>
@@ -145,10 +145,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Help us translate Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Help us translate Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Altijd voorbeeld</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Open altijd het voorbeeld paneel wanneer Flow activeert. Druk op {0} om voorbeeld te schakelen.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Open altijd het voorbeeld paneel wanneer Creta activeert. Druk op {0} om voorbeeld te schakelen.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">Schaduw effect is niet toegestaan omdat het huidige thema een vervagingseffect heeft</system:String>
     <system:String x:Key="searchDelay">Vertraging voor zoeken</system:String>
     <system:String x:Key="searchDelayToolTip">Voegt een korte vertraging toe tijdens het typen om flikkeren van de UI en systeembelasting te verminderen. Aanbevolen als uw typsnelheid gemiddeld is.</system:String>
@@ -187,7 +187,7 @@
     <system:String x:Key="executedHistory">Last opened history</system:String>
     <system:String x:Key="homeToggleBoxToolTip">This can only be edited if plugin supports Home feature and Home Page is enabled.</system:String>
     <system:String x:Key="showAtTopmost">Show Search Window at Foremost</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Overrides other programs' 'Always on Top' setting and displays Flow in the foremost position.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Overrides other programs' 'Always on Top' setting and displays Creta in the foremost position.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Restart after modifying plugin via Plugin Store</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Restart Creta automatically after installing/uninstalling/updating plugin via Plugin Store</system:String>
     <system:String x:Key="showUnknownSourceWarning">Show unknown source warning</system:String>
@@ -235,14 +235,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Fail to remove plugin cache</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Plugins: {0} - Fail to remove plugin cache files, please remove them manually</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} modified already</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Please restart Flow before making any further changes</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Please restart Creta before making any further changes</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Fail to install {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Fail to uninstall {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">Unable to find plugin.json from the extracted zip file, or this path {0} does not exist</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">A plugin with the same ID and version already exists, or the version is greater than this downloaded plugin</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Error creating setting panel for plugin {0}:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Flow version {1} to run</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Flow to the latest version to ensure that {0} works without issues.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Creta version {1} to run</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Creta to the latest version to ensure that {0} works without issues.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Failed to install plugin because plugin.json is invalid or corrupted</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Error updating plugin</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Keep plugin settings</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Do you want to keep the settings of the plugin for the next usage?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} successfully installed. Please restart Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} successfully uninstalled. Please restart Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} successfully updated. Please restart Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} successfully installed. Please restart Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} successfully uninstalled. Please restart Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} successfully updated. Please restart Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Plugin install</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} by {1} {2}{2}Would you like to install this plugin?</system:String>
     <system:String x:Key="UninstallPromptTitle">Plugin uninstall</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">Plugin updates available</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Update plugins</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Check plugin updates</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins are successfully updated. Please restart Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins are successfully updated. Please restart Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Thema</system:String>
@@ -331,7 +331,7 @@
     <system:String x:Key="SoundEffectTip">Een klein geluid afspelen wanneer het zoekvenster wordt geopend</system:String>
     <system:String x:Key="SoundEffectVolume">Sound Effect Volume</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Adjust the volume of the sound effect</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player is niet beschikbaar en is vereist voor volume aanpassing door Flow. Controleer uw installatie als u volume wilt aanpassen.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player is niet beschikbaar en is vereist voor volume aanpassing door Creta. Controleer uw installatie als u volume wilt aanpassen.</system:String>
     <system:String x:Key="Animation">Animatie</system:String>
     <system:String x:Key="AnimationTip">Animatie gebruiken in UI</system:String>
     <system:String x:Key="AnimationSpeed">Animation Speed</system:String>
@@ -526,7 +526,7 @@
 
     <!--  DefaultBrowser Setting Dialog  -->
     <system:String x:Key="defaultBrowserTitle">Standaard webbrowser</system:String>
-    <system:String x:Key="defaultBrowser_tips">De standaardinstelling volgt de standaardinstelling van de OS standaardinstellingen. Indien apart opgegeven, Flow gebruikt die browser.</system:String>
+    <system:String x:Key="defaultBrowser_tips">De standaardinstelling volgt de standaardinstelling van de OS standaardinstellingen. Indien apart opgegeven, Creta gebruikt die browser.</system:String>
     <system:String x:Key="defaultBrowser_name">Webbrowser</system:String>
     <system:String x:Key="defaultBrowser_profile_name">Browser Naam</system:String>
     <system:String x:Key="defaultBrowser_path">Browser pad</system:String>

@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">현재 액션 키워드</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">완료</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">켬</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">비활성화하면 Flow가 이 검색 옵션을 실행하지 않고 추가로 '*'로 되돌아가 액션 키워드를 해제합니다.</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">비활성화하면 Creta가 이 검색 옵션을 실행하지 않고 추가로 '*'로 되돌아가 액션 키워드를 해제합니다.</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows Index</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Direct Enumeration</system:String>

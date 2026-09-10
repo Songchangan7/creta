@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Current Action Keyword</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">完了</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Enabled</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">When disabled Flow will not execute this search option, and will additionally revert back to '*' to free up the action keyword</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">When disabled Creta will not execute this search option, and will additionally revert back to '*' to free up the action keyword</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows Index</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Direct Enumeration</system:String>

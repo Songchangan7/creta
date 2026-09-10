@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow wykrył, że zainstalowano {0} wtyczek, które będą wymagać {1} do działania. Czy chcesz pobrać {1}?
+        Creta wykrył, że zainstalowano {0} wtyczek, które będą wymagać {1} do działania. Czy chcesz pobrać {1}?
 {2}{2}
 Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy poproszony o wybranie folderu zawierającego plik wykonywalny {1}
     </system:String>
@@ -12,7 +12,7 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
         {2}{2}
         Kliknij Tak, jeśli chcesz ponownie wybrać plik wykonywalny {0}. Kliknij Nie, jeśli chcesz pobrać {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Nie można ustawić ścieżki do pliku wykonywalnego {0}. Spróbuj ponownie w ustawieniach Flow (przewiń na sam dół).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Nie można ustawić ścieżki do pliku wykonywalnego {0}. Spróbuj ponownie w ustawieniach Creta (przewiń na sam dół).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Nie udało się zainicjować wtyczek</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Wtyczki: {0} – nie udało się ich wczytać i zostaną wyłączone. Skontaktuj się z twórcą wtyczki, aby uzyskać pomoc</system:String>
 
@@ -115,7 +115,7 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="selectNodeExecutable">Wybierz plik wykonywalny Node.js</system:String>
     <system:String x:Key="selectPythonExecutable">Wybierz pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Zawsze rozpoczynaj wpisywanie w trybie angielskim</system:String>
-    <system:String x:Key="typingStartEnTooltip">Tymczasowo zmień metodę wprowadzania na tryb angielski podczas aktywacji Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Tymczasowo zmień metodę wprowadzania na tryb angielski podczas aktywacji Creta.</system:String>
     <system:String x:Key="autoUpdates">Automatyczne aktualizacje</system:String>
     <system:String x:Key="autoUpdatesTooltip">Automatycznie sprawdzaj i instaluj aktualizacje, gdy będą dostępne</system:String>
     <system:String x:Key="select">Wybierz</system:String>
@@ -145,10 +145,10 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Pomóż nam przetłumaczyć Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Pomóż nam przetłumaczyć Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Zawsze podgląd</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Zawsze otwieraj panel podglądu, gdy aktywowany jest Flow. Naciśnij {0}, aby przełączyć podgląd.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Zawsze otwieraj panel podglądu, gdy aktywowany jest Creta. Naciśnij {0}, aby przełączyć podgląd.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">Efekt cienia jest niedozwolony, gdy bieżący motyw ma włączony efekt rozmycia</system:String>
     <system:String x:Key="searchDelay">Opóźnienie wyszukiwania</system:String>
     <system:String x:Key="searchDelayToolTip">Dodaje krótkie opóźnienie podczas pisania, aby zmniejszyć migotanie interfejsu i obciążenie wynikami. Zalecane przy przeciętnej szybkości pisania.</system:String>
@@ -234,14 +234,14 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="failedToRemovePluginCacheTitle">Nie udało się usunąć cache wtyczki</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Wtyczki: {0} - Nie udało się usunąć plików cache wtyczki, usuń je ręcznie</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">Wtyczka {0} została już zmodyfikowana</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Uruchom ponownie Flow przed wprowadzeniem dalszych zmian</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Uruchom ponownie Creta przed wprowadzeniem dalszych zmian</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Nie udało się zainstalować {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Nie udało się odinstalować {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">Nie można znaleźć pliku plugin.json w rozpakowanym archiwum zip lub ścieżka {0} nie istnieje</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">Wtyczka o tym samym ID i wersji już istnieje, lub jej wersja jest nowsza niż w pobranej wtyczce</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Błąd podczas tworzenia panelu ustawień wtyczki {0}:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} wymaga wersji Flow {1} do działania</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow nie spełnia minimalnych wymagań wersji do uruchomienia {0}. Czy mimo to chcesz kontynuować instalację?{1}{1}Zalecamy zaktualizowanie Flow do najnowszej wersji, aby zapewnić bezproblemowe działanie {0}.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} wymaga wersji Creta {1} do działania</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta nie spełnia minimalnych wymagań wersji do uruchomienia {0}. Czy mimo to chcesz kontynuować instalację?{1}{1}Zalecamy zaktualizowanie Creta do najnowszej wersji, aby zapewnić bezproblemowe działanie {0}.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Nie udało się zainstalować wtyczki, ponieważ plik plugin.json jest nieprawidłowy lub uszkodzony</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -268,9 +268,9 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="ErrorUpdatingPlugin">Błąd podczas aktualizacji wtyczki</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Zachowaj ustawienia wtyczki</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Czy chcesz zachować ustawienia wtyczki do następnego użycia?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Wtyczka {0} została pomyślnie zainstalowana. Proszę ponownie uruchomić Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Wtyczka {0} została pomyślnie odinstalowana. Proszę ponownie uruchomić Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Wtyczka {0} została pomyślnie zaktualizowana. Proszę ponownie uruchomić Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Wtyczka {0} została pomyślnie zainstalowana. Proszę ponownie uruchomić Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Wtyczka {0} została pomyślnie odinstalowana. Proszę ponownie uruchomić Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Wtyczka {0} została pomyślnie zaktualizowana. Proszę ponownie uruchomić Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Instalacja wtyczki</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} autorstwa {1} {2}{2}Czy chcesz zainstalować tę wtyczkę?</system:String>
     <system:String x:Key="UninstallPromptTitle">Odinstalowanie wtyczki</system:String>
@@ -290,7 +290,7 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="updateAllPluginsTitle">Dostępne aktualizacje wtyczek</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Aktualizuj wtyczki</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Sprawdź aktualizacje wtyczek</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Wtyczki zostały pomyślnie zaktualizowane. Uruchom ponownie Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Wtyczki zostały pomyślnie zaktualizowane. Uruchom ponownie Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Motyw</system:String>
@@ -330,7 +330,7 @@ Kliknij &quot;nie&quot;, jeśli jest już zainstalowany. Zostaniesz wtedy popros
     <system:String x:Key="SoundEffectTip">Odtwarzaj krótki dźwięk po otwarciu okna wyszukiwania</system:String>
     <system:String x:Key="SoundEffectVolume">Głośność efektów dźwiękowych</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Dostosuj głośność efektów dźwiękowych</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player jest niedostępny, a jest wymagany do regulacji głośności w Flow. Sprawdź swoją instalację, jeśli potrzebujesz dostosować głośność.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player jest niedostępny, a jest wymagany do regulacji głośności w Creta. Sprawdź swoją instalację, jeśli potrzebujesz dostosować głośność.</system:String>
     <system:String x:Key="Animation">Animacja</system:String>
     <system:String x:Key="AnimationTip">Użyj animacji w interfejsie użytkownika</system:String>
     <system:String x:Key="AnimationSpeed">Szybkość animacji</system:String>
