@@ -290,7 +290,7 @@ public class NotionInboxSyncTests
         await service.EnqueueAsync(savedNote);
 
         var note = repository.GetNoteById(savedNote.Id);
-        ClassicAssert.AreEqual(string.Empty, note.NotionPageId);
+        ClassicAssert.IsTrue(string.IsNullOrEmpty(note.NotionPageId));
         ClassicAssert.IsTrue(note.NotionSyncPending);
     }
 
