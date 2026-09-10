@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Wybierz</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Aplikacja(*.exe)|*.exe|Wszystkie pliki|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Użyj własnej przeglądarki zamiast domyślnej dla Flow</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Użyj własnej przeglądarki zamiast domyślnej dla Creta</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Ścieżka do przeglądarki</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Nowa karta</system:String>

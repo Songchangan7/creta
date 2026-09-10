@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Palabra clave de acción actual</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Aceptar</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Activado</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Cuando esté desactivado, Flow no ejecutará esta opción de búsqueda, y además volverá a '*' para liberar la palabra clave de acción</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Cuando esté desactivado, Creta no ejecutará esta opción de búsqueda, y además volverá a '*' para liberar la palabra clave de acción</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Índice de Windows</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Enumeración directa</system:String>

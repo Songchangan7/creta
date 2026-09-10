@@ -214,7 +214,7 @@ namespace Creta.Core.Resource
         public static void ChangeCultureInfo(string languageCode)
         {
             // Culture of main thread
-            // Use CreateSpecificCulture to preserve possible user-override settings in Windows, if Flow's language culture is the same as Windows's
+            // Use CreateSpecificCulture to preserve possible user-override settings in Windows, if Creta's language culture is the same as Windows's
             CultureInfo currentCulture;
             try
             {
@@ -312,7 +312,7 @@ namespace Creta.Core.Resource
             var filename = $"{language.LanguageCode}{Extension}";
             var files = _languageDirectories
                 .Select(d => LanguageFile(d, filename))
-                // Exclude Flow's English language file since it's built into the binary, and there's no need to load
+                // Exclude Creta's English language file since it's built into the binary, and there's no need to load
                 // it again from the file system.
                 .Where(f => !string.IsNullOrEmpty(f) && f != flowEnglishFile)
                 .ToArray();

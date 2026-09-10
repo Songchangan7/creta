@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Autovervollständigung der Daten aus:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Bitte wählen Sie eine Websuche aus</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Sind Sie sicher, dass Sie {0} löschen wollen?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Wenn Sie Flow eine Suche nach einer bestimmten Website hinzufügen möchten, geben Sie zunächst eine Dummy-Textzeichenfolge in die Suchleiste dieser Website ein und starten Sie die Suche. Kopieren Sie jetzt den Inhalt der Adressleiste des Browsers und fügen Sie ihn in das URL-Feld unten ein. Ersetzen Sie Ihre Testzeichenfolge durch {q}. Zum Beispiel, wenn Sie auf Netflix nach casino suchen, steht in der Adressleiste</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Wenn Sie Creta eine Suche nach einer bestimmten Website hinzufügen möchten, geben Sie zunächst eine Dummy-Textzeichenfolge in die Suchleiste dieser Website ein und starten Sie die Suche. Kopieren Sie jetzt den Inhalt der Adressleiste des Browsers und fügen Sie ihn in das URL-Feld unten ein. Ersetzen Sie Ihre Testzeichenfolge durch {q}. Zum Beispiel, wenn Sie auf Netflix nach casino suchen, steht in der Adressleiste</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Kopieren Sie jetzt die gesamte Zeichenfolge und fügen Sie diese in das URL-Feld unten ein.
@@ -48,7 +48,7 @@ https://www.netflix.com/search?q={q}
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Aktions-Schlüsselwort ist bereits vorhanden. Bitte geben Sie ein anderes ein</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Erfolg</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Hinweis: Sie müssen keine benutzerdefinierten Bilder in diesem Verzeichnis ablegen, wenn die Version von Flow aktualisiert wird, gehen diese verloren. Flow kopiert automatisch jegliche Bilder außerhalb dieses Verzeichnisses herüber in den benutzerdefinierten Bildspeicherort von WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Hinweis: Sie müssen keine benutzerdefinierten Bilder in diesem Verzeichnis ablegen, wenn die Version von Creta aktualisiert wird, gehen diese verloren. Creta kopiert automatisch jegliche Bilder außerhalb dieses Verzeichnisses herüber in den benutzerdefinierten Bildspeicherort von WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Web-Suchen</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Ermöglicht die Durchführung von Web-Suchen</system:String>

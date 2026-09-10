@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">بيانات الإكمال التلقائي من:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">يرجى اختيار بحث على الويب</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">هل أنت متأكد أنك تريد حذف {0}؟</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">إذا كنت ترغب في إضافة بحث لموقع ويب معين إلى Flow، أدخل أولاً نصًا تجريبيًا في شريط البحث لذلك الموقع، ثم قم بإجراء البحث. الآن انسخ محتويات شريط عنوان المتصفح، والصقه في حقل الرابط أدناه. استبدل نص الاختبار بـ {q}. على سبيل المثال، إذا كنت تبحث عن كازينو على نتفليكس، سيقرأ شريط العنوان</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">إذا كنت ترغب في إضافة بحث لموقع ويب معين إلى Creta، أدخل أولاً نصًا تجريبيًا في شريط البحث لذلك الموقع، ثم قم بإجراء البحث. الآن انسخ محتويات شريط عنوان المتصفح، والصقه في حقل الرابط أدناه. استبدل نص الاختبار بـ {q}. على سبيل المثال، إذا كنت تبحث عن كازينو على نتفليكس، سيقرأ شريط العنوان</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         الآن انسخ هذه السلسلة بالكامل والصقها في حقل الرابط أدناه.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">كلمة المفتاح للعمل موجودة بالفعل، يرجى إدخال أخرى مختلفة</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">نجاح</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">تلميح: لا تحتاج لوضع صور مخصصة في هذا الدليل، إذا تم تحديث نسخة Flow سيتم فقدانها. سيقوم Flow تلقائيًا بنسخ أي صور خارج هذا الدليل إلى موقع الصور المخصص لـ WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">تلميح: لا تحتاج لوضع صور مخصصة في هذا الدليل، إذا تم تحديث نسخة Creta سيتم فقدانها. سيقوم Creta تلقائيًا بنسخ أي صور خارج هذا الدليل إلى موقع الصور المخصص لـ WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">عمليات البحث على الويب</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">يسمح بإجراء عمليات بحث على الويب</system:String>

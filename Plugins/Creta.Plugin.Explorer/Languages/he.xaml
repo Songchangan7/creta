@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">מילת פעולה נוכחית</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">בוצע</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">מופעל</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">כאשר האפשרות מושבתת, Flow לא יבצע חיפוש זה ויחזור להשתמש ב-* כדי לפנות את מילת הפעולה</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">כאשר האפשרות מושבתת, Creta לא יבצע חיפוש זה ויחזור להשתמש ב-* כדי לפנות את מילת הפעולה</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows Index</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">איתור ישיר</system:String>

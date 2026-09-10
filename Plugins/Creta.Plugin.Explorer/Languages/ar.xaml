@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">الكلمة المفتاحية الحالية للإجراء</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">تم</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">مفعّل</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">عند التعطيل، لن يقوم Flow بتنفيذ هذا الخيار في البحث، وسيرجع إلى '*' لتحرير الكلمة المفتاحية للإجراء</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">عند التعطيل، لن يقوم Creta بتنفيذ هذا الخيار في البحث، وسيرجع إلى '*' لتحرير الكلمة المفتاحية للإجراء</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">كل شيء</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">فهرس Windows</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">تعداد مباشر</system:String>

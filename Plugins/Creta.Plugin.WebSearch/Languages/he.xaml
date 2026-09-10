@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">השלמה אוטומטית מתוך:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">בחר שירות חיפוש אינטרנטי</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">האם אתה בטוח שברצונך למחוק את {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">אם ברצונך להוסיף חיפוש לאתר מסוים ב-Flow, ראשית הזן טקסט לדוגמה בשורת החיפוש של האתר והפעל את החיפוש. כעת העתק את הכתובת משורת הכתובת של הדפדפן והדבק אותה בשדה ה-URL למטה. החלף את מחרוזת הבדיקה שלך ב-{q}. לדוגמה, אם תחפש 'casino' ב-Netflix, שורת הכתובת תיראה כך:</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">אם ברצונך להוסיף חיפוש לאתר מסוים ב-Creta, ראשית הזן טקסט לדוגמה בשורת החיפוש של האתר והפעל את החיפוש. כעת העתק את הכתובת משורת הכתובת של הדפדפן והדבק אותה בשדה ה-URL למטה. החלף את מחרוזת הבדיקה שלך ב-{q}. לדוגמה, אם תחפש 'casino' ב-Netflix, שורת הכתובת תיראה כך:</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         כעת העתק מחרוזת זו והדבק אותה בשדה ה-URL למטה.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">מילת המפתח כבר קיימת, הזן אחת אחרת</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">הצליח</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">רמז: אין צורך להוסיף תמונות מותאמות אישית לתיקייה זו, כיוון שבעדכון הבא של Flow הן יאבדו. Flow יעתיק אוטומטית תמונות שנמצאות מחוץ לתיקייה זו למיקום התמונות המותאמות אישית של WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">רמז: אין צורך להוסיף תמונות מותאמות אישית לתיקייה זו, כיוון שבעדכון הבא של Creta הן יאבדו. Creta יעתיק אוטומטית תמונות שנמצאות מחוץ לתיקייה זו למיקום התמונות המותאמות אישית של WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">חיפושי אינטרנט</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">מאפשר לבצע חיפושים באינטרנט</system:String>

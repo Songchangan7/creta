@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">选择</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">程序文件(*.exe)|*.exe|所有文件|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">使用自定义而不是Flow的默认网页浏览器</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">使用自定义而不是Creta的默认网页浏览器</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">浏览器路径</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">新标签</system:String>

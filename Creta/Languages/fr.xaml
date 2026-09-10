@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow a détecté que vous avez installé {0} plugins, qui nécessiteront {1} pour fonctionner. Souhaitez-vous télécharger {1} ?
+        Creta a détecté que vous avez installé {0} plugins, qui nécessiteront {1} pour fonctionner. Souhaitez-vous télécharger {1} ?
         {2}{2}
         Cliquez sur non s'il est déjà installé, et vous serez invité à sélectionner le dossier qui contient l'exécutable {1}
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         Cliquez sur oui si vous souhaitez sélectionner à nouveau l'exécutable {0}. Cliquez sur non si vous souhaitez télécharger {1}
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Impossible de définir {0} comme chemin d'accès vers l'exécutable. Veuillez essayer à partir des paramètres de Flow (défiler vers le bas).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Impossible de définir {0} comme chemin d'accès vers l'exécutable. Veuillez essayer à partir des paramètres de Creta (défiler vers le bas).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Échec de l'initialisation des plugins</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Plugins : {0} - n'ont pas pu être chargés et doivent être désactivés, veuillez contacter le créateur du plugin pour obtenir de l'aide</system:String>
 
@@ -115,7 +115,7 @@
     <system:String x:Key="selectNodeExecutable">Veuillez sélectionner l'exécutable Node.js</system:String>
     <system:String x:Key="selectPythonExecutable">Veuillez sélectionner pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Toujours commencer à taper en mode anglais</system:String>
-    <system:String x:Key="typingStartEnTooltip">Changez temporairement votre mode de saisie en mode anglais lors de l'activation de Flow.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Changez temporairement votre mode de saisie en mode anglais lors de l'activation de Creta.</system:String>
     <system:String x:Key="autoUpdates">Mettre à jour automatiquement</system:String>
     <system:String x:Key="autoUpdatesTooltip">Vérifier et mettre à jour automatiquement l'application lorsqu'une nouvelle version est disponible</system:String>
     <system:String x:Key="select">Sélectionner</system:String>
@@ -145,10 +145,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Aidez-nous à traduire Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Aidez-nous à traduire Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Toujours prévisualiser</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Toujours ouvrir le panneau d'aperçu lorsque Flow s'active. Appuyez sur {0} pour activer/désactiver l'aperçu.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Toujours ouvrir le panneau d'aperçu lorsque Creta s'active. Appuyez sur {0} pour activer/désactiver l'aperçu.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">L'effet d'ombre n'est pas autorisé lorsque le thème actuel à un effet de flou activé</system:String>
     <system:String x:Key="searchDelay">Délai de recherche</system:String>
     <system:String x:Key="searchDelayToolTip">Ajoute un court délai pendant la frappe pour réduire le scintillement de l'interface utilisateur et le chargement des résultats. Recommandé si votre vitesse de frappe est moyenne.</system:String>
@@ -235,14 +235,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Échec de la suppression du cache du plugin</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Plugins : {0} - Échec de la suppression des fichiers cache des plugins, veuillez les supprimer manuellement</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} est déjà modifié</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Veuillez redémarrer Flow avant d'apporter d'autres modifications</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Veuillez redémarrer Creta avant d'apporter d'autres modifications</system:String>
     <system:String x:Key="failedToInstallPluginTitle">Échec de l'installation de {0}</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">Échec de la désinstallation de {0}</system:String>
     <system:String x:Key="fileNotFoundMessage">Impossible de trouver le fichier plugin.json dans le fichier zip extrait, ou ce chemin {0} n'existe pas</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">Un plugin avec le même ID et la même version existe déjà, ou la version est supérieure à ce plugin téléchargé</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Erreur lors de la création du panneau de configuration pour le plugin {0}:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} nécessite la version {1} de Flow pour fonctionner</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow ne répond pas aux exigences de version minimale pour que {0} puisse fonctionner. Voulez-vous continuer l'installation ?{1}{1}Nous vous recommandons de mettre à jour Flow vers la dernière version pour vous assurer que {0} fonctionne sans problème.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} nécessite la version {1} de Creta pour fonctionner</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta ne répond pas aux exigences de version minimale pour que {0} puisse fonctionner. Voulez-vous continuer l'installation ?{1}{1}Nous vous recommandons de mettre à jour Creta vers la dernière version pour vous assurer que {0} fonctionne sans problème.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Impossible d'installer le plugin car plugin.json est invalide ou corrompu</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Erreur de mise à jour du plugin</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Garder les paramètres du plugin</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Souhaitez-vous conserver les paramètres du plugin pour la prochaine utilisation ?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} installé avec succès. Veuillez redémarrer Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} désinstallé avec succès. Veuillez redémarrer Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} mis à jour avec succès. Veuillez redémarrer Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} installé avec succès. Veuillez redémarrer Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} désinstallé avec succès. Veuillez redémarrer Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} mis à jour avec succès. Veuillez redémarrer Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Installation du plugin</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} par {1} {2}{2}Voulez-vous installer ce plugin ?</system:String>
     <system:String x:Key="UninstallPromptTitle">Désinstallation du plugin</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">Mises à jour de plugins disponibles</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Mettre à jour les plugins</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Vérifier les mises à jour des plugins</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins mis à jour avec succès. Veuillez redémarrer Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Plugins mis à jour avec succès. Veuillez redémarrer Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Thèmes</system:String>
@@ -331,7 +331,7 @@
     <system:String x:Key="SoundEffectTip">Jouer un petit son lorsque la fenêtre de recherche s'ouvre</system:String>
     <system:String x:Key="SoundEffectVolume">Volume de l'effet sonore</system:String>
     <system:String x:Key="SoundEffectVolumeTip">Ajuster le volume de l'effet sonore</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player n'est pas disponible et est requis pour le réglage du volume de Flow. Veuillez vérifier votre installation si vous avez besoin de régler le volume.</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player n'est pas disponible et est requis pour le réglage du volume de Creta. Veuillez vérifier votre installation si vous avez besoin de régler le volume.</system:String>
     <system:String x:Key="Animation">Animation</system:String>
     <system:String x:Key="AnimationTip">Utiliser l'animation dans l'interface</system:String>
     <system:String x:Key="AnimationSpeed">Vitesse d'animation</system:String>
@@ -525,7 +525,7 @@
 
     <!--  DefaultBrowser Setting Dialog  -->
     <system:String x:Key="defaultBrowserTitle">Navigateur web par défaut</system:String>
-    <system:String x:Key="defaultBrowser_tips">La configuration par défaut suit le paramètre par défaut du système d'exploitation. Si spécifié séparément, Flow utilisera ce navigateur.</system:String>
+    <system:String x:Key="defaultBrowser_tips">La configuration par défaut suit le paramètre par défaut du système d'exploitation. Si spécifié séparément, Creta utilisera ce navigateur.</system:String>
     <system:String x:Key="defaultBrowser_name">Navigateur</system:String>
     <system:String x:Key="defaultBrowser_profile_name">Nom du navigateur</system:String>
     <system:String x:Key="defaultBrowser_path">Chemin du navigateur</system:String>

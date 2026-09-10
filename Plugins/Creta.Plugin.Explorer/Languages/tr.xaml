@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Geçerli Anahtar Kelime</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Tamam</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Etkin</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Devre dışı bırakıldığında Flow bu arama seçeneğini yürütmez ve eylem anahtar sözcüğünü serbest bırakmak için ek olarak '*' değerine geri döner</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Devre dışı bırakıldığında Creta bu arama seçeneğini yürütmez ve eylem anahtar sözcüğünü serbest bırakmak için ek olarak '*' değerine geri döner</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows Arama</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Doğrudan Sayım</system:String>

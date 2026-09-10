@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Autouzupełnianie danych z:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Musisz wybrać coś z listy</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Czy jesteś pewien że chcesz usunąć {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Jeśli chcesz dodać wyszukiwanie dla określonej strony internetowej do Flow, najpierw wprowadź przykładowy ciąg tekstowy w pasku wyszukiwania tej strony i uruchom wyszukiwanie. Teraz skopiuj zawartość paska adresu przeglądarki i wklej ją w polu URL poniżej. Zastąp swój ciąg testowy symbolem {q}. Na przykład, jeśli wyszukujesz słowo &quot;kasyno&quot; na Netflix, pasek adresu przeglądarki wyświetla</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Jeśli chcesz dodać wyszukiwanie dla określonej strony internetowej do Creta, najpierw wprowadź przykładowy ciąg tekstowy w pasku wyszukiwania tej strony i uruchom wyszukiwanie. Teraz skopiuj zawartość paska adresu przeglądarki i wklej ją w polu URL poniżej. Zastąp swój ciąg testowy symbolem {q}. Na przykład, jeśli wyszukujesz słowo &quot;kasyno&quot; na Netflix, pasek adresu przeglądarki wyświetla</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=kasyno</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Teraz skopiuj cały ten ciąg i wklej go w pole URL poniżej. 
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Ten wyzwalacz jest już używany, musisz wybrać inny</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Sukces</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Nie udało się zaktualizować źródła wyszukiwania. Element mógł zostać usunięty.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Wskazówka: Nie musisz umieszczać niestandardowych obrazów w tym katalogu, ponieważ zostaną one utracone w przypadku aktualizacji wersji Flow. Flow automatycznie skopiuje wszystkie obrazy spoza tego katalogu do lokalizacji niestandardowych obrazów WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Wskazówka: Nie musisz umieszczać niestandardowych obrazów w tym katalogu, ponieważ zostaną one utracone w przypadku aktualizacji wersji Creta. Creta automatycznie skopiuje wszystkie obrazy spoza tego katalogu do lokalizacji niestandardowych obrazów WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Wyszukiwarka WWW</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Szybkie wyszukiwanie na stronach WWW</system:String>

@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow, {0} eklenti yüklediğinizi tespit etti, bu eklentilerin çalışması için {1} gerekir. {1} indirilsin mi?
+        Creta, {0} eklenti yüklediğinizi tespit etti, bu eklentilerin çalışması için {1} gerekir. {1} indirilsin mi?
         {2}{2}
         Zaten yüklüyse hayır'a tıklayın ve {1} yürütülebilir dosyasının bulunduğu klasörü seçin
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         {0} yürütülebilir dosyasını tekrar seçmek istiyorsanız evet'e tıklayın. {1} dosyasını indirmek istiyorsanız hayır'a tıklayın
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">{0} dosya yolu ayarlanamadı, lütfen Flow’un ayarlarından deneyin (en alta inerek).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">{0} dosya yolu ayarlanamadı, lütfen Creta’un ayarlarından deneyin (en alta inerek).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Eklentiler başlatılamıyor</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Eklentiler: {0} - yüklenemedi ve devre dışı bırakılacak, lütfen eklenti geliştiricisi ile iletişime geçin</system:String>
 
@@ -145,7 +145,7 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Help us translate Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Help us translate Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Önizleme</system:String>
     <system:String x:Key="AlwaysPreviewToolTip">Önizleme panelini her zaman aç. Önizlemeyi bu ayardan bağımsız {0} kısayolu ile açıp kapatabilirsiniz.</system:String>
@@ -187,7 +187,7 @@
     <system:String x:Key="executedHistory">Son açılan geçmiş</system:String>
     <system:String x:Key="homeToggleBoxToolTip">Bu sadece eklenti Ana Sayfa özelliğini destekliyorsa ve Ana Sayfa etkinleştirilmiş ise düzenlenebilir.</system:String>
     <system:String x:Key="showAtTopmost">Arama Penceresini En Üstte Göster</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Diğer programların 'Her Zaman Üstte' ayarını geçersiz kılar ve Flow’u en önde gösterir.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Diğer programların 'Her Zaman Üstte' ayarını geçersiz kılar ve Creta’u en önde gösterir.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Eklenti Mağazası üzerinden eklenti değiştirdikten sonra uygulamayı yeniden başlatın</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Eklenti Mağazası aracılığıyla eklenti yükledikten/kaldırdıktan/güncelleştirdikten sonra Creta'ı otomatik olarak yeniden başlatın</system:String>
     <system:String x:Key="showUnknownSourceWarning">Bilinmeyen kaynak uyarısını göster</system:String>
@@ -235,14 +235,14 @@
     <system:String x:Key="failedToRemovePluginCacheTitle">Eklenti ön belleği kaldırılamıyor</system:String>
     <system:String x:Key="failedToRemovePluginCacheMessage">Eklentiler: {0} - Önbellek dosyaları kaldırılamadı, lütfen elle silin</system:String>
     <system:String x:Key="pluginModifiedAlreadyTitle">{0} zaten değiştirilmiş</system:String>
-    <system:String x:Key="pluginModifiedAlreadyMessage">Lütfen başka değişiklikler yapmadan önce Flow'u yeniden başlatın</system:String>
+    <system:String x:Key="pluginModifiedAlreadyMessage">Lütfen başka değişiklikler yapmadan önce Creta'u yeniden başlatın</system:String>
     <system:String x:Key="failedToInstallPluginTitle">{0} yüklenemiyor</system:String>
     <system:String x:Key="failedToUninstallPluginTitle">{0} kaldırılamıyor</system:String>
     <system:String x:Key="fileNotFoundMessage">plugin.json dosyası çıkarılan zip dosyasında bulunamadı veya {0} yolu mevcut değil</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">Bu eklentiyle aynı ID ve sürüme sahip bir eklenti zaten var, ya da mevcut sürüm daha yüksek</system:String>
     <system:String x:Key="errorCreatingSettingPanel">Eklenti {0} için ayar paneli oluşturulurken hata oluştu: {1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Flow version {1} to run</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Flow to the latest version to ensure that {0} works without issues.</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} requires Creta version {1} to run</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta does not meet the minimum version requirements for {0} to run. Do you want to continue installing it?{1}{1}We recommend updating Creta to the latest version to ensure that {0} works without issues.</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">Failed to install plugin because plugin.json is invalid or corrupted</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">Eklenti güncellenirken bir hata oluştu</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Eklenti ayarlarını sakla</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Eklentinin ayarlarını bir sonraki kullanım için saklamak istiyor musunuz?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">{0} eklentisi başarıyla yüklendi. Lütfen Flow'u yeniden başlatın.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">{0} eklentisi başarıyla kaldırıldı. Lütfen Flow'u yeniden başlatın.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">{0} eklentisi başarıyla güncellendi. Lütfen Flow'u yeniden başlatın.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">{0} eklentisi başarıyla yüklendi. Lütfen Creta'u yeniden başlatın.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">{0} eklentisi başarıyla kaldırıldı. Lütfen Creta'u yeniden başlatın.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">{0} eklentisi başarıyla güncellendi. Lütfen Creta'u yeniden başlatın.</system:String>
     <system:String x:Key="InstallPromptTitle">Eklenti yükleme</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} - {1} tarafından geliştirildi {2}{2}Bu eklentiyi yüklemek ister misiniz?</system:String>
     <system:String x:Key="UninstallPromptTitle">Eklenti kaldırma</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">Eklenti güncellemeleri mevcut</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Eklentileri güncelle</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Eklenti güncellemelerini kontrol et</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Eklentiler başarıyla güncellendi. Lütfen Flow'u yeniden başlatın.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Eklentiler başarıyla güncellendi. Lütfen Creta'u yeniden başlatın.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Temalar</system:String>

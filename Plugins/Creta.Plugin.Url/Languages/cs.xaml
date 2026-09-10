@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Vybrat</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Aplikace(*.exe)|*.exe|Všechny soubory|*. *</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Use custom instead of Flow's default web browser</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Use custom instead of Creta's default web browser</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Browser path</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Nová záložka</system:String>

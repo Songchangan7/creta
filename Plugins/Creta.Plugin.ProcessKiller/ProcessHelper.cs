@@ -34,11 +34,15 @@ namespace Creta.Plugin.ProcessKiller
             "explorer"
         ];
 
-        private const string FlowLauncherProcessName = "Flow.Launcher";
+        private static readonly HashSet<string> SelfProcessNames = new(StringComparer.OrdinalIgnoreCase)
+        {
+            "Creta",
+            "Flow.Launcher"
+        };
 
-        private bool IsSystemProcessOrFlowLauncher(Process p) =>
+        private bool IsSystemProcessOrSelf(Process p) =>
             _systemProcessList.Contains(p.ProcessName.ToLower()) ||
-            string.Equals(p.ProcessName, FlowLauncherProcessName, StringComparison.OrdinalIgnoreCase);
+            SelfProcessNames.Contains(p.ProcessName);
 
         /// <summary>
         /// Get title based on process name and id
@@ -61,7 +65,7 @@ namespace Creta.Plugin.ProcessKiller
 
             foreach (var p in Process.GetProcesses())
             {
-                if (IsSystemProcessOrFlowLauncher(p)) continue;
+                if (IsSystemProcessOrSelf(p)) continue;
 
                 processlist.Add(p);
             }
@@ -139,7 +143,7 @@ namespace Creta.Plugin.ProcessKiller
         /// </summary>
         public IEnumerable<Process> GetSimilarProcesses(string processPath)
         {
-            return Process.GetProcesses().Where(p => !IsSystemProcessOrFlowLauncher(p) && TryGetProcessFilename(p) == processPath);
+            return Process.GetProcesses().Where(p => !IsSystemProcessOrSelf(p) && TryGetProcessFilename(p) == processPath);
         }
 
         public static void TryKill(Process p)

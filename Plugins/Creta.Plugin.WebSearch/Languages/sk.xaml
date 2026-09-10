@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Automatické dokončovanie údajov z:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Vyberte webové vyhľadávanie</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Naozaj chcete odstrániť {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Ak chcete do Flowu pridať vyhľadávanie na konkrétnej webovej stránke, najprv zadajte testovací textový reťazec do vyhľadávacieho poľa danej webovej stránky a spustite vyhľadávanie. Teraz skopírujte obsah adresného riadka prehliadača a vložte ho do poľa URL nižšie. Nahraďte svoj testovací reťazec týmto {q}. Ak napríklad hľadáte na Netflixe kasíno, adresa bude vyzerať takto</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Ak chcete do Creta pridať vyhľadávanie na konkrétnej webovej stránke, najprv zadajte testovací textový reťazec do vyhľadávacieho poľa danej webovej stránky a spustite vyhľadávanie. Teraz skopírujte obsah adresného riadka prehliadača a vložte ho do poľa URL nižšie. Nahraďte svoj testovací reťazec týmto {q}. Ak napríklad hľadáte na Netflixe kasíno, adresa bude vyzerať takto</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Kasíno</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Teraz skopírujte celý tento reťazec a vložte ho do poľa URL nižšie.

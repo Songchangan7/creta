@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Aktuálny aktivačný príkaz</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Hotovo</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Povolené</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Ak je vypnuté, Flow túto možnosť vyhľadávania nevykoná a následne sa vráti späť na &quot;*&quot;, aby sa uvoľnila skratka akcie</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Ak je vypnuté, Creta túto možnosť vyhľadávania nevykoná a následne sa vráti späť na &quot;*&quot;, aby sa uvoľnila skratka akcie</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Index Windowsu</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Zoznam priečinkov</system:String>

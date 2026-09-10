@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow はあなたが {0} プラグインをインストールしており、実行するために {1} が必要であることを検知しました。{1} をインストールしますか？
+        Creta はあなたが {0} プラグインをインストールしており、実行するために {1} が必要であることを検知しました。{1} をインストールしますか？
         {2}{2}
         {1}がすでにインストールされている場合は「いいえ」をクリックし、それが入っているフォルダーを選択してください
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         {0} の実行ファイルをもう一度選択する場合は「はい」を、{1} をダウンロードする場合は「いいえ」を選択してください
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">{0} の実行可能ファイルのパスを設定できません。Flow の設定から試してください（下までスクロールしてください）。</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">{0} の実行可能ファイルのパスを設定できません。Creta の設定から試してください（下までスクロールしてください）。</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">プラグインの起動失敗</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">プラグイン: {0} の読み込みに失敗したため、無効になりました。プラグインの作成者にお問い合わせください</system:String>
 
@@ -115,7 +115,7 @@
     <system:String x:Key="selectNodeExecutable">Node.js の実行ファイルを選択してください</system:String>
     <system:String x:Key="selectPythonExecutable">pythonw.exe を選択してください</system:String>
     <system:String x:Key="typingStartEn">常に英語モードで入力を開始する</system:String>
-    <system:String x:Key="typingStartEnTooltip">Flowを起動したとき、一時的に入力方法を英語モードに変更します。</system:String>
+    <system:String x:Key="typingStartEnTooltip">Cretaを起動したとき、一時的に入力方法を英語モードに変更します。</system:String>
     <system:String x:Key="autoUpdates">自動更新</system:String>
     <system:String x:Key="autoUpdatesTooltip">利用可能な場合、Cretaを自動的に確認して更新します</system:String>
     <system:String x:Key="select">選択</system:String>
@@ -145,10 +145,10 @@
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Help us translate Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Help us translate Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">常にプレビューする</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Flow が有効になったとき、常にプレビューパネルを開きます。 {0} を押してプレビューの表示/非表示を切り替えます。</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Creta が有効になったとき、常にプレビューパネルを開きます。 {0} を押してプレビューの表示/非表示を切り替えます。</system:String>
     <system:String x:Key="shadowEffectNotAllowed">現在のテーマでぼかしの効果が有効になっている場合、影の効果を有効にすることはできません</system:String>
     <system:String x:Key="searchDelay">検索遅延</system:String>
     <system:String x:Key="searchDelayToolTip">入力中に短い遅延を追加することで、UIのちらつきや結果の読み込みを軽減します。平均的なタイピング速度のユーザーにおすすめです。</system:String>
@@ -187,9 +187,9 @@
     <system:String x:Key="executedHistory">Last opened history</system:String>
     <system:String x:Key="homeToggleBoxToolTip">これは、プラグインがホーム機能をサポートし、ホームページが有効な場合にのみ編集することができます。</system:String>
     <system:String x:Key="showAtTopmost">検索ウィンドウを最前面に表示</system:String>
-    <system:String x:Key="showAtTopmostToolTip">他のプログラムの 'Always on Top' （最前面に表示）設定を上書きし、常に最前面のウィンドウで Flow を表示します。</system:String>
+    <system:String x:Key="showAtTopmostToolTip">他のプログラムの 'Always on Top' （最前面に表示）設定を上書きし、常に最前面のウィンドウで Creta を表示します。</system:String>
     <system:String x:Key="autoRestartAfterChanging">プラグインストアでプラグインを変更した後に再起動</system:String>
-    <system:String x:Key="autoRestartAfterChangingToolTip">プラグインストア経由でプラグインをインストール、アンインストール、または更新した後、Flow Lancherを自動的に再起動します</system:String>
+    <system:String x:Key="autoRestartAfterChangingToolTip">プラグインストア経由でプラグインをインストール、アンインストール、または更新した後、Cretaを自動的に再起動します</system:String>
     <system:String x:Key="showUnknownSourceWarning">不明なソースの警告を表示</system:String>
     <system:String x:Key="showUnknownSourceWarningToolTip">不明なソースからプラグインをインストールするときに警告を表示する</system:String>
     <system:String x:Key="autoUpdatePlugins">プラグインの自動アップデート</system:String>
@@ -241,8 +241,8 @@
     <system:String x:Key="fileNotFoundMessage">展開されたzipファイルからplugin.jsonが見つからないか、このパス {0} が存在しません</system:String>
     <system:String x:Key="pluginExistAlreadyMessage">同じIDとバージョンのプラグインがすでに存在するか、またはこのダウンロードしたプラグインよりもバージョンが大きいです</system:String>
     <system:String x:Key="errorCreatingSettingPanel">プラグイン {0}の設定パネル作成中にエラーが発生しました:{1}{2}</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} を実行するには Flow のバージョン {1} が必要です</system:String>
-    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Flow は {0} の実行に必要な最低バージョン要求を満たしていません｡インストールを続けますか?{1}{1}{0}が正しく動作することを保証するために、Flow を最新版に更新することをおすすめします。</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedTitle">{0} を実行するには Creta のバージョン {1} が必要です</system:String>
+    <system:String x:Key="pluginMinimumAppVersionUnsatisfiedMessage">Creta は {0} の実行に必要な最低バージョン要求を満たしていません｡インストールを続けますか?{1}{1}{0}が正しく動作することを保証するために、Creta を最新版に更新することをおすすめします。</system:String>
     <system:String x:Key="pluginJsonInvalidOrCorrupted">plugin.json が無効または破損しているため、プラグインのインストールに失敗しました</system:String>
 
     <!--  Setting Plugin Store  -->
@@ -269,9 +269,9 @@
     <system:String x:Key="ErrorUpdatingPlugin">プラグインの更新に失敗</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">プラグインの設定を維持</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">再びインストールして使用するときのためにプラグインの設定を維持しますか？</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">プラグイン {0} のインストールに成功しました。Flow を再起動してください。</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">プラグイン {0} のアンインストールに成功しました。Flow を再起動してください。</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">プラグイン {0} が正常に更新されました。Flow を再起動してください。</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">プラグイン {0} のインストールに成功しました。Creta を再起動してください。</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">プラグイン {0} のアンインストールに成功しました。Creta を再起動してください。</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">プラグイン {0} が正常に更新されました。Creta を再起動してください。</system:String>
     <system:String x:Key="InstallPromptTitle">プラグインのインストール</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} by {1} {2}{2}このプラグインをインストールしますか？</system:String>
     <system:String x:Key="UninstallPromptTitle">プラグインのアンインストール</system:String>
@@ -291,7 +291,7 @@
     <system:String x:Key="updateAllPluginsTitle">プラグインの更新が利用可能</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">プラグインを更新</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">プラグインの更新を確認</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">プラグインが正常に更新されました。Flow を再起動してください。</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">プラグインが正常に更新されました。Creta を再起動してください。</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">テーマ</system:String>
@@ -331,7 +331,7 @@
     <system:String x:Key="SoundEffectTip">検索ウィンドウが開いたとき、小さな音を鳴らします</system:String>
     <system:String x:Key="SoundEffectVolume">効果音の音量</system:String>
     <system:String x:Key="SoundEffectVolumeTip">効果音の音量を調整します</system:String>
-    <system:String x:Key="SoundEffectWarning">Windows Media Player は Flow を使った音量調整に必要です。ボリュームを調整する必要がある場合は、Windows Media Player がインストールされているかどうか確認してください。</system:String>
+    <system:String x:Key="SoundEffectWarning">Windows Media Player は Creta を使った音量調整に必要です。ボリュームを調整する必要がある場合は、Windows Media Player がインストールされているかどうか確認してください。</system:String>
     <system:String x:Key="Animation">アニメーション</system:String>
     <system:String x:Key="AnimationTip">UIでアニメーションを使用します</system:String>
     <system:String x:Key="AnimationSpeed">アニメーション速度</system:String>
@@ -526,7 +526,7 @@
 
     <!--  DefaultBrowser Setting Dialog  -->
     <system:String x:Key="defaultBrowserTitle">デフォルトのウェブブラウザー</system:String>
-    <system:String x:Key="defaultBrowser_tips">デフォルトの設定は、OS のデフォルトのブラウザ設定に従います。別々に指定すると、Flow はそのブラウザを使用します。</system:String>
+    <system:String x:Key="defaultBrowser_tips">デフォルトの設定は、OS のデフォルトのブラウザ設定に従います。別々に指定すると、Creta はそのブラウザを使用します。</system:String>
     <system:String x:Key="defaultBrowser_name">ブラウザー</system:String>
     <system:String x:Key="defaultBrowser_profile_name">ブラウザー名</system:String>
     <system:String x:Key="defaultBrowser_path">ブラウザーのパス</system:String>
@@ -661,8 +661,8 @@
     <!--  Welcome Window  -->
     <system:String x:Key="Skip">スキップ</system:String>
     <system:String x:Key="Welcome_Page1_Title">Cretaへようこそ</system:String>
-    <system:String x:Key="Welcome_Page1_Text01">こんにちは！Flow Launcherを初めて起動されたんですね！</system:String>
-    <system:String x:Key="Welcome_Page1_Text02">開始する前に、このウィザードが Flow Launcher のセットアップをお手伝いします。ご希望の方はスキップできます。言語を選択してください。</system:String>
+    <system:String x:Key="Welcome_Page1_Text01">こんにちは！Cretaを初めて起動されたんですね！</system:String>
+    <system:String x:Key="Welcome_Page1_Text02">開始する前に、このウィザードが Creta のセットアップをお手伝いします。ご希望の方はスキップできます。言語を選択してください。</system:String>
     <system:String x:Key="Welcome_Page2_Title">PC上のファイルとアプリケーションの検索と実行</system:String>
     <system:String x:Key="Welcome_Page2_Text01">アプリケーション、ファイル、ブックマーク、YouTube、X などあらゆるものを検索して実行できます。マウスに触れることなく、キーボードだけで快適に操作できます。</system:String>
     <system:String x:Key="Welcome_Page2_Text02">Creta は以下のホットキーで起動します。さっそく試してみてください。変更するには、入力欄をクリックし、キーボードで希望のホットキーを押してください。</system:String>

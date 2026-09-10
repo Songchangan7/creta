@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Aktuelles Aktions-Schlüsselwort</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Fertig</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Aktiviert</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Wenn deaktiviert, führt Flow diese Suchoption nicht aus und kehrt zusätzlich zu '*' zurück, um das Aktions-Schlüsselwort freizugeben</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Wenn deaktiviert, führt Creta diese Suchoption nicht aus und kehrt zusätzlich zu '*' zurück, um das Aktions-Schlüsselwort freizugeben</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows-Index</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Direkte Aufzählung</system:String>

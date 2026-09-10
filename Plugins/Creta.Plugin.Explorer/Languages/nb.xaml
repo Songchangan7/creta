@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Nåværende nøkkelord for handling</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Utført</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Aktivert</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Når deaktivert vil Flow ikke utføre dette søkealternativet, og vil i tillegg gå tilbake til '*' for å frigjøre handlingsnøkkelordet</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Når deaktivert vil Creta ikke utføre dette søkealternativet, og vil i tillegg gå tilbake til '*' for å frigjøre handlingsnøkkelordet</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Everything</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Windows-indeks</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Direkte oppregning</system:String>

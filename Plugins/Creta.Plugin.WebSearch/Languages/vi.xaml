@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Tự động hoàn thành dữ liệu từ:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Vui lòng chọn tìm kiếm trên web</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Bạn có chắc chắn muốn xóa {0} không?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">If you want to add a search for a particular website to Flow, first enter a dummy text string in the search bar of that website, and launch the search. Now copy the contents of the browser's address bar, and paste it in the URL field below. Replace your test string with {q}. For example, if you search for casino on Netflix, its address bar reads</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">If you want to add a search for a particular website to Creta, first enter a dummy text string in the search bar of that website, and launch the search. Now copy the contents of the browser's address bar, and paste it in the URL field below. Replace your test string with {q}. For example, if you search for casino on Netflix, its address bar reads</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Now copy this entire string and paste it in the URL field below.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Từ khóa hành động đã tồn tại, vui lòng nhập một từ khóa khác</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Thành công</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Gợi ý: Bạn không cần đặt hình ảnh tùy chỉnh trong thư mục này, nếu phiên bản của Flow được cập nhật, chúng sẽ bị mất. Flow sẽ tự động sao chép mọi hình ảnh bên ngoài thư mục này sang vị trí hình ảnh tùy chỉnh của WebSearch.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Gợi ý: Bạn không cần đặt hình ảnh tùy chỉnh trong thư mục này, nếu phiên bản của Creta được cập nhật, chúng sẽ bị mất. Creta sẽ tự động sao chép mọi hình ảnh bên ngoài thư mục này sang vị trí hình ảnh tùy chỉnh của WebSearch.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Tìm kiếm Web</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Cho phép thực hiện tìm kiếm trên web</system:String>

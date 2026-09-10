@@ -23,7 +23,7 @@
     <system:String x:Key="creta_plugin_websearch_enable_suggestion_provider">Autofullfør data fra:</system:String>
     <system:String x:Key="creta_plugin_websearch_pls_select_web_search">Vennligst velg et websøk</system:String>
     <system:String x:Key="creta_plugin_websearch_delete_warning">Er du sikker på at du ønsker å slette {0}?</system:String>
-    <system:String x:Key="creta_plugin_websearch_guide_1">Hvis du vil legge til et søk etter en bestemt nettside til Flow, først skriv inn en plassholder tekststreng i søkefeltet i denne nettsiden og start søket. Kopier nå innholdet i nettleserens adresselinje, og lim inn innholdet i URL-feltet nedenfor. Erstatt teststrengen din med {q}. For eksempel, hvis du søker etter casino på Netflix, leser dets adresselinje</system:String>
+    <system:String x:Key="creta_plugin_websearch_guide_1">Hvis du vil legge til et søk etter en bestemt nettside til Creta, først skriv inn en plassholder tekststreng i søkefeltet i denne nettsiden og start søket. Kopier nå innholdet i nettleserens adresselinje, og lim inn innholdet i URL-feltet nedenfor. Erstatt teststrengen din med {q}. For eksempel, hvis du søker etter casino på Netflix, leser dets adresselinje</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_2">https://www.netflix.com/search?q=Casino</system:String>
     <system:String x:Key="creta_plugin_websearch_guide_3">
         Kopier nå hele strengen og lim den inn i URL-feltet nedenfor.
@@ -47,7 +47,7 @@
     <system:String x:Key="creta_plugin_websearch_action_keyword_exist">Nøkkelord for handlingen eksisterer allerede, velg et annet</system:String>
     <system:String x:Key="creta_plugin_websearch_succeed">Vellykket</system:String>
     <system:String x:Key="creta_plugin_websearch_edit_failed">Failed to update search source. The item may have been removed.</system:String>
-    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Tips: du trenger ikke å plassere egendefinerte bilder i denne katalogen, dersom versjonen av Flow blir oppdatert vil de gå tapt. Flow vil automatisk kopiere bilder utenfor denne katalogen over til WebSearch sin egendefinerte bildeplassering.</system:String>
+    <system:String x:Key="creta_plugin_websearch_iconpath_hint">Tips: du trenger ikke å plassere egendefinerte bilder i denne katalogen, dersom versjonen av Creta blir oppdatert vil de gå tapt. Creta vil automatisk kopiere bilder utenfor denne katalogen over til WebSearch sin egendefinerte bildeplassering.</system:String>
 
     <system:String x:Key="creta_plugin_websearch_plugin_name">Nettbaserte søk</system:String>
     <system:String x:Key="creta_plugin_websearch_plugin_description">Tillater å utføre nettsøk</system:String>

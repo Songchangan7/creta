@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">選択</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Application(*.exe)|*.exe|All files|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">FlowのデフォルトのWebブラウザの代わりにカスタムを使用する</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">CretaのデフォルトのWebブラウザの代わりにカスタムを使用する</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">ブラウザーのパス</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">新しいタブ</system:String>

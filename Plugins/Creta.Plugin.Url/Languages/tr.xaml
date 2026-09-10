@@ -10,7 +10,7 @@
     <system:String x:Key="creta_plugin_url_plugin_choose">Seç</system:String>
     <system:String x:Key="creta_plugin_url_plugin_filter">Programlar (*.exe)|*.exe|Tüm Dosyalar|*.*</system:String>
 
-    <system:String x:Key="creta_plugin_url_use_custom_browser">Flow'un varsayılan web tarayıcısı yerine özel tarayıcıyı kullanın</system:String>
+    <system:String x:Key="creta_plugin_url_use_custom_browser">Creta'un varsayılan web tarayıcısı yerine özel tarayıcıyı kullanın</system:String>
     <system:String x:Key="creta_plugin_url_browser_path">Tarayıcı yolu</system:String>
 
     <system:String x:Key="creta_plugin_url_new_tab">Yeni sekme</system:String>

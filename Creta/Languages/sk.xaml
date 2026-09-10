@@ -2,7 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--  Startup  -->
     <system:String x:Key="runtimePluginInstalledChooseRuntimePrompt">
-        Flow zistil, že máte nainštalované {0} pluginy, ktoré vyžadujú na spustenie {1}. Chcete stiahnuť {1}?
+        Creta zistil, že máte nainštalované {0} pluginy, ktoré vyžadujú na spustenie {1}. Chcete stiahnuť {1}?
         {2}{2}
         Ak už ho máte nainštalovaný, kliknite na nie, a budete vyzvaný na zadanie cesty k priečinku spustiteľného súboru {1}
     </system:String>
@@ -12,7 +12,7 @@
         {2}{2}
         Ak chcete znovu vybrať spustiteľný súbor {0}, kliknite na Áno. Kliknutím na Nie sa stiahne {1}.
     </system:String>
-    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Nie je možné nastaviť cestu ku spustiteľnému súboru {0}, skúste to v nastaveniach Flowu (prejdite nadol).</system:String>
+    <system:String x:Key="runtimePluginUnableToSetExecutablePath">Nie je možné nastaviť cestu ku spustiteľnému súboru {0}, skúste to v nastaveniach Creta (prejdite nadol).</system:String>
     <system:String x:Key="failedToInitializePluginsTitle">Nepodarilo sa inicializovať pluginy</system:String>
     <system:String x:Key="failedToInitializePluginsMessage">Pluginy: {0} – nepodarilo sa načítať a mal by byť zakázaný, na pomoc kontaktujte autora pluginu</system:String>
 
@@ -116,12 +116,12 @@ Nevykonali sa žiadne zmeny.</system:String>
     <system:String x:Key="selectNodeExecutable">Vyberte spustiteľný súbor Node.js</system:String>
     <system:String x:Key="selectPythonExecutable">Prosím, vyberte pythonw.exe</system:String>
     <system:String x:Key="typingStartEn">Vždy písať s anglickou klávesnicou</system:String>
-    <system:String x:Key="typingStartEnTooltip">Pri aktivácii Flowu sa dočasne zmení klávesnica na anglickú.</system:String>
+    <system:String x:Key="typingStartEnTooltip">Pri aktivácii Creta sa dočasne zmení klávesnica na anglickú.</system:String>
     <system:String x:Key="autoUpdates">Automatická aktualizácia</system:String>
     <system:String x:Key="autoUpdatesTooltip">Automaticky skontrolovať a aktualizovať aplikáciu, ak je to možné</system:String>
     <system:String x:Key="select">Vybrať</system:String>
     <system:String x:Key="hideOnStartup">Schovať Creta po spustení</system:String>
-    <system:String x:Key="hideOnStartupToolTip">Vyhľadávacie okno Flow launchera sa po spustení skryje v oblasti oznámení.</system:String>
+    <system:String x:Key="hideOnStartupToolTip">Vyhľadávacie okno Creta sa po spustení skryje v oblasti oznámení.</system:String>
     <system:String x:Key="hideNotifyIcon">Schovať ikonu z oblasti oznámení</system:String>
     <system:String x:Key="hideNotifyIconToolTip">Keď je ikona skrytá z oblasti oznámení, nastavenia možno otvoriť kliknutím pravým tlačidlom myši na okno vyhľadávania.</system:String>
     <system:String x:Key="ignoreAccents">Pri vyhľadávaní ignorovať diakritiku</system:String>
@@ -146,10 +146,10 @@ Nevykonali sa žiadne zmeny.</system:String>
     <system:String x:Key="DoublePinyinSchemasXingKongJianDao">Xing Kong Jian Dao</system:String>
     <system:String x:Key="DoublePinyinSchemasDaNiu">Da Niu</system:String>
     <system:String x:Key="DoublePinyinSchemasXiaoLang">Xiao Lang</system:String>
-    <system:String x:Key="HelpUsTranslateFlow">Pomôžte nám preložiť Flow</system:String>
+    <system:String x:Key="HelpUsTranslateFlow">Pomôžte nám preložiť Creta</system:String>
 
     <system:String x:Key="AlwaysPreview">Vždy zobraziť náhľad</system:String>
-    <system:String x:Key="AlwaysPreviewToolTip">Pri aktivácii Flowu vždy otvoriť panel s náhľadom. Stlačením klávesu {0} prepnete náhľad.</system:String>
+    <system:String x:Key="AlwaysPreviewToolTip">Pri aktivácii Creta vždy otvoriť panel s náhľadom. Stlačením klávesu {0} prepnete náhľad.</system:String>
     <system:String x:Key="shadowEffectNotAllowed">Efekt tieňa nie je povolený, kým má aktuálny motív povolený efekt rozostrenia</system:String>
     <system:String x:Key="searchDelay">Oneskorenie vyhľadávania</system:String>
     <system:String x:Key="searchDelayToolTip">Pridá krátke oneskorenie počas písania, aby na zníženie blikanie rozhrania počas načítavania. Odporúča sa pri priemernej rýchlosti písania.</system:String>
@@ -188,7 +188,7 @@ Nevykonali sa žiadne zmeny.</system:String>
     <system:String x:Key="executedHistory">História naposledy otvorených</system:String>
     <system:String x:Key="homeToggleBoxToolTip">Úprava je možná len vtedy, ak plugin podporuje funkciu domovská stránka a zároveň je povolená.</system:String>
     <system:String x:Key="showAtTopmost">Zobraziť vyhľadávacie okno v popredí</system:String>
-    <system:String x:Key="showAtTopmostToolTip">Prepíše nastavenie &quot;Vždy na vrchu&quot; ostatných programov a zobrazí navrchu Flow.</system:String>
+    <system:String x:Key="showAtTopmostToolTip">Prepíše nastavenie &quot;Vždy na vrchu&quot; ostatných programov a zobrazí navrchu Creta.</system:String>
     <system:String x:Key="autoRestartAfterChanging">Reštartovať po úprave pluginu cez Repozitár pluginov</system:String>
     <system:String x:Key="autoRestartAfterChangingToolTip">Automaticky reštartovať Creta po inštalácii/odinštalácii/aktualizácii pluginu cez Repozitár pluginov</system:String>
     <system:String x:Key="showUnknownSourceWarning">Zobraziť upozornenie na neznámy zdroj</system:String>
@@ -270,9 +270,9 @@ Nevykonali sa žiadne zmeny.</system:String>
     <system:String x:Key="ErrorUpdatingPlugin">Chyba aktualizácie pluginu</system:String>
     <system:String x:Key="KeepPluginSettingsTitle">Ponechať nastavenia pluginu</system:String>
     <system:String x:Key="KeepPluginSettingsSubtitle">Chcete zachovať nastavenia pluginu na ďalšie použitie?</system:String>
-    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} bol úspešne nainštalovaný. Prosím, reštartujte Flow.</system:String>
-    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} bol úspešne odinštalovaný. Prosím, reštartujte Flow.</system:String>
-    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} bol úspešne aktualizovaný. Prosím, reštartujte Flow.</system:String>
+    <system:String x:Key="InstallSuccessNoRestart">Plugin {0} bol úspešne nainštalovaný. Prosím, reštartujte Creta.</system:String>
+    <system:String x:Key="UninstallSuccessNoRestart">Plugin {0} bol úspešne odinštalovaný. Prosím, reštartujte Creta.</system:String>
+    <system:String x:Key="UpdateSuccessNoRestart">Plugin {0} bol úspešne aktualizovaný. Prosím, reštartujte Creta.</system:String>
     <system:String x:Key="InstallPromptTitle">Inštalácia pluginu</system:String>
     <system:String x:Key="InstallPromptSubtitle">{0} od {1} {2}{2}Chcete nainštalovať tento plugin?</system:String>
     <system:String x:Key="UninstallPromptTitle">Odinštalácia pluginu</system:String>
@@ -292,7 +292,7 @@ Nevykonali sa žiadne zmeny.</system:String>
     <system:String x:Key="updateAllPluginsTitle">Dostupná aktualizácia pluginu</system:String>
     <system:String x:Key="updateAllPluginsButtonContent">Aktualizovať pluginy</system:String>
     <system:String x:Key="checkPluginUpdatesTooltip">Skontrolovať dostupnosť aktualizácií</system:String>
-    <system:String x:Key="PluginsUpdateSuccessNoRestart">Pluginy boli úspešne aktualizované. Prosím, reštartujte Flow.</system:String>
+    <system:String x:Key="PluginsUpdateSuccessNoRestart">Pluginy boli úspešne aktualizované. Prosím, reštartujte Creta.</system:String>
 
     <!--  Setting Theme  -->
     <system:String x:Key="theme">Motív</system:String>
@@ -527,7 +527,7 @@ Nevykonali sa žiadne zmeny.</system:String>
 
     <!--  DefaultBrowser Setting Dialog  -->
     <system:String x:Key="defaultBrowserTitle">Predvolený webový prehliadač</system:String>
-    <system:String x:Key="defaultBrowser_tips">Predvolené nastavenie je podľa nastavenia v systéme. Ak je zadaný osobitne, Flow použije tento prehliadač.</system:String>
+    <system:String x:Key="defaultBrowser_tips">Predvolené nastavenie je podľa nastavenia v systéme. Ak je zadaný osobitne, Creta použije tento prehliadač.</system:String>
     <system:String x:Key="defaultBrowser_name">Prehliadač</system:String>
     <system:String x:Key="defaultBrowser_profile_name">Názov prehliadača</system:String>
     <system:String x:Key="defaultBrowser_path">Cesta k prehliadaču</system:String>

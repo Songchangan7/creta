@@ -5,9 +5,9 @@
     <system:String x:Key="plugin_pluginsmanager_downloading_plugin">جاري تنزيل الإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_download_success">تم تنزيل {0} بنجاح</system:String>
     <system:String x:Key="plugin_pluginsmanager_download_error">خطأ: تعذر تنزيل الإضافة</system:String>
-    <system:String x:Key="plugin_pluginsmanager_uninstall_prompt">{0} بواسطة {1} {2}{3}هل ترغب في إلغاء تثبيت هذه الإضافة؟ بعد الإلغاء، سيتم إعادة تشغيل Flow تلقائيًا.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_uninstall_prompt">{0} بواسطة {1} {2}{3}هل ترغب في إلغاء تثبيت هذه الإضافة؟ بعد الإلغاء، سيتم إعادة تشغيل Creta تلقائيًا.</system:String>
     <system:String x:Key="plugin_pluginsmanager_uninstall_prompt_no_restart">{0} بواسطة {1} {2}{2}هل ترغب في إلغاء تثبيت هذه الإضافة؟</system:String>
-    <system:String x:Key="plugin_pluginsmanager_install_prompt">{0} بواسطة {1} {2}{3}هل ترغب في تثبيت هذه الإضافة؟ بعد التثبيت، سيتم إعادة تشغيل Flow تلقائيًا.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_prompt">{0} بواسطة {1} {2}{3}هل ترغب في تثبيت هذه الإضافة؟ بعد التثبيت، سيتم إعادة تشغيل Creta تلقائيًا.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_prompt_no_restart">{0} بواسطة {1} {2}{2}هل ترغب في تثبيت هذه الإضافة؟</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_title">تثبيت الإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_installing_plugin">جاري تثبيت الإضافة</system:String>
@@ -15,7 +15,7 @@
     <system:String x:Key="plugin_pluginsmanager_uninstall_title">إلغاء تثبيت الإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_title">Keep plugin settings</system:String>
     <system:String x:Key="plugin_pluginsmanager_keep_plugin_settings_subtitle">Do you want to keep the settings of the plugin for the next usage?</system:String>
-    <system:String x:Key="plugin_pluginsmanager_install_success_restart">تم تثبيت الإضافة {0} بنجاح. جاري إعادة تشغيل Flow، يرجى الانتظار...</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_success_restart">تم تثبيت الإضافة {0} بنجاح. جاري إعادة تشغيل Creta، يرجى الانتظار...</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_errormetadatafile">تعذر العثور على ملف metadata plugin.json من ملف zip المستخرج.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_duplicate">خطأ: توجد إضافة بنفس الإصدار أو بإصدار أحدث من {0}.</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_error_title">خطأ في تثبيت الإضافة</system:String>
@@ -23,7 +23,7 @@
     <system:String x:Key="plugin_pluginsmanager_uninstall_error_title">خطأ في إلغاء تثبيت الإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_noresult_title">لا توجد تحديثات متاحة</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_noresult_subtitle">جميع الإضافات محدثة</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_prompt">{0} بواسطة {1} {2}{3}هل ترغب في تحديث هذه الإضافة؟ بعد التحديث، سيتم إعادة تشغيل Flow تلقائيًا.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_prompt">{0} بواسطة {1} {2}{3}هل ترغب في تحديث هذه الإضافة؟ بعد التحديث، سيتم إعادة تشغيل Creta تلقائيًا.</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_prompt_no_restart">{0} بواسطة {1} {2}{2}هل ترغب في تحديث هذه الإضافة؟</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_title">تحديث الإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_alreadyexists">هذه الإضافة مثبتة بالفعل</system:String>
@@ -31,20 +31,20 @@
     <system:String x:Key="plugin_pluginsmanager_update_failed_subtitle">يرجى التحقق من إمكانية الاتصال بـ github.com. هذا الخطأ يعني أنك قد لا تستطيع تثبيت أو تحديث الإضافات.</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_all_title">تحديث جميع الإضافات</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_all_subtitle">هل ترغب في تحديث جميع الإضافات؟</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_all_prompt">هل ترغب في تحديث {0} إضافات؟{1}سيتم إعادة تشغيل Flow بعد تحديث جميع الإضافات.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_all_prompt">هل ترغب في تحديث {0} إضافات؟{1}سيتم إعادة تشغيل Creta بعد تحديث جميع الإضافات.</system:String>
     <system:String x:Key="plugin_pluginsmanager_update_all_prompt_no_restart">هل ترغب في تحديث {0} إضافات؟</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_all_success_restart">تم تحديث {0} إضافات بنجاح. جاري إعادة تشغيل Flow، يرجى الانتظار...</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_success_restart">تم تحديث الإضافة {0} بنجاح. جاري إعادة تشغيل Flow، يرجى الانتظار...</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_all_success_restart">تم تحديث {0} إضافات بنجاح. جاري إعادة تشغيل Creta، يرجى الانتظار...</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_success_restart">تم تحديث الإضافة {0} بنجاح. جاري إعادة تشغيل Creta، يرجى الانتظار...</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_unknown_source_warning_title">التثبيت من مصدر غير معروف</system:String>
     <system:String x:Key="plugin_pluginsmanager_install_unknown_source_warning">أنت تقوم بتثبيت هذه الإضافة من مصدر غير معروف وقد تحتوي على مخاطر محتملة!{0}{0}يرجى التأكد من أنك تفهم مصدر هذه الإضافة وأنها آمنة.{0}{0}هل ترغب في المتابعة؟{0}{0}(يمكنك إيقاف هذا التحذير من خلال الإعدادات)</system:String>
 
-    <system:String x:Key="plugin_pluginsmanager_install_success_no_restart">تم تثبيت الإضافة {0} بنجاح. يرجى إعادة تشغيل Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_uninstall_success_no_restart">تم إلغاء تثبيت الإضافة {0} بنجاح. يرجى إعادة تشغيل Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_success_no_restart">تم تحديث الإضافة {0} بنجاح. يرجى إعادة تشغيل Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_update_all_success_no_restart">تم تحديث {0} إضافات بنجاح. يرجى إعادة تشغيل Flow.</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error">تم تعديل الإضافة {0} بالفعل. يرجى إعادة تشغيل Flow قبل إجراء أي تغييرات أخرى.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_install_success_no_restart">تم تثبيت الإضافة {0} بنجاح. يرجى إعادة تشغيل Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_uninstall_success_no_restart">تم إلغاء تثبيت الإضافة {0} بنجاح. يرجى إعادة تشغيل Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_success_no_restart">تم تحديث الإضافة {0} بنجاح. يرجى إعادة تشغيل Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_update_all_success_no_restart">تم تحديث {0} إضافات بنجاح. يرجى إعادة تشغيل Creta.</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error">تم تعديل الإضافة {0} بالفعل. يرجى إعادة تشغيل Creta قبل إجراء أي تغييرات أخرى.</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_modified_error_title">{0} modified already</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error_message">Please restart Flow before making any further changes</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_modified_error_message">Please restart Creta before making any further changes</system:String>
 
     <system:String x:Key="plugin_pluginsmanager_invalid_zip_title">Invalid zip installer file</system:String>
     <system:String x:Key="plugin_pluginsmanager_invalid_zip_subtitle">Please check if there is a plugin.json in {0}</system:String>
@@ -61,7 +61,7 @@
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_gotosourcecode_subtitle">عرض رمز المصدر للإضافة</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_newissue_title">اقتراح تحسين أو تقديم مشكلة</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_newissue_subtitle">اقتراح تحسين أو تقديم مشكلة لمطور الإضافة</system:String>
-    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_title">الانتقال إلى مستودع إضافات Flow</system:String>
+    <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_title">الانتقال إلى مستودع إضافات Creta</system:String>
     <system:String x:Key="plugin_pluginsmanager_plugin_contextmenu_pluginsmanifest_subtitle">زيارة مستودع PluginsManifest لرؤية مشاركات الإضافات التي أنشأها المجتمع</system:String>
 
     <!--  Settings menu items  -->

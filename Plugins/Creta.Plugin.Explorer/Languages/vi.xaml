@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Từ hành động hiện tại</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Xong</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Đã bật</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Khi bị tắt, Flow sẽ không thực thi tùy chọn tìm kiếm này và sẽ hoàn nguyên về '*' để giải phóng từ khóa hành động</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Khi bị tắt, Creta sẽ không thực thi tùy chọn tìm kiếm này và sẽ hoàn nguyên về '*' để giải phóng từ khóa hành động</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Tất cả mọi thứ</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Chỉ mục Windows</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Đếm trực tiếp</system:String>

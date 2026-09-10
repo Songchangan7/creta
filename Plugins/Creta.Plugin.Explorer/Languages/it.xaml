@@ -62,7 +62,7 @@
     <system:String x:Key="plugin_explorer_actionkeyword_current">Parola Chiave Corrente</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_done">Conferma</system:String>
     <system:String x:Key="plugin_explorer_actionkeyword_enabled">Abilitato</system:String>
-    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Quando disabilitato Flow non eseguirà questa opzione di ricerca, e ripristinerà a &quot;*&quot; per liberare la parola chiave</system:String>
+    <system:String x:Key="plugin_explorer_actionkeyword_enabled_tooltip">Quando disabilitato Creta non eseguirà questa opzione di ricerca, e ripristinerà a &quot;*&quot; per liberare la parola chiave</system:String>
     <system:String x:Key="plugin_explorer_engine_everything">Tutto</system:String>
     <system:String x:Key="plugin_explorer_engine_windows_index">Indice Di Windows</system:String>
     <system:String x:Key="plugin_explorer_path_enumeration_engine_none">Enumerazione Diretta</system:String>

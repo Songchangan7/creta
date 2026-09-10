@@ -19,9 +19,9 @@
 A quick file search and app launcher for Windows with community-made plugins.</p>
 
 <p align="center">
-Dedicated to making your workflow more seamless. Search everything from applications, files, bookmarks, YouTube, Twitter and more. Flow will continue to evolve, designed to be open and built with the community at heart.</p>
+Dedicated to making your workflow more seamless. Search everything from applications, files, bookmarks, YouTube, Twitter and more. Creta will continue to evolve, designed to be open and built with the community at heart.</p>
 
-<p align="center"> <sub>Remember to star it, Flow will love you more :)</sub></p>
+<p align="center"> <sub>Remember to star it, Creta will love you more :)</sub></p>
 
 <img src="https://user-images.githubusercontent.com/6903107/144858082-8b654daf-60fb-4ee6-89b2-6183b73510d1.png" width="100%">
 
@@ -224,7 +224,7 @@ Or download the [early access version](https://github.com/Creta/Prereleases/rele
 ### Portable
 
 - Fully portable.
-- Type `flow user data` to open your saved user settings folder. They are located at:
+- Type `Creta UserData Folder` to open your saved user settings folder. They are located at:
   - If using roaming: `%APPDATA%\Creta`
   - If using portable, by default: `%localappdata%\Creta\app-<VersionOfYourCreta>\UserData`
   - Type `open log location` to open your logs folder, they are saved along with your user settings folder.
@@ -242,7 +242,7 @@ Or download the [early access version](https://github.com/Creta/Prereleases/rele
 ## 📦 Plugins
 
 - Support wide range of plugins. Visit [here](https://www.creta.com/plugins/) for our plugin portfolio.
-- Publish your own plugin to Flow! Create plugins in:
+- Publish your own plugin to Creta! Create plugins in:
 
 <p align="center">
 <a href="https://creta.com/docs/#/develop-dotnet-plugins"><img src="https://user-images.githubusercontent.com/6903107/147870065-4096f233-147c-434e-a3ac-69519582605f.png" width="64"></a>
@@ -310,7 +310,7 @@ Or download the [early access version](https://github.com/Creta/Prereleases/rele
 | <kbd>Esc</kbd>                                                            | Back to results / hide search window            |
 | <kbd>Ctrl</kbd>+<kbd>C</kbd>                                              | Copy folder / file                              |
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>                             | Copy folder / file path                         |
-| <kbd>Ctrl</kbd>+<kbd>I</kbd>                                              | Open Flow's settings                            |
+| <kbd>Ctrl</kbd>+<kbd>I</kbd>                                              | Open Creta's settings                           |
 | <kbd>Ctrl</kbd>+<kbd>R</kbd>                                              | Run the current query again (refresh results)   |
 | <kbd>F5</kbd>                                                             | Reload all plugin data                          |
 | <kbd>Ctrl</kbd>+<kbd>F12</kbd>                                            | Toggle Game Mode when in search window          |
@@ -413,7 +413,7 @@ Our UI library is using [iNKORE.UI.WPF.Modern](https://github.com/iNKORE-NET/UI.
 
 ### New Changes
 
-All changes to Flow are captured via pull requests. Some new changes may have been merged but are still pending release. This means that while a change may not exist in the current release, it may have been accepted and merged into the dev branch and is available as a pre-release download. It is therefore a good idea to search through the open and closed pull requests before you start to make changes to ensure the change you intend to make is not already done.
+All changes to Creta are captured via pull requests. Some new changes may have been merged but are still pending release. This means that while a change may not exist in the current release, it may have been accepted and merged into the dev branch and is available as a pre-release download. It is therefore a good idea to search through the open and closed pull requests before you start to make changes to ensure the change you intend to make is not already done.
 
 Each of the pull requests will be marked with a milestone indicating the planned release version for the change.  
 
@@ -421,7 +421,7 @@ Each of the pull requests will be marked with a milestone indicating the planned
 
 Contributions are very welcome, in addition to the main project (C#) there are also [documentation](https://github.com/Creta/docs) (md), [website](https://github.com/Creta/creta.github.io) (html/css) and [others](https://github.com/Creta) that can be contributed to. If you are unsure of a change you want to make, let us know in the [Discussions](https://github.com/Songchangan7/creta/discussions/categories/ideas), otherwise feel free to submit a pull request.
 
-You will find the main goals of Flow placed under the [Projects board](https://github.com/orgs/Creta/projects/4), so feel free to contribute on that. If you would like to make small incremental changes, feel free to do so as well.
+You will find the main goals of Creta placed under the [Projects board](https://github.com/orgs/Creta/projects/4), so feel free to contribute on that. If you would like to make small incremental changes, feel free to do so as well.
 
 Get in touch if you would like to join the Creta Team and help build this great tool.
 
