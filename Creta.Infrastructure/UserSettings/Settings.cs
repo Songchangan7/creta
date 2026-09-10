@@ -508,7 +508,8 @@ namespace Creta.Infrastructure.UserSettings
         public ObservableCollection<CustomShortcutModel> CustomShortcuts { get; set; } = new ObservableCollection<CustomShortcutModel>();
 
         /// <summary>
-        /// Version of seeded default query shortcuts. 0 means this Settings.json has not received the chatgpt shortcut yet.
+        /// Version of seeded default query shortcuts. 0 means this Settings.json has not received the default ChatGPT shortcuts yet.
+        /// Version 2 uses <c>chatgpt网页</c> for the website and leaves <c>chatgpt</c> for the desktop app.
         /// </summary>
         public int DefaultQueryShortcutsVersion { get; set; } = 0;
 

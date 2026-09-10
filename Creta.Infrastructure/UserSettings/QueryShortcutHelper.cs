@@ -8,18 +8,25 @@ namespace Creta.Infrastructure.UserSettings
 {
     public static class QueryShortcutHelper
     {
-        public const int CurrentDefaultQueryShortcutsVersion = 1;
-        public const string ChatGptKey = "chatgpt";
+        public const int CurrentDefaultQueryShortcutsVersion = 2;
+        public const string ChatGptDesktopKey = "chatgpt";
+        public const string ChatGptWebKey = "chatgpt网页";
         public const string ChatGptUrl = "https://chatgpt.com";
+
+        /// <summary>
+        /// Legacy v1 key that used to open the website. Reclaimed so <c>chatgpt</c> can resolve to the desktop app.
+        /// </summary>
+        public const string LegacyChatGptWebKey = ChatGptDesktopKey;
 
         public static readonly IReadOnlyList<(string Key, string Value)> DefaultCustomShortcuts =
         [
-            (ChatGptKey, ChatGptUrl)
+            (ChatGptWebKey, ChatGptUrl)
         ];
 
         /// <summary>
         /// Seed built-in query shortcuts for new and existing Settings.json files.
-        /// Existing keys are left unchanged so a user-deleted shortcut stays deleted after the version bump.
+        /// Existing keys are left unchanged so a user-deleted shortcut stays deleted after the version bump,
+        /// except the v1 <c>chatgpt</c> website shortcut which is removed when it still has the default URL.
         /// </summary>
         public static bool EnsureDefaultCustomShortcuts(Settings settings)
         {
@@ -33,6 +40,11 @@ namespace Creta.Infrastructure.UserSettings
             if (settings.DefaultQueryShortcutsVersion >= CurrentDefaultQueryShortcutsVersion)
             {
                 return false;
+            }
+
+            if (settings.DefaultQueryShortcutsVersion < 2)
+            {
+                RemoveLegacyChatGptWebsiteShortcut(settings);
             }
 
             foreach (var (key, value) in DefaultCustomShortcuts)
@@ -78,6 +90,23 @@ namespace Creta.Infrastructure.UserSettings
             }
 
             return queryBuilder.ToString();
+        }
+
+        private static void RemoveLegacyChatGptWebsiteShortcut(Settings settings)
+        {
+            var legacy = settings.CustomShortcuts.FirstOrDefault(item =>
+                string.Equals(item.Key, LegacyChatGptWebKey, StringComparison.OrdinalIgnoreCase) &&
+                IsDefaultChatGptWebsite(item.Value));
+
+            if (legacy != null)
+            {
+                settings.CustomShortcuts.Remove(legacy);
+            }
+        }
+
+        private static bool IsDefaultChatGptWebsite(string value)
+        {
+            return string.Equals(value?.TrimEnd('/'), ChatGptUrl, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
