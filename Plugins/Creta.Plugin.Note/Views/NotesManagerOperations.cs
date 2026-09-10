@@ -23,8 +23,9 @@ internal static class NotesManagerOperations
             return false;
         }
 
-        if (repository.UpdateNote(note.Id, window.EditedContent, out _, out var errorMessage))
+        if (repository.UpdateNote(note.Id, window.EditedContent, out var updatedNote, out var errorMessage))
         {
+            Main.ActiveNotionSync?.Enqueue(updatedNote);
             return true;
         }
 

@@ -130,6 +130,7 @@
     <system:String x:Key="creta_plugin_note_error_no_edit_session">当前没有正在编辑的笔记。</system:String>
 
     <system:String x:Key="creta_plugin_note_settings_tab_storage">存储设置</system:String>
+    <system:String x:Key="creta_plugin_note_settings_tab_notion">Notion 同步</system:String>
     <system:String x:Key="creta_plugin_note_settings_tab_notes">笔记管理</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_path_label">笔记保存文件路径</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_browse">浏览</system:String>
@@ -143,6 +144,14 @@
     <system:String x:Key="creta_plugin_note_settings_storage_success_unchanged">存储位置未变化，当前仍可访问 {0} 条笔记。</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_success_merged">已切换存储位置，并将迁移的 {0} 条笔记与新位置已有的 {1} 条笔记合并，当前可访问 {2} 条笔记。</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_success_migrated">已切换存储位置并迁移 {0} 条笔记，当前可访问 {1} 条笔记。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_enable">把新笔记和修改推送到 Notion 收集箱</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_label">Integration Token</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_label">收集箱数据库 ID</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_hint">这是单向推送：本地 notes.json 仍是检索源。请到 notion.so/my-integrations 创建 Internal Integration，把「收集箱」数据库分享给该 Integration，再把 Token 填到这里。Token 只保存在本机。网络失败不影响本地保存，之后会自动重试。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_save">保存</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_title">Notion 同步设置已保存</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_ready">已开启同步。之后保存或更新随手记时，会后台写入 Notion 收集箱。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_incomplete">设置已保存。请同时填写 Token 并打开同步开关，才会开始推送。</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_title">笔记管理</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_summary">共 {0} 条笔记，其中 {1} 条已归档，{2} 条可用。</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_refresh">刷新</system:String>

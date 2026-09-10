@@ -19,11 +19,14 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
 
     internal static NoteRepository ActiveRepository { get; private set; } = null!;
 
+    internal static NotionInboxSyncService ActiveNotionSync { get; private set; }
+
     private NoteRepository _repository = null!;
     private NoteResultFactory _resultFactory = null!;
     private NoteContextMenuBuilder _contextMenuBuilder = null!;
     private NoteQueryResultBuilder _queryResultBuilder = null!;
     private Settings _settings = null!;
+    private NotionInboxSyncService _notionSync = null!;
     private string _editingNoteId = string.Empty;
     private SettingsControl _settingsControl;
     private bool _selectNotesManagerOnSettingsOpen;
@@ -51,11 +54,23 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             ClearEditingState,
             OpenNotesManager,
             context.CurrentPluginMetadata.ActionKeyword);
+        _notionSync = NotionInboxSyncService.Create(
+            _settings,
+            _repository,
+            message => context.API.LogWarn(nameof(Main), message),
+            (message, exception) => context.API.LogException(nameof(Main), message, exception));
+        ActiveNotionSync = _notionSync;
+        _notionSync.RetryPending();
     }
 
     public Control CreateSettingPanel()
     {
-        _settingsControl = new SettingsControl(_settings, _repository, ApplyStoragePathChange, GetStoragePathText);
+        _settingsControl = new SettingsControl(
+            _settings,
+            _repository,
+            ApplyStoragePathChange,
+            GetStoragePathText,
+            SaveNotionSettings);
         if (_selectNotesManagerOnSettingsOpen)
         {
             _settingsControl.SelectNotesManagerTab();
@@ -184,6 +199,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         if (_repository.SaveNote(content, out var savedNote, out var errorMessage, source))
         {
             ClearEditingState();
+            _notionSync.Enqueue(savedNote);
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_saved_title(),
                 NotePresentation.BuildSavedSubtitle(savedNote.Content),
@@ -215,6 +231,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         if (_repository.UpdateNote(editingNoteId, content, out var updatedNote, out var errorMessage))
         {
             ClearEditingState();
+            _notionSync.Enqueue(updatedNote);
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_updated_title(),
                 NotePresentation.BuildSavedSubtitle(updatedNote.Content),
@@ -390,6 +407,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         if (_repository.UpdateNote(note.Id, window.EditedContent, out var updatedNote, out var errorMessage))
         {
             ClearEditingState();
+            _notionSync.Enqueue(updatedNote);
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_updated_title(),
                 NotePresentation.BuildSavedSubtitle(updatedNote.Content),
@@ -434,5 +452,11 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         Context.API.SaveSettingJsonStorage<Settings>();
         Context.API.ReQuery();
         return result;
+    }
+
+    private void SaveNotionSettings()
+    {
+        Context.API.SaveSettingJsonStorage<Settings>();
+        _notionSync.RetryPending();
     }
 }

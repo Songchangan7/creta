@@ -543,6 +543,57 @@ public sealed class NoteRepository
         }
     }
 
+    public NoteItem GetNoteById(string noteId)
+    {
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            return null;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        return note is null ? null : CloneAndNormalize(note);
+    }
+
+    public IReadOnlyList<NoteItem> GetNotesPendingNotionSync()
+    {
+        return _notes
+            .Where(note => note.NotionSyncPending)
+            .Select(CloneAndNormalize)
+            .ToList();
+    }
+
+    public bool SetNotionSyncState(string noteId, string notionPageId, bool pending, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            errorMessage = "Note id cannot be empty.";
+            return false;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        if (note is null)
+        {
+            errorMessage = "Note not found.";
+            return false;
+        }
+
+        try
+        {
+            note.NotionPageId = string.IsNullOrWhiteSpace(notionPageId) ? null : notionPageId.Trim();
+            note.NotionSyncPending = pending;
+            PersistNotes();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to update Notion sync state: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
     public bool DeleteNote(string noteId, out string errorMessage)
     {
         errorMessage = string.Empty;
@@ -846,6 +897,8 @@ public sealed class NoteRepository
             IsArchived = note.IsArchived,
             Tags = note.Tags?.ToList() ?? [],
             Source = note.Source,
+            NotionPageId = note.NotionPageId,
+            NotionSyncPending = note.NotionSyncPending,
             LastViewedAt = note.LastViewedAt
         });
     }
@@ -861,6 +914,7 @@ public sealed class NoteRepository
         note.Content ??= string.Empty;
         note.Tags ??= [];
         note.Source = NormalizeSource(note.Source);
+        note.NotionPageId = string.IsNullOrWhiteSpace(note.NotionPageId) ? null : note.NotionPageId.Trim();
 
         if (string.IsNullOrWhiteSpace(note.Id))
         {
