@@ -12,7 +12,8 @@ public partial class SettingsControl : UserControl
         Settings settings,
         NoteRepository repository,
         Func<NoteStorageChangeResult> applyAction,
-        Func<string> activePathProvider)
+        Func<string> activePathProvider,
+        Action saveNotionSettings)
     {
         InitializeComponent();
 
@@ -22,6 +23,12 @@ public partial class SettingsControl : UserControl
             Content = new StorageSettingsControl(settings, applyAction, activePathProvider)
         };
 
+        var notionTab = new TabItem
+        {
+            Header = Localize.creta_plugin_note_settings_tab_notion(),
+            Content = new NotionSettingsControl(settings, saveNotionSettings)
+        };
+
         _notesTab = new TabItem
         {
             Header = Localize.creta_plugin_note_settings_tab_notes(),
@@ -29,6 +36,7 @@ public partial class SettingsControl : UserControl
         };
 
         SettingsTabs.Items.Add(storageTab);
+        SettingsTabs.Items.Add(notionTab);
         SettingsTabs.Items.Add(_notesTab);
     }
 

@@ -1,0 +1,34 @@
+<UserControl
+    x:Class="Creta.Plugin.Note.Views.NotionSettingsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    MinWidth="420">
+    <StackPanel Margin="12">
+        <CheckBox
+            x:Name="EnableSyncCheckBox"
+            Margin="0,0,0,12"
+            Content="{DynamicResource creta_plugin_note_settings_notion_enable}" />
+        <TextBlock
+            Margin="0,0,0,6"
+            Text="{DynamicResource creta_plugin_note_settings_notion_token_label}" />
+        <PasswordBox
+            x:Name="TokenBox"
+            Margin="0,0,0,8" />
+        <TextBlock
+            Margin="0,0,0,6"
+            Text="{DynamicResource creta_plugin_note_settings_notion_database_label}" />
+        <TextBox
+            x:Name="DatabaseIdBox"
+            Margin="0,0,0,8" />
+        <TextBlock
+            Margin="0,0,0,12"
+            Foreground="Gray"
+            Text="{DynamicResource creta_plugin_note_settings_notion_hint}"
+            TextWrapping="Wrap" />
+        <Button
+            Width="120"
+            HorizontalAlignment="Left"
+            Click="SaveButton_OnClick"
+            Content="{DynamicResource creta_plugin_note_settings_notion_save}" />
+    </StackPanel>
+</UserControl>

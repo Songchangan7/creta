@@ -129,6 +129,7 @@
     <system:String x:Key="creta_plugin_note_error_no_edit_session">There is no active note edit session.</system:String>
 
     <system:String x:Key="creta_plugin_note_settings_tab_storage">Storage</system:String>
+    <system:String x:Key="creta_plugin_note_settings_tab_notion">Notion sync</system:String>
     <system:String x:Key="creta_plugin_note_settings_tab_notes">Notes</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_path_label">Notes file path</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_browse">Browse</system:String>
@@ -142,6 +143,14 @@
     <system:String x:Key="creta_plugin_note_settings_storage_success_unchanged">Storage path unchanged. {0} notes remain available.</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_success_merged">Switched storage path, merged {0} migrated notes with {1} existing notes, and now have {2} notes available.</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_success_migrated">Switched storage path and migrated {0} notes. {1} notes are now available.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_enable">Push new and updated notes to the Notion inbox</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_label">Integration token</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_label">Inbox database ID</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_hint">This is one-way push: local notes.json remains the search source. Create an Internal Integration at notion.so/my-integrations, share the Inbox database with that integration, then paste the token here. The token stays on this machine. Network failures do not block local saves; pending notes retry later.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_save">Save</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_title">Notion sync settings saved</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_ready">Sync is on. New and updated Quick Notes will be written to the Notion inbox in the background.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_incomplete">Settings saved. Turn on sync and fill in the token to start pushing notes.</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_title">Notes manager</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_summary">{0} notes total, {1} archived, {2} active.</system:String>
     <system:String x:Key="creta_plugin_note_settings_notes_refresh">Refresh</system:String>
