@@ -1300,4 +1300,550 @@ public class NoteRepositoryTests
         ClassicAssert.IsNotNull(note.LastViewedAt);
         ClassicAssert.AreEqual(updatedAt, note.UpdatedAt);
     }
+
+    [Test]
+    public void GivenImageBytesWhenSaveImageNoteThenPersistsReferenceAndFile()
+    {
+        var repository = CreateEmptyRepository();
+        var imageBytes = CreateMinimalPng();
+
+        var result = repository.SaveImageNote(
+            imageBytes,
+            "shot.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out var errorMessage);
+
+        ClassicAssert.IsTrue(result);
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.IsNotNull(savedNote);
+        ClassicAssert.AreEqual(string.Empty, savedNote.Content);
+        ClassicAssert.AreEqual(1, savedNote.Attachments.Count);
+        ClassicAssert.AreEqual("shot.png", savedNote.Attachments[0].FileName);
+        ClassicAssert.AreEqual("image/png", savedNote.Attachments[0].MimeType);
+        ClassicAssert.AreEqual(NoteAttachmentSources.Clipboard, savedNote.Attachments[0].Source);
+        ClassicAssert.IsTrue(File.Exists(GetAttachmentFullPath(repository, savedNote.Attachments[0])));
+
+        var json = File.ReadAllText(repository.NotesFilePath);
+        ClassicAssert.IsTrue(json.Contains("Attachments"));
+        ClassicAssert.IsTrue(json.Contains(savedNote.Attachments[0].RelativePath));
+        ClassicAssert.IsFalse(json.Contains("iVBORw0KGgo"));
+    }
+
+    [Test]
+    public void GivenImageOnlyNoteWhenLoadThenKeepsEmptyContentNote()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+
+        repository.Reload();
+
+        ClassicAssert.AreEqual(1, repository.Notes.Count);
+        ClassicAssert.AreEqual(savedNote.Id, repository.Notes[0].Id);
+        ClassicAssert.AreEqual(string.Empty, repository.Notes[0].Content);
+        ClassicAssert.AreEqual(1, repository.Notes[0].Attachments.Count);
+        ClassicAssert.IsTrue(File.Exists(GetAttachmentFullPath(repository, repository.Notes[0].Attachments[0])));
+    }
+
+    [Test]
+    public void GivenTextNoteWhenPersistThenOmitsAttachmentsField()
+    {
+        var repository = CreateEmptyRepository();
+
+        ClassicAssert.IsTrue(repository.SaveNote("plain text", out _, out _));
+
+        var json = File.ReadAllText(repository.NotesFilePath);
+        ClassicAssert.IsFalse(json.Contains("Attachments"));
+    }
+
+    [Test]
+    public void GivenImageNoteWhenDeleteNoteThenRemovesAttachmentDirectory()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            "caption",
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+        var attachmentDirectory = Path.GetDirectoryName(GetAttachmentFullPath(repository, savedNote.Attachments[0]));
+
+        ClassicAssert.IsTrue(repository.DeleteNote(savedNote.Id, out var errorMessage));
+
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.AreEqual(0, repository.Notes.Count);
+        ClassicAssert.IsFalse(Directory.Exists(attachmentDirectory));
+    }
+
+    [Test]
+    public void GivenTextNoteWithImageWhenDeleteAttachmentThenKeepsNoteAndRemovesFile()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveNote("keep this", out var savedNote, out _));
+        ClassicAssert.IsTrue(repository.AddImageAttachment(
+            savedNote.Id,
+            CreateMinimalPng(),
+            "extra.png",
+            NoteAttachmentSources.File,
+            out var attachment,
+            out _));
+        var fullPath = GetAttachmentFullPath(repository, attachment);
+
+        ClassicAssert.IsTrue(repository.DeleteAttachment(savedNote.Id, attachment.Id, out var errorMessage));
+        repository.Reload();
+
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.AreEqual(1, repository.Notes.Count);
+        ClassicAssert.AreEqual("keep this", repository.Notes[0].Content);
+        ClassicAssert.AreEqual(0, repository.Notes[0].Attachments.Count);
+        ClassicAssert.IsFalse(File.Exists(fullPath));
+    }
+
+    [Test]
+    public void GivenImageOnlyNoteWhenDeleteLastAttachmentThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+
+        var result = repository.DeleteAttachment(savedNote.Id, savedNote.Attachments[0].Id, out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.AreEqual("Cannot remove the last attachment from a note without text.", errorMessage);
+        ClassicAssert.AreEqual(1, repository.Notes[0].Attachments.Count);
+        ClassicAssert.IsTrue(File.Exists(GetAttachmentFullPath(repository, savedNote.Attachments[0])));
+    }
+
+    [Test]
+    public void GivenImageNoteWhenUpdateNoteWithEmptyContentThenKeepsNote()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            "caption",
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+
+        var result = repository.UpdateNote(savedNote.Id, "   ", out var updatedNote, out var errorMessage);
+
+        ClassicAssert.IsTrue(result);
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.AreEqual(string.Empty, updatedNote.Content);
+        ClassicAssert.AreEqual(1, updatedNote.Attachments.Count);
+    }
+
+    [Test]
+    public void GivenTextNoteWhenUpdateNoteWithEmptyContentThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveNote("body", out var savedNote, out _));
+
+        var result = repository.UpdateNote(savedNote.Id, "   ", out var updatedNote, out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.IsNull(updatedNote);
+        ClassicAssert.AreEqual("Note content cannot be empty.", errorMessage);
+        ClassicAssert.AreEqual("body", repository.Notes[0].Content);
+    }
+
+    [Test]
+    public void GivenTooManyAttachmentsWhenAddImageAttachmentThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveNote("gallery", out var savedNote, out _));
+
+        for (var index = 0; index < NoteAttachmentConstraints.MaxAttachmentsPerNote; index++)
+        {
+            ClassicAssert.IsTrue(repository.AddImageAttachment(
+                savedNote.Id,
+                CreateMinimalPng(),
+                $"shot-{index}.png",
+                NoteAttachmentSources.Clipboard,
+                out _,
+                out _));
+        }
+
+        var result = repository.AddImageAttachment(
+            savedNote.Id,
+            CreateMinimalPng(),
+            "overflow.png",
+            NoteAttachmentSources.Clipboard,
+            out var attachment,
+            out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.IsNull(attachment);
+        ClassicAssert.AreEqual("A note can have at most 5 attachments.", errorMessage);
+        ClassicAssert.AreEqual(NoteAttachmentConstraints.MaxAttachmentsPerNote, repository.Notes[0].Attachments.Count);
+    }
+
+    [Test]
+    public void GivenUnsupportedBytesWhenSaveImageNoteThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+
+        var result = repository.SaveImageNote(
+            [1, 2, 3, 4],
+            "file.bin",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.IsNull(savedNote);
+        ClassicAssert.AreEqual("Unsupported image format.", errorMessage);
+        ClassicAssert.AreEqual(0, repository.Notes.Count);
+    }
+
+    [Test]
+    public void GivenOversizedImageWhenSaveImageNoteThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+        var oversized = new byte[NoteAttachmentConstraints.MaxByteSize + 1];
+        oversized[0] = 0x89;
+        oversized[1] = 0x50;
+        oversized[2] = 0x4E;
+        oversized[3] = 0x47;
+        oversized[4] = 0x0D;
+        oversized[5] = 0x0A;
+        oversized[6] = 0x1A;
+        oversized[7] = 0x0A;
+
+        var result = repository.SaveImageNote(
+            oversized,
+            "huge.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.IsNull(savedNote);
+        ClassicAssert.AreEqual("Image exceeds the 10 MB limit.", errorMessage);
+        ClassicAssert.AreEqual(0, repository.Notes.Count);
+    }
+
+    [Test]
+    public void GivenImageNoteWhenUpdateStoragePathThenMigratesAttachmentFiles()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            "migrate image",
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+        var originalPath = GetAttachmentFullPath(repository, savedNote.Attachments[0]);
+        var customDirectory = Path.Combine(_testRoot, "custom");
+
+        var result = repository.UpdateStoragePath(Path.Combine(customDirectory, "notes.json"));
+        var migratedPath = Path.Combine(customDirectory, savedNote.Attachments[0].RelativePath.Replace('/', Path.DirectorySeparatorChar));
+
+        ClassicAssert.IsTrue(result.Succeeded);
+        ClassicAssert.IsTrue(result.PathChanged);
+        ClassicAssert.IsTrue(File.Exists(migratedPath));
+        ClassicAssert.IsTrue(File.Exists(originalPath));
+        ClassicAssert.AreEqual(1, repository.Notes[0].Attachments.Count);
+    }
+
+    [Test]
+    public void GivenConflictingImageNotesWhenUpdateStoragePathThenKeepsNewerSourceAttachments()
+    {
+        var pluginDirectory = Path.Combine(_testRoot, "plugin");
+        var storageDirectory = Path.Combine(_testRoot, "storage");
+        var customDirectory = Path.Combine(_testRoot, "custom");
+        Directory.CreateDirectory(pluginDirectory);
+        Directory.CreateDirectory(storageDirectory);
+        Directory.CreateDirectory(customDirectory);
+        File.WriteAllText(Path.Combine(pluginDirectory, "notes.sample.json"), "[]");
+
+        var sourceRepository = new NoteRepository(pluginDirectory, storageDirectory);
+        sourceRepository.Load();
+        ClassicAssert.IsTrue(sourceRepository.SaveNote("shared", out var sourceNote, out _));
+        ClassicAssert.IsTrue(sourceRepository.AddImageAttachment(
+            sourceNote.Id,
+            CreateMinimalPng(),
+            "source.png",
+            NoteAttachmentSources.Clipboard,
+            out var sourceAttachment,
+            out _));
+
+        var targetRepository = new NoteRepository(pluginDirectory, customDirectory, Path.Combine(customDirectory, "notes.json"));
+        targetRepository.Load();
+        ClassicAssert.IsTrue(targetRepository.SaveNote("shared", out _, out _));
+        File.WriteAllText(
+            Path.Combine(customDirectory, "notes.json"),
+            $$"""
+            [
+              {
+                "Id": "{{sourceNote.Id}}",
+                "Content": "older target",
+                "CreatedAt": "2026-06-16T00:00:00Z",
+                "UpdatedAt": "2026-06-16T00:00:00Z",
+                "IsPinned": false,
+                "Attachments": [
+                  {
+                    "Id": "old-attachment",
+                    "FileName": "target.png",
+                    "RelativePath": "attachments/{{sourceNote.Id}}/old-attachment.png",
+                    "MimeType": "image/png",
+                    "ByteSize": 1,
+                    "CreatedAt": "2026-06-16T00:00:00Z",
+                    "Source": "file"
+                  }
+                ]
+              }
+            ]
+            """);
+        var targetAttachmentDirectory = Path.Combine(customDirectory, "attachments", sourceNote.Id);
+        Directory.CreateDirectory(targetAttachmentDirectory);
+        File.WriteAllText(Path.Combine(targetAttachmentDirectory, "old-attachment.png"), "old");
+
+        var result = sourceRepository.UpdateStoragePath(Path.Combine(customDirectory, "notes.json"));
+        var migratedPath = Path.Combine(customDirectory, sourceAttachment.RelativePath.Replace('/', Path.DirectorySeparatorChar));
+
+        ClassicAssert.IsTrue(result.Succeeded);
+        ClassicAssert.IsTrue(result.NotesMerged);
+        ClassicAssert.AreEqual("shared", sourceRepository.Notes.Single(note => note.Id == sourceNote.Id).Content);
+        ClassicAssert.AreEqual("source.png", sourceRepository.Notes.Single(note => note.Id == sourceNote.Id).Attachments[0].FileName);
+        ClassicAssert.IsTrue(File.Exists(migratedPath));
+        ClassicAssert.IsFalse(File.Exists(Path.Combine(targetAttachmentDirectory, "old-attachment.png")));
+    }
+
+    [Test]
+    public void GivenImagesWhenSaveNoteWithImagesThenPersistsAllAttachments()
+    {
+        var repository = CreateEmptyRepository();
+        var images = new[]
+        {
+            new NoteImageWriteRequest
+            {
+                Bytes = CreateMinimalPng(),
+                FileName = "one.png",
+                Source = NoteAttachmentSources.Clipboard
+            },
+            new NoteImageWriteRequest
+            {
+                Bytes = CreateMinimalPng(),
+                FileName = "two.png",
+                Source = NoteAttachmentSources.Clipboard
+            }
+        };
+
+        var result = repository.SaveNoteWithImages(
+            "two shots",
+            images,
+            out var savedNote,
+            out var errorMessage,
+            NoteSources.Editor);
+
+        ClassicAssert.IsTrue(result);
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.AreEqual("two shots", savedNote.Content);
+        ClassicAssert.AreEqual(2, savedNote.Attachments.Count);
+        ClassicAssert.AreEqual(NoteSources.Editor, savedNote.Source);
+        ClassicAssert.IsTrue(File.Exists(repository.GetAttachmentFullPath(savedNote.Attachments[0])));
+        ClassicAssert.IsTrue(File.Exists(repository.GetAttachmentFullPath(savedNote.Attachments[1])));
+    }
+
+    [Test]
+    public void GivenExistingNoteWhenUpdateNoteWithAttachmentsThenAddsAndRemovesFiles()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveNote("caption", out var savedNote, out _));
+        ClassicAssert.IsTrue(repository.AddImageAttachment(
+            savedNote.Id,
+            CreateMinimalPng(),
+            "old.png",
+            NoteAttachmentSources.Clipboard,
+            out var existing,
+            out _));
+        var existingPath = repository.GetAttachmentFullPath(existing);
+
+        var result = repository.UpdateNoteWithAttachments(
+            savedNote.Id,
+            "updated",
+            [
+                new NoteImageWriteRequest
+                {
+                    Bytes = CreateMinimalPng(),
+                    FileName = "new.png",
+                    Source = NoteAttachmentSources.File
+                }
+            ],
+            [existing.Id],
+            out var updatedNote,
+            out var errorMessage);
+
+        ClassicAssert.IsTrue(result);
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.AreEqual("updated", updatedNote.Content);
+        ClassicAssert.AreEqual(1, updatedNote.Attachments.Count);
+        ClassicAssert.AreEqual("new.png", updatedNote.Attachments[0].FileName);
+        ClassicAssert.IsFalse(File.Exists(existingPath));
+        ClassicAssert.IsTrue(File.Exists(repository.GetAttachmentFullPath(updatedNote.Attachments[0])));
+    }
+
+    [Test]
+    public void GivenImageOnlyNoteWhenUpdateNoteWithAttachmentsClearsAllThenReturnsFalse()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+
+        var result = repository.UpdateNoteWithAttachments(
+            savedNote.Id,
+            "   ",
+            [],
+            [savedNote.Attachments[0].Id],
+            out var updatedNote,
+            out var errorMessage);
+
+        ClassicAssert.IsFalse(result);
+        ClassicAssert.IsNull(updatedNote);
+        ClassicAssert.AreEqual("Note content cannot be empty.", errorMessage);
+        ClassicAssert.AreEqual(1, repository.Notes[0].Attachments.Count);
+        ClassicAssert.IsTrue(File.Exists(repository.GetAttachmentFullPath(savedNote.Attachments[0])));
+    }
+
+    [Test]
+    public void GivenImageNoteWhenExportFullBackupThenZipContainsJsonAndAttachment()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            "caption",
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+        var zipPath = Path.Combine(_testRoot, "full-backup.zip");
+
+        var result = repository.ExportFullBackup(zipPath, out var errorMessage);
+
+        ClassicAssert.IsTrue(result);
+        ClassicAssert.AreEqual(string.Empty, errorMessage);
+        ClassicAssert.IsTrue(File.Exists(zipPath));
+        using var zip = System.IO.Compression.ZipFile.OpenRead(zipPath);
+        ClassicAssert.IsTrue(zip.Entries.Any(entry => entry.FullName == "notes.json"));
+        ClassicAssert.IsTrue(zip.Entries.Any(entry =>
+            entry.FullName.Replace('\\', '/') == savedNote.Attachments[0].RelativePath));
+    }
+
+    [Test]
+    public void GivenJsonWithSiblingAttachmentsWhenImportJsonNotesThenCopiesFiles()
+    {
+        var repository = CreateEmptyRepository();
+        var importDirectory = Path.Combine(_testRoot, "import-lib");
+        var attachmentDirectory = Path.Combine(importDirectory, "attachments", "imported-image");
+        Directory.CreateDirectory(attachmentDirectory);
+        File.WriteAllBytes(Path.Combine(attachmentDirectory, "shot.png"), CreateMinimalPng());
+        File.WriteAllText(
+            Path.Combine(importDirectory, "notes.json"),
+            """
+            [
+              {
+                "Id": "imported-image",
+                "Content": "",
+                "CreatedAt": "2026-06-16T00:00:00Z",
+                "UpdatedAt": "2026-06-16T00:00:00Z",
+                "IsPinned": false,
+                "Attachments": [
+                  {
+                    "Id": "shot",
+                    "FileName": "shot.png",
+                    "RelativePath": "attachments/imported-image/shot.png",
+                    "MimeType": "image/png",
+                    "ByteSize": 70,
+                    "CreatedAt": "2026-06-16T00:00:00Z",
+                    "Source": "import"
+                  }
+                ]
+              }
+            ]
+            """);
+
+        var result = repository.ImportJsonNotes(Path.Combine(importDirectory, "notes.json"));
+
+        ClassicAssert.IsTrue(result.Succeeded);
+        ClassicAssert.AreEqual(1, result.ImportedCount);
+        var imported = repository.Notes.Single(note => note.Id == "imported-image");
+        ClassicAssert.AreEqual(1, imported.Attachments.Count);
+        ClassicAssert.IsTrue(File.Exists(repository.GetAttachmentFullPath(imported.Attachments[0])));
+    }
+
+    [Test]
+    public void GivenFullBackupZipWhenImportFullBackupThenRestoresAttachments()
+    {
+        var source = CreateEmptyRepository();
+        ClassicAssert.IsTrue(source.SaveImageNote(
+            CreateMinimalPng(),
+            "clip.png",
+            string.Empty,
+            NoteAttachmentSources.Clipboard,
+            out var savedNote,
+            out _));
+        var zipPath = Path.Combine(_testRoot, "restore.zip");
+        ClassicAssert.IsTrue(source.ExportFullBackup(zipPath, out _));
+
+        var targetPlugin = Path.Combine(_testRoot, "target-plugin");
+        var targetStorage = Path.Combine(_testRoot, "target-storage");
+        Directory.CreateDirectory(targetPlugin);
+        File.WriteAllText(Path.Combine(targetPlugin, "notes.sample.json"), "[]");
+        var target = new NoteRepository(targetPlugin, targetStorage);
+        target.Load();
+
+        var result = target.ImportFullBackup(zipPath);
+
+        ClassicAssert.IsTrue(result.Succeeded);
+        ClassicAssert.AreEqual(1, result.ImportedCount);
+        var restored = target.Notes.Single(note => note.Id == savedNote.Id);
+        ClassicAssert.AreEqual(1, restored.Attachments.Count);
+        ClassicAssert.IsTrue(File.Exists(target.GetAttachmentFullPath(restored.Attachments[0])));
+    }
+
+    private NoteRepository CreateEmptyRepository()
+    {
+        var pluginDirectory = Path.Combine(_testRoot, "plugin");
+        var storageDirectory = Path.Combine(_testRoot, "storage");
+        Directory.CreateDirectory(pluginDirectory);
+        File.WriteAllText(Path.Combine(pluginDirectory, "notes.sample.json"), "[]");
+
+        var repository = new NoteRepository(pluginDirectory, storageDirectory);
+        repository.Load();
+        return repository;
+    }
+
+    private static string GetAttachmentFullPath(NoteRepository repository, NoteAttachment attachment)
+    {
+        var notesDirectory = Path.GetDirectoryName(repository.NotesFilePath);
+        return Path.Combine(notesDirectory!, attachment.RelativePath.Replace('/', Path.DirectorySeparatorChar));
+    }
+
+    private static byte[] CreateMinimalPng()
+    {
+        return Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==");
+    }
 }

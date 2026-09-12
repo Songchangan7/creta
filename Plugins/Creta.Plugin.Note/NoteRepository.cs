@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -238,6 +239,7 @@ public sealed class NoteRepository
             var mergedNotes = MergeNotes(targetNotes, sourceNotes);
 
             PersistNotesToPath(nextPath, mergedNotes);
+            MigrateAttachmentDirectories(previousPath, nextPath, sourceNotes, targetNotes, mergedNotes);
 
             _customNotesFilePath = nextCustomNotesFilePath;
             _notes = mergedNotes;
@@ -422,6 +424,7 @@ public sealed class NoteRepository
             }
 
             _notes = MergeNotes(_notes, incoming);
+            ImportAttachmentDirectories(filePath, incoming, existingById);
             PersistNotes();
             LoadError = string.Empty;
 
@@ -441,6 +444,109 @@ public sealed class NoteRepository
                 Succeeded = false,
                 ErrorMessage = errorMessage
             };
+        }
+    }
+
+    public bool HasAnyAttachments()
+    {
+        return _notes.Any(note => note.HasAttachments);
+    }
+
+    public bool ExportFullBackup(string zipFilePath, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+        if (string.IsNullOrWhiteSpace(zipFilePath))
+        {
+            errorMessage = "Backup path cannot be empty.";
+            return false;
+        }
+
+        try
+        {
+            PersistNotes();
+            var notesDirectory = GetNotesDirectoryPath();
+            if (File.Exists(zipFilePath))
+            {
+                File.Delete(zipFilePath);
+            }
+
+            Directory.CreateDirectory(Path.GetDirectoryName(zipFilePath) ?? notesDirectory);
+            using var zip = ZipFile.Open(zipFilePath, ZipArchiveMode.Create);
+            zip.CreateEntryFromFile(NotesFilePath, NotesFileName);
+
+            var attachmentsRoot = NoteAttachmentStorage.GetRootDirectory(notesDirectory);
+            if (Directory.Exists(attachmentsRoot))
+            {
+                foreach (var file in Directory.EnumerateFiles(attachmentsRoot, "*", SearchOption.AllDirectories))
+                {
+                    var relativePath = Path.GetRelativePath(notesDirectory, file).Replace('\\', '/');
+                    zip.CreateEntryFromFile(file, relativePath);
+                }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to export backup: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public NoteImportResult ImportFullBackup(string zipFilePath)
+    {
+        if (string.IsNullOrWhiteSpace(zipFilePath) || !File.Exists(zipFilePath))
+        {
+            return new NoteImportResult
+            {
+                Succeeded = false,
+                ErrorMessage = "Backup file not found."
+            };
+        }
+
+        var tempDirectory = Path.Combine(Path.GetTempPath(), "Creta.NoteImport", Guid.NewGuid().ToString("N"));
+        try
+        {
+            Directory.CreateDirectory(tempDirectory);
+            ZipFile.ExtractToDirectory(zipFilePath, tempDirectory);
+            var notesFilePath = Directory
+                .EnumerateFiles(tempDirectory, NotesFileName, SearchOption.AllDirectories)
+                .FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(notesFilePath))
+            {
+                return new NoteImportResult
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Backup does not contain notes.json."
+                };
+            }
+
+            return ImportJsonNotes(notesFilePath);
+        }
+        catch (Exception ex)
+        {
+            var errorMessage = $"Failed to import backup: {ex.Message}";
+            LoadError = errorMessage;
+            return new NoteImportResult
+            {
+                Succeeded = false,
+                ErrorMessage = errorMessage
+            };
+        }
+        finally
+        {
+            try
+            {
+                if (Directory.Exists(tempDirectory))
+                {
+                    Directory.Delete(tempDirectory, true);
+                }
+            }
+            catch
+            {
+                // Temporary import files can be left behind if the OS still locks them.
+            }
         }
     }
 
@@ -492,28 +598,82 @@ public sealed class NoteRepository
         }
     }
 
-    public bool UpdateNote(string noteId, string content, out NoteItem updatedNote, out string errorMessage)
+    public bool SaveImageNote(
+        byte[] imageBytes,
+        string fileName,
+        string content,
+        string attachmentSource,
+        out NoteItem savedNote,
+        out string errorMessage,
+        string source = NoteSources.Launcher)
     {
-        updatedNote = null;
+        savedNote = null;
         errorMessage = string.Empty;
 
-        var trimmedContent = content?.Trim();
+        if (!NoteAttachmentStorage.TryDetectImage(imageBytes, out _, out _, out errorMessage))
+        {
+            return false;
+        }
+
+        var parsedContent = ParseContent(content?.Trim() ?? string.Empty);
+        var now = DateTime.UtcNow;
+        var note = Normalize(new NoteItem
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            Content = parsedContent.Content,
+            CreatedAt = now,
+            UpdatedAt = now,
+            IsPinned = false,
+            IsArchived = false,
+            Tags = parsedContent.Tags,
+            Source = NormalizeSource(source),
+            Attachments = []
+        });
+
+        try
+        {
+            var attachment = NoteAttachmentStorage.WriteImage(
+                GetNotesDirectoryPath(),
+                note.Id,
+                imageBytes,
+                fileName,
+                attachmentSource);
+            note.Attachments = [attachment];
+            _notes.Insert(0, note);
+            PersistNotes();
+            savedNote = note;
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _notes.RemoveAll(item => string.Equals(item.Id, note.Id, StringComparison.OrdinalIgnoreCase));
+            NoteAttachmentStorage.DeleteNoteDirectory(GetNotesDirectoryPath(), note.Id);
+            errorMessage = $"Failed to save image note: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public bool AddImageAttachment(
+        string noteId,
+        byte[] imageBytes,
+        string fileName,
+        string attachmentSource,
+        out NoteAttachment attachment,
+        out string errorMessage)
+    {
+        attachment = null;
+        errorMessage = string.Empty;
+
         if (string.IsNullOrWhiteSpace(noteId))
         {
             errorMessage = "Note id cannot be empty.";
             return false;
         }
 
-        if (string.IsNullOrWhiteSpace(trimmedContent))
+        if (!NoteAttachmentStorage.TryDetectImage(imageBytes, out _, out _, out errorMessage))
         {
-            errorMessage = "Note content cannot be empty.";
-            return false;
-        }
-
-        var parsedContent = ParseContent(trimmedContent);
-        if (string.IsNullOrWhiteSpace(parsedContent.Content))
-        {
-            errorMessage = "Note content cannot be empty.";
             return false;
         }
 
@@ -521,6 +681,311 @@ public sealed class NoteRepository
         if (note is null)
         {
             errorMessage = "Note not found.";
+            return false;
+        }
+
+        note.Attachments ??= [];
+        if (note.Attachments.Count >= NoteAttachmentConstraints.MaxAttachmentsPerNote)
+        {
+            errorMessage = "A note can have at most 5 attachments.";
+            return false;
+        }
+
+        try
+        {
+            attachment = NoteAttachmentStorage.WriteImage(
+                GetNotesDirectoryPath(),
+                note.Id,
+                imageBytes,
+                fileName,
+                attachmentSource);
+            note.Attachments.Add(attachment);
+            note.UpdatedAt = DateTime.UtcNow;
+            SortNotesInPlace();
+            PersistNotes();
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            if (attachment is not null)
+            {
+                var failedAttachmentId = attachment.Id;
+                var failedRelativePath = attachment.RelativePath;
+                note.Attachments.RemoveAll(item => string.Equals(item.Id, failedAttachmentId, StringComparison.OrdinalIgnoreCase));
+                NoteAttachmentStorage.DeleteFile(GetNotesDirectoryPath(), failedRelativePath);
+            }
+
+            errorMessage = $"Failed to add attachment: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public string NotesDirectoryPath => GetNotesDirectoryPath();
+
+    public string GetAttachmentFullPath(NoteAttachment attachment)
+    {
+        if (attachment is null || string.IsNullOrWhiteSpace(attachment.RelativePath))
+        {
+            return string.Empty;
+        }
+
+        return NoteAttachmentStorage.ResolveFullPath(GetNotesDirectoryPath(), attachment.RelativePath);
+    }
+
+    public bool SaveNoteWithImages(
+        string content,
+        IReadOnlyList<NoteImageWriteRequest> images,
+        out NoteItem savedNote,
+        out string errorMessage,
+        string source = NoteSources.Launcher)
+    {
+        savedNote = null;
+        errorMessage = string.Empty;
+
+        var imageRequests = NormalizeImageRequests(images, out errorMessage);
+        if (imageRequests is null)
+        {
+            return false;
+        }
+
+        if (imageRequests.Count == 0)
+        {
+            return SaveNote(content, out savedNote, out errorMessage, source);
+        }
+
+        if (imageRequests.Count > NoteAttachmentConstraints.MaxAttachmentsPerNote)
+        {
+            errorMessage = "A note can have at most 5 attachments.";
+            return false;
+        }
+
+        var parsedContent = ParseContent(content?.Trim() ?? string.Empty);
+        var now = DateTime.UtcNow;
+        var note = Normalize(new NoteItem
+        {
+            Id = Guid.NewGuid().ToString("N"),
+            Content = parsedContent.Content,
+            CreatedAt = now,
+            UpdatedAt = now,
+            IsPinned = false,
+            IsArchived = false,
+            Tags = parsedContent.Tags,
+            Source = NormalizeSource(source),
+            Attachments = []
+        });
+
+        var written = new List<NoteAttachment>();
+        try
+        {
+            foreach (var request in imageRequests)
+            {
+                var attachment = NoteAttachmentStorage.WriteImage(
+                    GetNotesDirectoryPath(),
+                    note.Id,
+                    request.Bytes,
+                    request.FileName,
+                    request.Source);
+                written.Add(attachment);
+            }
+
+            note.Attachments = written;
+            _notes.Insert(0, note);
+            PersistNotes();
+            savedNote = note;
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _notes.RemoveAll(item => string.Equals(item.Id, note.Id, StringComparison.OrdinalIgnoreCase));
+            NoteAttachmentStorage.DeleteNoteDirectory(GetNotesDirectoryPath(), note.Id);
+            errorMessage = $"Failed to save image note: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public bool UpdateNoteWithAttachments(
+        string noteId,
+        string content,
+        IReadOnlyList<NoteImageWriteRequest> imagesToAdd,
+        IReadOnlyList<string> attachmentIdsToRemove,
+        out NoteItem updatedNote,
+        out string errorMessage)
+    {
+        updatedNote = null;
+        errorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            errorMessage = "Note id cannot be empty.";
+            return false;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        if (note is null)
+        {
+            errorMessage = "Note not found.";
+            return false;
+        }
+
+        var imageRequests = NormalizeImageRequests(imagesToAdd, out errorMessage);
+        if (imageRequests is null)
+        {
+            return false;
+        }
+
+        var removedIds = new HashSet<string>(
+            (attachmentIdsToRemove ?? []).Where(id => !string.IsNullOrWhiteSpace(id)),
+            StringComparer.OrdinalIgnoreCase);
+        var remaining = (note.Attachments ?? [])
+            .Where(attachment => !removedIds.Contains(attachment.Id))
+            .ToList();
+
+        if (remaining.Count + imageRequests.Count > NoteAttachmentConstraints.MaxAttachmentsPerNote)
+        {
+            errorMessage = "A note can have at most 5 attachments.";
+            return false;
+        }
+
+        var parsedContent = ParseContent(content?.Trim() ?? string.Empty);
+        if (string.IsNullOrWhiteSpace(parsedContent.Content) && remaining.Count + imageRequests.Count == 0)
+        {
+            errorMessage = "Note content cannot be empty.";
+            return false;
+        }
+
+        var originalContent = note.Content;
+        var originalTags = note.Tags?.ToList() ?? [];
+        var originalAttachments = (note.Attachments ?? []).ToList();
+        var originalUpdatedAt = note.UpdatedAt;
+        var written = new List<NoteAttachment>();
+
+        try
+        {
+            foreach (var request in imageRequests)
+            {
+                written.Add(NoteAttachmentStorage.WriteImage(
+                    GetNotesDirectoryPath(),
+                    note.Id,
+                    request.Bytes,
+                    request.FileName,
+                    request.Source));
+            }
+
+            remaining.AddRange(written);
+            note.Content = parsedContent.Content;
+            note.Tags = MergeTags(note.Tags, parsedContent.Tags);
+            note.Attachments = remaining;
+            note.UpdatedAt = DateTime.UtcNow;
+            SortNotesInPlace();
+            PersistNotes();
+
+            foreach (var removed in originalAttachments.Where(attachment => removedIds.Contains(attachment.Id)))
+            {
+                NoteAttachmentStorage.DeleteFile(GetNotesDirectoryPath(), removed.RelativePath);
+            }
+
+            updatedNote = note;
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            note.Content = originalContent;
+            note.Tags = originalTags;
+            note.Attachments = originalAttachments;
+            note.UpdatedAt = originalUpdatedAt;
+            foreach (var attachment in written)
+            {
+                NoteAttachmentStorage.DeleteFile(GetNotesDirectoryPath(), attachment.RelativePath);
+            }
+
+            errorMessage = $"Failed to update note: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public bool DeleteAttachment(string noteId, string attachmentId, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            errorMessage = "Note id cannot be empty.";
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(attachmentId))
+        {
+            errorMessage = "Attachment id cannot be empty.";
+            return false;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        if (note is null)
+        {
+            errorMessage = "Note not found.";
+            return false;
+        }
+
+        var attachment = note.Attachments?.FirstOrDefault(item =>
+            string.Equals(item.Id, attachmentId, StringComparison.OrdinalIgnoreCase));
+        if (attachment is null)
+        {
+            errorMessage = "Attachment not found.";
+            return false;
+        }
+
+        if (note.Attachments.Count == 1 && string.IsNullOrWhiteSpace(note.Content))
+        {
+            errorMessage = "Cannot remove the last attachment from a note without text.";
+            return false;
+        }
+
+        try
+        {
+            note.Attachments.Remove(attachment);
+            note.UpdatedAt = DateTime.UtcNow;
+            SortNotesInPlace();
+            PersistNotes();
+            NoteAttachmentStorage.DeleteFile(GetNotesDirectoryPath(), attachment.RelativePath);
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to delete attachment: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
+    public bool UpdateNote(string noteId, string content, out NoteItem updatedNote, out string errorMessage)
+    {
+        updatedNote = null;
+        errorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            errorMessage = "Note id cannot be empty.";
+            return false;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        if (note is null)
+        {
+            errorMessage = "Note not found.";
+            return false;
+        }
+
+        var parsedContent = ParseContent(content?.Trim() ?? string.Empty);
+        if (string.IsNullOrWhiteSpace(parsedContent.Content) && !note.HasAttachments)
+        {
+            errorMessage = "Note content cannot be empty.";
             return false;
         }
 
@@ -564,6 +1029,7 @@ public sealed class NoteRepository
         {
             _notes.Remove(note);
             PersistNotes();
+            NoteAttachmentStorage.DeleteNoteDirectory(GetNotesDirectoryPath(), note.Id);
             LoadError = string.Empty;
             return true;
         }
@@ -789,7 +1255,7 @@ public sealed class NoteRepository
         var json = File.ReadAllText(notesFilePath);
         var notes = JsonSerializer.Deserialize<List<NoteItem>>(json, _jsonOptions) ?? [];
         return notes
-            .Where(note => !string.IsNullOrWhiteSpace(note.Content))
+            .Where(HasPersistablePayload)
             .Select(CloneAndNormalize)
             .ToList();
     }
@@ -803,8 +1269,80 @@ public sealed class NoteRepository
             InitializeNotesFile(notesFilePath);
         }
 
-        var json = JsonSerializer.Serialize(SortNotes(CloneNotes(notes)), _jsonOptions);
+        var json = JsonSerializer.Serialize(SortNotes(notes.Select(CloneForPersist)), _jsonOptions);
         File.WriteAllText(notesFilePath, json);
+    }
+
+    private void ImportAttachmentDirectories(
+        string importedNotesFilePath,
+        IReadOnlyList<NoteItem> incomingNotes,
+        IReadOnlyDictionary<string, NoteItem> existingById)
+    {
+        var sourceDirectory = Path.GetDirectoryName(importedNotesFilePath);
+        var destinationDirectory = GetNotesDirectoryPath();
+        if (string.IsNullOrWhiteSpace(sourceDirectory) || PathsEqual(sourceDirectory, destinationDirectory))
+        {
+            return;
+        }
+
+        var incomingById = incomingNotes.ToDictionary(note => note.Id, StringComparer.OrdinalIgnoreCase);
+        foreach (var note in _notes)
+        {
+            if (!incomingById.TryGetValue(note.Id, out var incomingNote))
+            {
+                continue;
+            }
+
+            existingById.TryGetValue(note.Id, out var existingNote);
+            var preferIncoming = existingNote is null || incomingNote.UpdatedAt >= existingNote.UpdatedAt;
+            if (!preferIncoming)
+            {
+                continue;
+            }
+
+            NoteAttachmentStorage.CopyNoteDirectoryIfSourceExists(
+                sourceDirectory,
+                destinationDirectory,
+                note.Id);
+        }
+    }
+
+    private static void MigrateAttachmentDirectories(
+        string previousNotesFilePath,
+        string nextNotesFilePath,
+        IReadOnlyList<NoteItem> sourceNotes,
+        IReadOnlyList<NoteItem> targetNotes,
+        IReadOnlyList<NoteItem> mergedNotes)
+    {
+        var previousDirectory = Path.GetDirectoryName(previousNotesFilePath);
+        var nextDirectory = Path.GetDirectoryName(nextNotesFilePath);
+        if (string.IsNullOrWhiteSpace(previousDirectory) ||
+            string.IsNullOrWhiteSpace(nextDirectory) ||
+            PathsEqual(previousDirectory, nextDirectory))
+        {
+            return;
+        }
+
+        var sourceById = sourceNotes.ToDictionary(note => note.Id, StringComparer.OrdinalIgnoreCase);
+        var targetById = targetNotes.ToDictionary(note => note.Id, StringComparer.OrdinalIgnoreCase);
+
+        foreach (var note in mergedNotes)
+        {
+            sourceById.TryGetValue(note.Id, out var sourceNote);
+            targetById.TryGetValue(note.Id, out var targetNote);
+            var preferSource = sourceNote is not null &&
+                               (targetNote is null || sourceNote.UpdatedAt >= targetNote.UpdatedAt);
+            if (!preferSource)
+            {
+                continue;
+            }
+
+            NoteAttachmentStorage.CopyNoteDirectory(
+                previousDirectory,
+                nextDirectory,
+                note.Id,
+                replaceExisting: targetNote is not null);
+        }
     }
 
     private static List<NoteItem> MergeNotes(IEnumerable<NoteItem> existingTargetNotes, IEnumerable<NoteItem> sourceNotes)
@@ -846,8 +1384,20 @@ public sealed class NoteRepository
             IsArchived = note.IsArchived,
             Tags = note.Tags?.ToList() ?? [],
             Source = note.Source,
-            LastViewedAt = note.LastViewedAt
+            LastViewedAt = note.LastViewedAt,
+            Attachments = CloneAttachments(note.Attachments)
         });
+    }
+
+    private static NoteItem CloneForPersist(NoteItem note)
+    {
+        var clone = CloneAndNormalize(note);
+        if (clone.Attachments is not { Count: > 0 })
+        {
+            clone.Attachments = null;
+        }
+
+        return clone;
     }
 
     private static bool PathsEqual(string left, string right)
@@ -860,6 +1410,7 @@ public sealed class NoteRepository
         note.Id ??= string.Empty;
         note.Content ??= string.Empty;
         note.Tags ??= [];
+        note.Attachments = CloneAttachments(note.Attachments);
         note.Source = NormalizeSource(note.Source);
 
         if (string.IsNullOrWhiteSpace(note.Id))
@@ -937,6 +1488,67 @@ public sealed class NoteRepository
     private static List<string> MergeTags(IEnumerable<string> existingTags, IEnumerable<string> additionalTags)
     {
         return NormalizeTagList((existingTags ?? []).Concat(additionalTags ?? []));
+    }
+
+    private static List<NoteImageWriteRequest> NormalizeImageRequests(
+        IReadOnlyList<NoteImageWriteRequest> images,
+        out string errorMessage)
+    {
+        errorMessage = string.Empty;
+        var normalized = new List<NoteImageWriteRequest>();
+        if (images is null || images.Count == 0)
+        {
+            return normalized;
+        }
+
+        foreach (var image in images)
+        {
+            if (!NoteAttachmentStorage.TryDetectImage(image?.Bytes, out _, out _, out errorMessage))
+            {
+                return null;
+            }
+
+            normalized.Add(new NoteImageWriteRequest
+            {
+                Bytes = image.Bytes,
+                FileName = image.FileName ?? string.Empty,
+                Source = image.Source ?? string.Empty
+            });
+        }
+
+        return normalized;
+    }
+
+    private static bool HasPersistablePayload(NoteItem note)
+    {
+        return !string.IsNullOrWhiteSpace(note?.Content) || note?.HasAttachments == true;
+    }
+
+    private static List<NoteAttachment> CloneAttachments(IEnumerable<NoteAttachment> attachments)
+    {
+        if (attachments is null)
+        {
+            return [];
+        }
+
+        return attachments
+            .Where(attachment =>
+                attachment is not null &&
+                !string.IsNullOrWhiteSpace(attachment.Id) &&
+                !string.IsNullOrWhiteSpace(attachment.RelativePath))
+            .Select(attachment => new NoteAttachment
+            {
+                Id = attachment.Id,
+                FileName = attachment.FileName ?? string.Empty,
+                RelativePath = attachment.RelativePath.Replace('\\', '/'),
+                MimeType = string.IsNullOrWhiteSpace(attachment.MimeType) ? "image/png" : attachment.MimeType,
+                Width = attachment.Width,
+                Height = attachment.Height,
+                ByteSize = attachment.ByteSize,
+                CreatedAt = attachment.CreatedAt,
+                Source = attachment.Source?.Trim() ?? string.Empty
+            })
+            .ToList();
     }
 
     public static string BuildEditableContent(NoteItem note)

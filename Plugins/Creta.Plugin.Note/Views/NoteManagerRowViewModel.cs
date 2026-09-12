@@ -13,7 +13,9 @@ internal sealed class NoteManagerRowViewModel
 
     internal NoteItem Note { get; }
 
-    internal string ContentSummary => NotePresentation.BuildSavedSubtitle(Note.Content);
+    internal string ContentSummary => NotePresentation.BuildNoteDisplayTitle(Note);
+
+    internal string AttachmentText => Note.HasAttachments ? Note.Attachments.Count.ToString() : "—";
 
     internal string TagsText => NotePresentation.BuildTagText(Note);
 
@@ -27,7 +29,7 @@ internal sealed class NoteManagerRowViewModel
 
     internal bool CanTogglePinned => !Note.IsArchived;
 
-    internal string ContentToolTip => Note.Content;
+    internal string ContentToolTip => NotePresentation.BuildNoteDisplayTitle(Note);
 
     internal string RowToolTip => NotePresentation.BuildNoteTitleToolTip(Note);
 

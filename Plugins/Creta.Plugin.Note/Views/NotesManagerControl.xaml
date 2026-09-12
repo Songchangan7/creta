@@ -130,6 +130,11 @@
             <Button
                 MinWidth="88"
                 Margin="0,0,8,8"
+                Click="BackupFullButton_OnClick"
+                Content="{DynamicResource creta_plugin_note_settings_notes_toolbar_backup_full}" />
+            <Button
+                MinWidth="88"
+                Margin="0,0,8,8"
                 Click="ImportButton_OnClick"
                 Content="{DynamicResource creta_plugin_note_settings_notes_toolbar_import}" />
             <Button
@@ -168,6 +173,16 @@
                                     Text="{Binding ContentSummary}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding ContentToolTip}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource creta_plugin_note_settings_notes_column_attachments}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,6"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding AttachmentText}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

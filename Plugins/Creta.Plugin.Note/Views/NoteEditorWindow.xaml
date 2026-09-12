@@ -6,9 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{DynamicResource creta_plugin_note_editor_window_title}"
     Width="680"
-    Height="520"
+    Height="580"
     MinWidth="560"
-    MinHeight="420"
+    MinHeight="460"
+    AllowDrop="True"
     Background="{DynamicResource PopupBGColor}"
     Foreground="{DynamicResource PopupTextColor}"
     ResizeMode="CanResize"
@@ -54,8 +55,74 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="26 0 26 18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0 0 0 12">
+                <ItemsControl x:Name="AttachmentList">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Width="128"
+                                Height="88"
+                                Margin="0 0 8 8"
+                                Background="{DynamicResource PopupButtonAreaBGColor}"
+                                BorderBrush="{DynamicResource PopupButtonAreaBorderColor}"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Cursor="Hand"
+                                MouseLeftButtonUp="PreviewAttachment">
+                                <Border.ContextMenu>
+                                    <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                                        <MenuItem
+                                            Click="PreviewAttachmentMenu"
+                                            Header="{DynamicResource creta_plugin_note_editor_attachment_preview}" />
+                                        <MenuItem
+                                            Click="SaveAttachmentAs"
+                                            Header="{DynamicResource creta_plugin_note_editor_attachment_save_as}" />
+                                        <MenuItem
+                                            Click="DeleteAttachmentMenu"
+                                            Header="{DynamicResource creta_plugin_note_editor_attachment_delete}" />
+                                    </ContextMenu>
+                                </Border.ContextMenu>
+                                <Grid>
+                                    <Image
+                                        Margin="4"
+                                        Source="{Binding Thumbnail}"
+                                        Stretch="Uniform" />
+                                    <Button
+                                        Width="22"
+                                        Height="22"
+                                        Margin="0 4 4 0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Click="DeleteAttachmentButton"
+                                        Content="×"
+                                        FontSize="12"
+                                        Padding="0" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock
+                    x:Name="AttachmentHint"
+                    FontSize="12"
+                    Opacity="0.72"
+                    Text="{DynamicResource creta_plugin_note_editor_attachment_hint}"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+
             <TextBox
                 x:Name="EditorTextBox"
+                Grid.Row="1"
                 AcceptsReturn="True"
                 AcceptsTab="True"
                 HorizontalScrollBarVisibility="Disabled"

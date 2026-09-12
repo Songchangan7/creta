@@ -16,6 +16,8 @@ internal sealed class NoteQueryResultBuilder
     private readonly Func<string> _getStoragePathText;
     private readonly Action _cancelEdit;
     private readonly Func<bool> _openNotesManager;
+    private readonly Func<bool> _hasClipboardImage;
+    private readonly Func<bool> _saveClipboardImage;
     private readonly string _actionKeyword;
 
     internal NoteQueryResultBuilder(
@@ -28,6 +30,8 @@ internal sealed class NoteQueryResultBuilder
         Func<string> getStoragePathText,
         Action cancelEdit,
         Func<bool> openNotesManager,
+        Func<bool> hasClipboardImage,
+        Func<bool> saveClipboardImage,
         string actionKeyword)
     {
         _repository = repository;
@@ -39,19 +43,31 @@ internal sealed class NoteQueryResultBuilder
         _getStoragePathText = getStoragePathText;
         _cancelEdit = cancelEdit;
         _openNotesManager = openNotesManager;
+        _hasClipboardImage = hasClipboardImage;
+        _saveClipboardImage = saveClipboardImage;
         _actionKeyword = actionKeyword;
     }
 
     internal List<Result> BuildHomeResults(int recentNotesLimit, int browseNotesLimit, int tagListLimit)
     {
         var stats = NoteViewStats.Create(_repository, browseNotesLimit, tagListLimit);
-        var results = new List<Result>
+        var results = new List<Result>();
+        if (_hasClipboardImage())
         {
-            _resultFactory.CreateSectionResult(
-                Localize.creta_plugin_note_home_ready_title(),
-                Localize.creta_plugin_note_home_ready_subtitle(_getNotesCountText()),
-                1000)
-        };
+            results.Add(new Result
+            {
+                Title = Localize.creta_plugin_note_save_clipboard_title(),
+                SubTitle = Localize.creta_plugin_note_save_clipboard_subtitle(),
+                IcoPath = Main.IcoPathValue,
+                Score = Result.MaxScore,
+                Action = _ => _saveClipboardImage()
+            });
+        }
+
+        results.Add(_resultFactory.CreateSectionResult(
+            Localize.creta_plugin_note_home_ready_title(),
+            Localize.creta_plugin_note_home_ready_subtitle(_getNotesCountText()),
+            1000));
 
         results.AddRange(BuildShortcutResults(stats));
 

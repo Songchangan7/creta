@@ -25,4 +25,10 @@ public sealed class NoteItem
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public DateTime? LastViewedAt { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<NoteAttachment> Attachments { get; set; }
+
+    [JsonIgnore]
+    public bool HasAttachments => Attachments is { Count: > 0 };
 }

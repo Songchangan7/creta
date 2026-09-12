@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -38,7 +39,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             _settings.NotesFilePath);
         ActiveRepository = _repository;
         _repository.Load();
-        _resultFactory = new NoteResultFactory(context.CurrentPluginMetadata.ActionKeyword);
+        _resultFactory = new NoteResultFactory(context.CurrentPluginMetadata.ActionKeyword, ActivateNote);
         _contextMenuBuilder = new NoteContextMenuBuilder();
         _queryResultBuilder = new NoteQueryResultBuilder(
             _repository,
@@ -50,6 +51,8 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             GetStoragePathText,
             ClearEditingState,
             OpenNotesManager,
+            NoteClipboardImages.HasImage,
+            SaveClipboardImage,
             context.CurrentPluginMetadata.ActionKeyword);
     }
 
@@ -186,7 +189,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             ClearEditingState();
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_saved_title(),
-                NotePresentation.BuildSavedSubtitle(savedNote.Content),
+                NotePresentation.BuildNoteDisplayTitle(savedNote),
                 false,
                 2200,
                 true);
@@ -217,7 +220,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             ClearEditingState();
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_updated_title(),
-                NotePresentation.BuildSavedSubtitle(updatedNote.Content),
+                NotePresentation.BuildNoteDisplayTitle(updatedNote),
                 false,
                 2200,
                 true);
@@ -244,15 +247,79 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             .ToList();
     }
 
+    private bool ActivateNote(NoteItem note)
+    {
+        if (note.HasAttachments && string.IsNullOrWhiteSpace(note.Content))
+        {
+            return OpenEditorForExistingNote(note);
+        }
+
+        return CopyNoteToClipboard(note);
+    }
+
+    private bool SaveClipboardImage()
+    {
+        if (!NoteClipboardImages.TryRead(out var images, out var readError) || images.Count == 0)
+        {
+            Context.API.ShowMainWindowNotification(
+                Localize.creta_plugin_note_error_save_title(),
+                string.IsNullOrWhiteSpace(readError)
+                    ? Localize.creta_plugin_note_editor_attachment_invalid()
+                    : readError,
+                true,
+                4000);
+            return false;
+        }
+
+        if (_repository.SaveNoteWithImages(
+            string.Empty,
+            images,
+            out var savedNote,
+            out var errorMessage,
+            NoteSources.Launcher))
+        {
+            ClearEditingState();
+            Context.API.ShowMainWindowNotification(
+                Localize.creta_plugin_note_saved_title(),
+                NotePresentation.BuildNoteDisplayTitle(savedNote),
+                false,
+                2200,
+                true);
+            return false;
+        }
+
+        Context.API.ShowMainWindowNotification(
+            Localize.creta_plugin_note_error_save_title(),
+            errorMessage,
+            true,
+            4000);
+        return false;
+    }
+
     internal static bool CopyNoteToClipboardStatic(NoteItem note)
     {
         try
         {
             ActiveRepository?.RecordLastViewed(note.Id, out _);
+            if (string.IsNullOrWhiteSpace(note.Content) && note.HasAttachments && ActiveRepository is not null)
+            {
+                var imagePath = ActiveRepository.GetAttachmentFullPath(note.Attachments[0]);
+                if (File.Exists(imagePath))
+                {
+                    var image = NoteClipboardImages.CreatePreviewFromFile(imagePath);
+                    System.Windows.Clipboard.SetImage(image);
+                    Context.API.ShowMsg(
+                        Localize.creta_plugin_note_copied_title(),
+                        NotePresentation.BuildNoteDisplayTitle(note),
+                        IcoPathValue);
+                    return true;
+                }
+            }
+
             Context.API.CopyToClipboard(note.Content, showDefaultNotification: false);
             Context.API.ShowMsg(
                 Localize.creta_plugin_note_copied_title(),
-                NotePresentation.BuildSavedSubtitle(note.Content),
+                NotePresentation.BuildNoteDisplayTitle(note),
                 IcoPathValue);
             return true;
         }
@@ -282,7 +349,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
                 updatedNote.IsPinned
                     ? Localize.creta_plugin_note_pinned_title()
                     : Localize.creta_plugin_note_unpinned_title(),
-                NotePresentation.BuildSavedSubtitle(updatedNote.Content),
+                NotePresentation.BuildNoteDisplayTitle(updatedNote),
                 IcoPathValue);
             Context.API.ReQuery();
             return false;
@@ -300,7 +367,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
                 updatedNote.IsArchived
                     ? Localize.creta_plugin_note_archived_title()
                     : Localize.creta_plugin_note_unarchived_title(),
-                NotePresentation.BuildSavedSubtitle(updatedNote.Content),
+                NotePresentation.BuildNoteDisplayTitle(updatedNote),
                 IcoPathValue);
             Context.API.ReQuery();
             return false;
@@ -314,7 +381,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
     {
         var message = Localize.creta_plugin_note_delete_confirm_message(
             Environment.NewLine,
-            NotePresentation.BuildSavedSubtitle(note.Content));
+            NotePresentation.BuildNoteDisplayTitle(note));
         var result = Context.API.ShowMsgBox(
             message,
             Localize.creta_plugin_note_delete_confirm_caption(),
@@ -334,7 +401,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
 
             Context.API.ShowMsg(
                 Localize.creta_plugin_note_deleted_title(),
-                NotePresentation.BuildSavedSubtitle(note.Content),
+                NotePresentation.BuildNoteDisplayTitle(note),
                 IcoPathValue);
             Context.API.ReQuery();
             return false;
@@ -350,7 +417,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         var editableContent = NoteRepository.BuildEditableContent(note);
         Context.API.ShowMsg(
             Localize.creta_plugin_note_edit_mode_title(),
-            Localize.creta_plugin_note_edit_mode_subtitle(NotePresentation.BuildSavedSubtitle(note.Content)),
+            Localize.creta_plugin_note_edit_mode_subtitle(NotePresentation.BuildNoteDisplayTitle(note)),
             IcoPathValue);
         Context.API.BackToQueryResults();
         Context.API.ChangeQuery($"{Context.CurrentPluginMetadata.ActionKeyword} {editableContent}", true);
@@ -370,7 +437,29 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             return false;
         }
 
-        return SaveNote(window.EditedContent, NoteSources.Editor);
+        if (_repository.SaveNoteWithImages(
+            window.EditedContent,
+            window.PendingImages,
+            out var savedNote,
+            out var errorMessage,
+            NoteSources.Editor))
+        {
+            ClearEditingState();
+            Context.API.ShowMainWindowNotification(
+                Localize.creta_plugin_note_saved_title(),
+                NotePresentation.BuildNoteDisplayTitle(savedNote),
+                false,
+                2200,
+                true);
+            return false;
+        }
+
+        Context.API.ShowMainWindowNotification(
+            Localize.creta_plugin_note_error_save_title(),
+            errorMessage,
+            true,
+            4000);
+        return false;
     }
 
     private bool OpenEditorForExistingNote(NoteItem note)
@@ -380,19 +469,27 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             Localize.creta_plugin_note_editor_edit_title(),
             Localize.creta_plugin_note_editor_edit_subtitle(),
             Localize.creta_plugin_note_editor_save_edit(),
-            NoteRepository.BuildEditableContent(note));
+            NoteRepository.BuildEditableContent(note),
+            note.Attachments,
+            _repository.NotesDirectoryPath);
 
         if (window.ShowDialog() != true)
         {
             return false;
         }
 
-        if (_repository.UpdateNote(note.Id, window.EditedContent, out var updatedNote, out var errorMessage))
+        if (_repository.UpdateNoteWithAttachments(
+            note.Id,
+            window.EditedContent,
+            window.PendingImages,
+            window.RemovedAttachmentIds,
+            out var updatedNote,
+            out var errorMessage))
         {
             ClearEditingState();
             Context.API.ShowMainWindowNotification(
                 Localize.creta_plugin_note_updated_title(),
-                NotePresentation.BuildSavedSubtitle(updatedNote.Content),
+                NotePresentation.BuildNoteDisplayTitle(updatedNote),
                 false,
                 2200,
                 true);

@@ -81,7 +81,7 @@ internal static class NotesManagerExporter
         }
     }
 
-    internal static bool TryExportJsonBackup(string sourceFilePath)
+    internal static bool TryExportJsonBackup(string sourceFilePath, bool hasAttachments = false)
     {
         if (string.IsNullOrWhiteSpace(sourceFilePath) || !File.Exists(sourceFilePath))
         {
@@ -112,7 +112,9 @@ internal static class NotesManagerExporter
             File.Copy(sourceFilePath, dialog.FileName, overwrite: true);
             Main.Context.API.ShowMsg(
                 Localize.creta_plugin_note_settings_notes_export_json_success_title(),
-                Localize.creta_plugin_note_settings_notes_export_json_success_subtitle(dialog.FileName));
+                hasAttachments
+                    ? Localize.creta_plugin_note_settings_notes_export_json_success_subtitle_with_attachments(dialog.FileName)
+                    : Localize.creta_plugin_note_settings_notes_export_json_success_subtitle(dialog.FileName));
             return true;
         }
         catch (Exception ex)
@@ -124,17 +126,58 @@ internal static class NotesManagerExporter
         }
     }
 
+    internal static bool TryExportFullBackup(NoteRepository repository)
+    {
+        if (repository is null || !File.Exists(repository.NotesFilePath))
+        {
+            Main.Context.API.ShowMsgError(
+                Localize.creta_plugin_note_settings_notes_export_json_missing_title(),
+                Localize.creta_plugin_note_settings_notes_export_json_missing_subtitle(repository?.NotesFilePath ?? string.Empty));
+            return false;
+        }
+
+        var sourceDirectory = Path.GetDirectoryName(repository.NotesFilePath);
+        var dialog = new Microsoft.Win32.SaveFileDialog
+        {
+            Title = Localize.creta_plugin_note_settings_notes_export_dialog_title_zip(),
+            Filter = Localize.creta_plugin_note_settings_notes_export_filter_zip(),
+            FileName = $"notes-backup-{DateTime.Now:yyyyMMdd-HHmmss}.zip",
+            AddExtension = true,
+            OverwritePrompt = true,
+            InitialDirectory = string.IsNullOrWhiteSpace(sourceDirectory) ? null : sourceDirectory
+        };
+
+        if (dialog.ShowDialog() != true || string.IsNullOrWhiteSpace(dialog.FileName))
+        {
+            return false;
+        }
+
+        if (repository.ExportFullBackup(dialog.FileName, out var errorMessage))
+        {
+            Main.Context.API.ShowMsg(
+                Localize.creta_plugin_note_settings_notes_export_zip_success_title(),
+                Localize.creta_plugin_note_settings_notes_export_zip_success_subtitle(dialog.FileName));
+            return true;
+        }
+
+        Main.Context.API.ShowMsgError(
+            Localize.creta_plugin_note_settings_notes_export_failed_title(),
+            errorMessage);
+        return false;
+    }
+
     private static void AppendNoteText(StringBuilder builder, NoteItem note)
     {
         builder.AppendLine($"{Localize.creta_plugin_note_preview_created_label()} {FormatDateTime(note.CreatedAt)}");
         builder.AppendLine($"{Localize.creta_plugin_note_preview_updated_label()} {FormatDateTime(note.UpdatedAt)}");
         builder.AppendLine($"{Localize.creta_plugin_note_preview_tags_label()} {NotePresentation.BuildTagText(note)}");
         builder.AppendLine(note.Content);
+        AppendAttachmentLines(builder, note, markdown: false);
     }
 
     private static void AppendNoteMarkdown(StringBuilder builder, NoteItem note, int index)
     {
-        var title = NotePresentation.BuildSavedSubtitle(note.Content);
+        var title = NotePresentation.BuildNoteDisplayTitle(note);
         builder.AppendLine($"## {index}. {EscapeMarkdown(title)}");
         builder.AppendLine();
         builder.AppendLine($"- **{Localize.creta_plugin_note_preview_created_label()}** {FormatDateTime(note.CreatedAt)}");
@@ -142,6 +185,33 @@ internal static class NotesManagerExporter
         builder.AppendLine($"- **{Localize.creta_plugin_note_preview_tags_label()}** {NotePresentation.BuildTagText(note)}");
         builder.AppendLine();
         builder.AppendLine(note.Content);
+        AppendAttachmentLines(builder, note, markdown: true);
+    }
+
+    private static void AppendAttachmentLines(StringBuilder builder, NoteItem note, bool markdown)
+    {
+        if (!note.HasAttachments)
+        {
+            return;
+        }
+
+        builder.AppendLine();
+        foreach (var attachment in note.Attachments)
+        {
+            if (string.IsNullOrWhiteSpace(attachment.RelativePath))
+            {
+                continue;
+            }
+
+            if (markdown)
+            {
+                builder.AppendLine($"![{EscapeMarkdown(attachment.FileName)}]({attachment.RelativePath})");
+            }
+            else
+            {
+                builder.AppendLine(attachment.RelativePath);
+            }
+        }
     }
 
     private static string FormatDateTime(DateTime value)

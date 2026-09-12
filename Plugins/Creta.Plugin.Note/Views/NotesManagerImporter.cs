@@ -23,12 +23,33 @@ internal static class NotesManagerImporter
         }
 
         var extension = Path.GetExtension(dialog.FileName);
+        if (string.Equals(extension, ".zip", StringComparison.OrdinalIgnoreCase))
+        {
+            return TryImportZip(repository, dialog.FileName);
+        }
+
         if (string.Equals(extension, ".json", StringComparison.OrdinalIgnoreCase))
         {
             return TryImportJson(repository, dialog.FileName);
         }
 
         return TryImportTextFile(repository, dialog.FileName);
+    }
+
+    private static bool TryImportZip(NoteRepository repository, string filePath)
+    {
+        var result = Main.Context.API.ShowMsgBox(
+            Localize.creta_plugin_note_settings_notes_import_zip_confirm_message(),
+            Localize.creta_plugin_note_settings_notes_import_zip_confirm_caption(),
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+        if (result != MessageBoxResult.Yes)
+        {
+            return false;
+        }
+
+        var importResult = repository.ImportFullBackup(filePath);
+        return ShowImportResult(importResult, isJsonImport: true);
     }
 
     private static bool TryImportJson(NoteRepository repository, string filePath)

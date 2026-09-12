@@ -238,6 +238,9 @@ internal sealed class NotesManagerViewModel : BaseModel
             NotesManagerSortColumn.Content => _sortDescending
                 ? rows.OrderByDescending(row => row.Note.Content, StringComparer.OrdinalIgnoreCase)
                 : rows.OrderBy(row => row.Note.Content, StringComparer.OrdinalIgnoreCase),
+            NotesManagerSortColumn.Attachments => _sortDescending
+                ? rows.OrderByDescending(row => row.Note.Attachments?.Count ?? 0)
+                : rows.OrderBy(row => row.Note.Attachments?.Count ?? 0),
             NotesManagerSortColumn.Tags => _sortDescending
                 ? rows.OrderByDescending(row => row.TagsText, StringComparer.OrdinalIgnoreCase)
                 : rows.OrderBy(row => row.TagsText, StringComparer.OrdinalIgnoreCase),
@@ -300,6 +303,16 @@ internal sealed class NotesManagerViewModel : BaseModel
     private static bool MatchesSearch(NoteItem note, string term)
     {
         if (note.Content.Contains(term, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        if (note.HasAttachments &&
+            (term.Contains("图", StringComparison.OrdinalIgnoreCase) ||
+             term.Contains("image", StringComparison.OrdinalIgnoreCase) ||
+             note.Attachments.Any(attachment =>
+                 !string.IsNullOrWhiteSpace(attachment.FileName) &&
+                 attachment.FileName.Contains(term, StringComparison.OrdinalIgnoreCase))))
         {
             return true;
         }

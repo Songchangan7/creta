@@ -16,14 +16,22 @@ internal static class NotesManagerOperations
             Localize.creta_plugin_note_editor_edit_title(),
             Localize.creta_plugin_note_editor_edit_subtitle(),
             Localize.creta_plugin_note_editor_save_edit(),
-            NoteRepository.BuildEditableContent(note));
+            NoteRepository.BuildEditableContent(note),
+            note.Attachments,
+            repository.NotesDirectoryPath);
 
         if (window.ShowDialog() != true)
         {
             return false;
         }
 
-        if (repository.UpdateNote(note.Id, window.EditedContent, out _, out var errorMessage))
+        if (repository.UpdateNoteWithAttachments(
+            note.Id,
+            window.EditedContent,
+            window.PendingImages,
+            window.RemovedAttachmentIds,
+            out _,
+            out var errorMessage))
         {
             return true;
         }
@@ -47,7 +55,7 @@ internal static class NotesManagerOperations
         var message = notes.Count == 1
             ? Localize.creta_plugin_note_delete_confirm_message(
                 Environment.NewLine,
-                NotePresentation.BuildSavedSubtitle(notes[0].Content))
+                NotePresentation.BuildNoteDisplayTitle(notes[0]))
             : Localize.creta_plugin_note_settings_notes_batch_delete_confirm_message(notes.Count);
         var result = Main.Context.API.ShowMsgBox(
             message,

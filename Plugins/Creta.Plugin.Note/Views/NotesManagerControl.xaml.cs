@@ -91,7 +91,7 @@ public partial class NotesManagerControl : UserControl
         }
 
         var columnIndex = gridView.Columns.IndexOf(headerClicked.Column);
-        if (columnIndex < 0 || columnIndex >= 6)
+        if (columnIndex < 0 || columnIndex >= 7)
         {
             return;
         }
@@ -99,11 +99,12 @@ public partial class NotesManagerControl : UserControl
         _viewModel.ToggleSort(columnIndex switch
         {
             0 => NotesManagerSortColumn.Content,
-            1 => NotesManagerSortColumn.Tags,
-            2 => NotesManagerSortColumn.CreatedAt,
-            3 => NotesManagerSortColumn.UpdatedAt,
-            4 => NotesManagerSortColumn.IsPinned,
-            5 => NotesManagerSortColumn.IsArchived,
+            1 => NotesManagerSortColumn.Attachments,
+            2 => NotesManagerSortColumn.Tags,
+            3 => NotesManagerSortColumn.CreatedAt,
+            4 => NotesManagerSortColumn.UpdatedAt,
+            5 => NotesManagerSortColumn.IsPinned,
+            6 => NotesManagerSortColumn.IsArchived,
             _ => NotesManagerSortColumn.UpdatedAt
         });
     }
@@ -199,7 +200,13 @@ public partial class NotesManagerControl : UserControl
     private void BackupJsonButton_OnClick(object sender, RoutedEventArgs e)
     {
         _repository.Reload();
-        NotesManagerExporter.TryExportJsonBackup(_repository.NotesFilePath);
+        NotesManagerExporter.TryExportJsonBackup(_repository.NotesFilePath, _repository.HasAnyAttachments());
+    }
+
+    private void BackupFullButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        _repository.Reload();
+        NotesManagerExporter.TryExportFullBackup(_repository);
     }
 
     private void ImportButton_OnClick(object sender, RoutedEventArgs e)
@@ -281,7 +288,7 @@ public partial class NotesManagerControl : UserControl
 
     private void NotesListView_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (sender is not ListView listView || listView.View is not GridView gridView || gridView.Columns.Count < 7)
+        if (sender is not ListView listView || listView.View is not GridView gridView || gridView.Columns.Count < 8)
         {
             return;
         }
@@ -292,13 +299,14 @@ public partial class NotesManagerControl : UserControl
             return;
         }
 
-        gridView.Columns[0].Width = workingWidth * 0.24;
-        gridView.Columns[1].Width = workingWidth * 0.18;
-        gridView.Columns[2].Width = workingWidth * 0.11;
-        gridView.Columns[3].Width = workingWidth * 0.11;
-        gridView.Columns[4].Width = workingWidth * 0.07;
-        gridView.Columns[5].Width = workingWidth * 0.07;
-        gridView.Columns[6].Width = workingWidth * 0.22;
+        gridView.Columns[0].Width = workingWidth * 0.22;
+        gridView.Columns[1].Width = workingWidth * 0.06;
+        gridView.Columns[2].Width = workingWidth * 0.16;
+        gridView.Columns[3].Width = workingWidth * 0.10;
+        gridView.Columns[4].Width = workingWidth * 0.10;
+        gridView.Columns[5].Width = workingWidth * 0.06;
+        gridView.Columns[6].Width = workingWidth * 0.06;
+        gridView.Columns[7].Width = workingWidth * 0.24;
     }
 
     private void ExportNotes(IReadOnlyList<NoteItem> notes, bool isMarkdown, ExportScope scope)
