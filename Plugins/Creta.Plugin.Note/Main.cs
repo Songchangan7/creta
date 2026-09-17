@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Flow.Launcher.Plugin;
@@ -25,6 +26,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
     private NoteContextMenuBuilder _contextMenuBuilder = null!;
     private NoteQueryResultBuilder _queryResultBuilder = null!;
     private Settings _settings = null!;
+    private NotionSyncService _notionSync = null!;
     private string _editingNoteId = string.Empty;
     private SettingsControl _settingsControl;
     private bool _selectNotesManagerOnSettingsOpen;
@@ -39,6 +41,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
             _settings.NotesFilePath);
         ActiveRepository = _repository;
         _repository.Load();
+        _notionSync = new NotionSyncService(() => _settings, new NotionPagesClient());
         _resultFactory = new NoteResultFactory(context.CurrentPluginMetadata.ActionKeyword, ActivateNote);
         _contextMenuBuilder = new NoteContextMenuBuilder();
         _queryResultBuilder = new NoteQueryResultBuilder(
@@ -58,7 +61,12 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
 
     public Control CreateSettingPanel()
     {
-        _settingsControl = new SettingsControl(_settings, _repository, ApplyStoragePathChange, GetStoragePathText);
+        _settingsControl = new SettingsControl(
+            _settings,
+            _repository,
+            ApplyStoragePathChange,
+            GetStoragePathText,
+            SaveSettings);
         if (_selectNotesManagerOnSettingsOpen)
         {
             _settingsControl.SelectNotesManagerTab();
@@ -193,6 +201,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
                 false,
                 2200,
                 true);
+            EnqueueNotionSync(savedNote);
             return false;
         }
 
@@ -451,6 +460,7 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
                 false,
                 2200,
                 true);
+            EnqueueNotionSync(savedNote);
             return false;
         }
 
@@ -531,5 +541,62 @@ public class Main : IPlugin, IPluginI18n, IContextMenu, ISettingProvider
         Context.API.SaveSettingJsonStorage<Settings>();
         Context.API.ReQuery();
         return result;
+    }
+
+    private void SaveSettings()
+    {
+        Context.API.SaveSettingJsonStorage<Settings>();
+    }
+
+    private void EnqueueNotionSync(NoteItem note)
+    {
+        if (!_notionSync.ShouldSync(note))
+        {
+            return;
+        }
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                var result = await _notionSync.SyncAsync(note);
+                if (result.Skipped)
+                {
+                    return;
+                }
+
+                if (result.Succeeded)
+                {
+                    _repository.SetNotionPageId(note.Id, result.PageId, out _, out _);
+                    return;
+                }
+
+                ShowNotionSyncFailure(result.ErrorMessage);
+            }
+            catch (Exception ex)
+            {
+                ShowNotionSyncFailure(ex.Message);
+            }
+        });
+    }
+
+    private static void ShowNotionSyncFailure(string errorMessage)
+    {
+        var subtitle = Localize.creta_plugin_note_notion_sync_failed_subtitle(errorMessage);
+        var dispatcher = System.Windows.Application.Current?.Dispatcher;
+        if (dispatcher is null || dispatcher.CheckAccess())
+        {
+            Context.API.ShowMsg(
+                Localize.creta_plugin_note_notion_sync_failed_title(),
+                subtitle,
+                IcoPathValue);
+            return;
+        }
+
+        dispatcher.BeginInvoke(() =>
+            Context.API.ShowMsg(
+                Localize.creta_plugin_note_notion_sync_failed_title(),
+                subtitle,
+                IcoPathValue));
     }
 }
