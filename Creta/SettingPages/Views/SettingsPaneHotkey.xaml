@@ -46,6 +46,20 @@
 
             <ui:SettingsCard
                 Margin="0 4 0 0"
+                Description="{DynamicResource captureSelectedTextAsNoteToolTip}"
+                Header="{DynamicResource captureSelectedTextAsNote}">
+                <ui:SettingsCard.HeaderIcon>
+                    <ui:FontIcon Glyph="&#xE8C8;" />
+                </ui:SettingsCard.HeaderIcon>
+
+                <ui:ToggleSwitch
+                    IsOn="{Binding Settings.CaptureSelectedTextAsNote}"
+                    OffContent="{DynamicResource disable}"
+                    OnContent="{DynamicResource enable}" />
+            </ui:SettingsCard>
+
+            <ui:SettingsCard
+                Margin="0 4 0 0"
                 Description="{DynamicResource previewHotkeyToolTip}"
                 Header="{DynamicResource previewHotkey}">
                 <ui:SettingsCard.HeaderIcon>

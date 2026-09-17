@@ -1919,16 +1919,44 @@ namespace Creta.ViewModel
 
         #region Hotkey
 
-        public void ToggleCreta()
+#pragma warning disable VSTHRD100 // Avoid async void methods
+
+        private int _toggleInProgress;
+
+        public async void ToggleCreta()
         {
-            if (!MainWindowVisibilityStatus)
+            if (Interlocked.CompareExchange(ref _toggleInProgress, 1, 0) != 0)
             {
-                CachePreviousForegroundWindow();
-                Show();
+                return;
             }
-            else
+
+            try
             {
-                Hide();
+                if (!MainWindowVisibilityStatus)
+                {
+                    CachePreviousForegroundWindow();
+                    var noteQuery = string.Empty;
+                    if (Settings.CaptureSelectedTextAsNote)
+                    {
+                        var selected = await SelectedTextCapture.CaptureAsync();
+                        noteQuery = NoteSelectionQuery.TryBuild(selected);
+                    }
+
+                    Show();
+
+                    if (!string.IsNullOrEmpty(noteQuery))
+                    {
+                        ChangeQueryText(noteQuery);
+                    }
+                }
+                else
+                {
+                    Hide();
+                }
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _toggleInProgress, 0);
             }
         }
 
@@ -1939,6 +1967,8 @@ namespace Creta.ViewModel
         {
             return Settings.IgnoreHotkeysOnFullscreen && Win32Helper.IsForegroundWindowFullscreen() || GameModeStatus;
         }
+
+#pragma warning restore VSTHRD100 // Avoid async void methods
 
         #endregion
 
