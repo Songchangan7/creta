@@ -20,7 +20,7 @@ public class Settings : BaseModel
         }
     }
 
-    private bool _pasteAfterCopy;
+    private bool _pasteAfterCopy = true;
 
     public bool PasteAfterCopy
     {
