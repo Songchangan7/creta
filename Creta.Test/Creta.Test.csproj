@@ -40,6 +40,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Plugins\Creta.Plugin.Note\Creta.Plugin.Note.csproj" />
+    <ProjectReference Include="..\Plugins\Creta.Plugin.LocalPromptSearch\Creta.Plugin.LocalPromptSearch.csproj" />
     <ProjectReference Include="..\Plugins\Creta.Plugin.Calculator\Creta.Plugin.Calculator.csproj" />
     <ProjectReference Include="..\Plugins\Creta.Plugin.Explorer\Creta.Plugin.Explorer.csproj" />
     <ProjectReference Include="..\Plugins\Creta.Plugin.Program\Creta.Plugin.Program.csproj" />

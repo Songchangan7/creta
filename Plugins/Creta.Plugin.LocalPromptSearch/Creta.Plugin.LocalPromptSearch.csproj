@@ -50,4 +50,8 @@
     <ProjectReference Include="..\..\Creta.Plugin\Creta.Plugin.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Creta.Test" />
+  </ItemGroup>
+
 </Project>

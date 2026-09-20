@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Creta.Plugin.LocalPromptSearch;
 
 public class Main : IPlugin, ISettingProvider, IContextMenu
 {
+    internal const string SaveKeyword = "c";
+    internal const string SearchKeyword = "v";
+
     internal static PluginInitContext Context { get; private set; } = null!;
 
     private PromptRepository _repository = null!;
@@ -23,91 +27,9 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
 
     public List<Result> Query(Query query)
     {
-        if (string.Equals(query.Search?.Trim(), "reload", StringComparison.CurrentCultureIgnoreCase))
-        {
-            ReloadPromptsFromSettings();
-
-            var subtitle = string.IsNullOrWhiteSpace(_repository.LoadError)
-                ? $"已重新加载：{_repository.CurrentFilePath}"
-                : _repository.LoadError;
-
-            return
-            [
-                new Result
-                {
-                    Title = string.IsNullOrWhiteSpace(_repository.LoadError) ? "已重新加载 Prompt 模板" : "重新加载失败",
-                    SubTitle = subtitle,
-                    Score = 1200,
-                    Action = _ => false
-                }
-            ];
-        }
-
-        if (!string.IsNullOrWhiteSpace(_repository.LoadError))
-        {
-            return
-            [
-                new Result
-                {
-                    Title = "无法加载本地 Prompt 模板",
-                    SubTitle = _repository.LoadError,
-                    Score = 1000,
-                    Action = _ => false
-                }
-            ];
-        }
-
-        var prompts = _repository.GetPrompts();
-        if (prompts.Count == 0)
-        {
-            return
-            [
-                new Result
-                {
-                    Title = "未找到可用的 Prompt 模板",
-                    SubTitle = "请检查 prompts.json 是否存在并包含有效内容。",
-                    Score = 1000,
-                    Action = _ => false
-                }
-            ];
-        }
-
-        if (string.IsNullOrWhiteSpace(query.Search))
-        {
-            return BuildEmptySearchResults(prompts);
-        }
-
-        var search = query.Search.Trim();
-        var matches = prompts
-            .Select(prompt => CreateSearchMatch(prompt, search))
-            .Where(match => match.Score > 0)
-            .OrderByDescending(match => match.Score)
-            .ThenBy(match => match.Prompt.Title, StringComparer.CurrentCultureIgnoreCase)
-            .Take(12)
-            .ToList();
-
-        if (matches.Count == 0)
-        {
-            return
-            [
-                new Result
-                {
-                    Title = $"没有找到与“{search}”相关的 Prompt",
-                    SubTitle = "可以尝试更短的关键词，或检查 prompts.json 中是否已有对应模板。",
-                    Score = 900,
-                    Action = _ => false
-                }
-            ];
-        }
-
-        return
-        [
-            .. matches.Select(match => CreatePromptResult(
-                match.Prompt,
-                match.Score,
-                "按回车复制 Prompt 到剪贴板。",
-                match.TitleHighlightData))
-        ];
+        return IsSaveQuery(query)
+            ? BuildSaveResults(query.Search)
+            : BuildSearchResults(query.Search);
     }
 
     public List<Result> LoadContextMenus(Result selectedResult)
@@ -177,6 +99,168 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
         return new Views.SettingsControl(_settings, ReloadPromptsFromSettings);
     }
 
+    private List<Result> BuildSearchResults(string search)
+    {
+        if (string.Equals(search?.Trim(), "reload", StringComparison.CurrentCultureIgnoreCase))
+        {
+            ReloadPromptsFromSettings();
+
+            var subtitle = string.IsNullOrWhiteSpace(_repository.LoadError)
+                ? $"已重新加载：{_repository.CurrentFilePath}"
+                : _repository.LoadError;
+
+            return
+            [
+                new Result
+                {
+                    Title = string.IsNullOrWhiteSpace(_repository.LoadError) ? "已重新加载 Prompt 模板" : "重新加载失败",
+                    SubTitle = subtitle,
+                    Score = 1200,
+                    Action = _ => false
+                }
+            ];
+        }
+
+        if (!string.IsNullOrWhiteSpace(_repository.LoadError))
+        {
+            return
+            [
+                new Result
+                {
+                    Title = "无法加载本地 Prompt 模板",
+                    SubTitle = _repository.LoadError,
+                    Score = 1000,
+                    Action = _ => false
+                }
+            ];
+        }
+
+        var prompts = _repository.GetPrompts();
+        if (prompts.Count == 0)
+        {
+            return
+            [
+                new Result
+                {
+                    Title = "未找到可用的 Prompt 模板",
+                    SubTitle = "输入 c 文本可直接保存，或检查 prompts.json 是否存在。",
+                    Score = 1000,
+                    AutoCompleteText = $"{SaveKeyword} ",
+                    Action = _ =>
+                    {
+                        Context.API.ChangeQuery($"{SaveKeyword} ", true);
+                        return false;
+                    }
+                }
+            ];
+        }
+
+        if (string.IsNullOrWhiteSpace(search))
+        {
+            return BuildEmptySearchResults(prompts);
+        }
+
+        var matches = prompts
+            .Select(prompt => CreateSearchMatch(prompt, search.Trim()))
+            .Where(match => match.Score > 0)
+            .OrderByDescending(match => match.Score)
+            .ThenBy(match => match.Prompt.Title, StringComparer.CurrentCultureIgnoreCase)
+            .Take(12)
+            .ToList();
+
+        if (matches.Count == 0)
+        {
+            return
+            [
+                new Result
+                {
+                    Title = $"没有找到与“{search.Trim()}”相关的 Prompt",
+                    SubTitle = "可以换更短的关键词，或输入 c 把这段文字存成新模板。",
+                    Score = 900,
+                    AutoCompleteText = $"{SaveKeyword} {search.Trim()}",
+                    Action = _ =>
+                    {
+                        Context.API.ChangeQuery($"{SaveKeyword} {search.Trim()}", true);
+                        return false;
+                    }
+                }
+            ];
+        }
+
+        return
+        [
+            .. matches.Select(match => CreatePromptResult(
+                match.Prompt,
+                match.Score,
+                "按回车复制 Prompt 到剪贴板。",
+                match.TitleHighlightData))
+        ];
+    }
+
+    private List<Result> BuildSaveResults(string search)
+    {
+        if (!TryResolveSaveContent(search, out var content, out var replaceTitle, out var sourceError))
+        {
+            return
+            [
+                new Result
+                {
+                    Title = "无法保存 Prompt",
+                    SubTitle = sourceError,
+                    Score = 1200,
+                    Action = _ => false
+                }
+            ];
+        }
+
+        if (!PromptSaveParser.IsContentValid(content, out var contentError))
+        {
+            return
+            [
+                new Result
+                {
+                    Title = "无法保存 Prompt",
+                    SubTitle = contentError,
+                    Score = 1200,
+                    Action = _ => false
+                }
+            ];
+        }
+
+        var input = PromptSaveParser.Parse(search, content, replaceTitle);
+        var preview = PromptSaveParser.Preview(content);
+        var byTitle = _repository.FindByTitle(input.Title);
+        var byContent = _repository.FindByContent(content);
+        var results = new List<Result>();
+
+        if (byTitle is not null)
+        {
+            results.Add(CreateSaveResult(
+                $"更新已有模板「{byTitle.Title}」",
+                $"标题相同。正文预览：{preview}",
+                1100,
+                () => SaveExistingPrompt(byTitle, input, content)));
+        }
+
+        if (byContent is not null && !ReferenceEquals(byContent, byTitle))
+        {
+            results.Add(CreateSaveResult(
+                $"更新已有模板「{byContent.Title}」",
+                $"正文相同。将保留原标题，并写入当前内容。",
+                1080,
+                () => SaveExistingPrompt(byContent, input, content)));
+        }
+
+        var hasDuplicate = byTitle is not null || byContent is not null;
+        results.Add(CreateSaveResult(
+            hasDuplicate ? $"另存为新模板「{input.Title}」" : $"保存为「{input.Title}」",
+            BuildSaveSubtitle(input, preview),
+            hasDuplicate ? 1000 : 1100,
+            () => SaveNewPrompt(input, content)));
+
+        return results;
+    }
+
     private List<Result> BuildEmptySearchResults(IReadOnlyList<PromptTemplate> prompts)
     {
         var recentIds = _settings.RecentPromptIds;
@@ -191,14 +275,6 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
 
         if (recentPrompts.Count > 0)
         {
-            results.Add(new Result
-            {
-                Title = "最近使用的 Prompt",
-                SubTitle = "下面优先展示最近复制过的模板。",
-                Score = 950,
-                Action = _ => false
-            });
-
             results.AddRange(recentPrompts
                 .Take(5)
                 .Select(prompt => CreatePromptResult(prompt, 900, "最近使用，按回车可再次复制。")));
@@ -206,10 +282,23 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
 
         results.Add(new Result
         {
+            Title = "输入 c 文本可直接保存为模板",
+            SubTitle = "c 后面的文字就是 Prompt 正文；只输入 c 时则保存剪贴板。v 用于搜索。",
+            Score = 850,
+            AutoCompleteText = $"{SaveKeyword} ",
+            Action = _ =>
+            {
+                Context.API.ChangeQuery($"{SaveKeyword} ", true);
+                return false;
+            }
+        });
+
+        results.Add(new Result
+        {
             Title = "重新加载 Prompt 模板",
             SubTitle = $"当前文件：{_repository.CurrentFilePath}",
             Score = 800,
-            AutoCompleteText = $"{Context.CurrentPluginMetadata.ActionKeywords[0]} reload",
+            AutoCompleteText = $"{SearchKeyword} reload",
             Action = _ =>
             {
                 ReloadPromptsFromSettings();
@@ -310,7 +399,7 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
         return new SearchMatch(prompt, score, titleMatch.Score > 0 ? titleMatch.MatchData : []);
     }
 
-    private Result CreatePromptResult(PromptTemplate prompt, int score, string suffix, List<int>? titleHighlightData = null)
+    private Result CreatePromptResult(PromptTemplate prompt, int score, string suffix, List<int> titleHighlightData = null)
     {
         return new Result
         {
@@ -318,11 +407,54 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
             SubTitle = BuildSubtitle(prompt, suffix),
             Score = score,
             TitleHighlightData = titleHighlightData ?? [],
-            AutoCompleteText = $"{Context.CurrentPluginMetadata.ActionKeywords[0]} {prompt.Title}",
+            AutoCompleteText = $"{SearchKeyword} {prompt.Title}",
             CopyText = prompt.Content,
             ContextData = prompt,
             Action = _ => CopyPromptContent(prompt)
         };
+    }
+
+    private static Result CreateSaveResult(string title, string subtitle, int score, Func<bool> action)
+    {
+        return new Result
+        {
+            Title = title,
+            SubTitle = subtitle,
+            Score = score,
+            Action = _ => action()
+        };
+    }
+
+    private bool SaveNewPrompt(PromptSaveInput input, string content)
+    {
+        var prompt = _repository.CreatePrompt(input, content);
+        if (_repository.TryAdd(prompt, _settings.PromptFilePath, out var error))
+        {
+            return CompleteSave(prompt, "已保存为新模板");
+        }
+
+        Context.API.ShowMsgError("保存 Prompt 失败", error);
+        return false;
+    }
+
+    private bool SaveExistingPrompt(PromptTemplate prompt, PromptSaveInput input, string content)
+    {
+        _repository.ApplyUpdate(prompt, input, content);
+        if (_repository.TryUpdate(_settings.PromptFilePath, out var error))
+        {
+            return CompleteSave(prompt, "已更新已有模板");
+        }
+
+        Context.API.ShowMsgError("更新 Prompt 失败", error);
+        return false;
+    }
+
+    private bool CompleteSave(PromptTemplate prompt, string title)
+    {
+        RegisterRecentPrompt(prompt.Id);
+        Context.API.ShowMsg(title, $"“{prompt.Title}”已写入模板库，可用 v 搜索。");
+        Context.API.ChangeQuery($"{SearchKeyword} {prompt.Title}", true);
+        return false;
     }
 
     private bool CopyPromptContent(PromptTemplate prompt)
@@ -371,13 +503,13 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
         {
             Context.API.ShowMsg(
                 prompt.Favorite ? "已加入收藏" : "已取消收藏",
-                $"“{prompt.Title}”收藏状态已写入 prompts.json。");
+                $"“{prompt.Title}”收藏状态已写入模板文件。");
         }
         else
         {
-            var reason = _repository.CanPersistFavorites
+            var reason = _repository.CanPersist
                 ? "当前模板文件写入失败，收藏仅在本次运行中生效。"
-                : "当前使用的不是 prompts.json，收藏暂未持久化。";
+                : "当前使用的是示例文件，收藏暂未持久化。输入 c 保存时会自动改写到 prompts.json。";
             Context.API.ShowMsg(
                 prompt.Favorite ? "已加入收藏" : "已取消收藏",
                 reason);
@@ -461,6 +593,70 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
         return $"{string.Join(" · ", details)} · {suffix}";
     }
 
+    private static string BuildSaveSubtitle(PromptSaveInput input, string preview)
+    {
+        var details = new List<string> { $"正文预览：{preview}" };
+        if (input.Tags.Count > 0)
+        {
+            details.Insert(0, $"标签：{string.Join("、", input.Tags)}");
+        }
+
+        return string.Join(" · ", details);
+    }
+
+    private bool TryResolveSaveContent(string search, out string content, out bool replaceTitle, out string error)
+    {
+        var split = PromptSaveParser.SplitSearch(search);
+        if (!string.IsNullOrWhiteSpace(split.TypedContent))
+        {
+            content = split.TypedContent;
+            replaceTitle = true;
+            error = string.Empty;
+            return true;
+        }
+
+        replaceTitle = false;
+        return TryGetClipboardText(out content, out error);
+    }
+
+    private static bool TryGetClipboardText(out string text, out string error)
+    {
+        try
+        {
+            var dispatcher = Application.Current?.Dispatcher;
+            var result = dispatcher is not null && !dispatcher.CheckAccess()
+                ? dispatcher.Invoke(ReadClipboardOnSta)
+                : ReadClipboardOnSta();
+
+            text = result.Text;
+            error = result.Error;
+            return result.Success;
+        }
+        catch (Exception ex)
+        {
+            text = string.Empty;
+            error = $"无法读取剪贴板：{ex.Message}";
+            return false;
+        }
+    }
+
+    private static ClipboardReadResult ReadClipboardOnSta()
+    {
+        if (Clipboard.ContainsText())
+        {
+            var text = Clipboard.GetText().Trim();
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                return new ClipboardReadResult(true, text, string.Empty);
+            }
+        }
+
+        return new ClipboardReadResult(false, string.Empty, "没有可保存的文本。请在 c 后面输入 Prompt，或先复制后再输入 c。");
+    }
+
+    private static bool IsSaveQuery(Query query) =>
+        string.Equals(query.ActionKeyword, SaveKeyword, StringComparison.OrdinalIgnoreCase);
+
     private static bool Contains(string source, string value) =>
         source.Contains(value, StringComparison.CurrentCultureIgnoreCase);
 
@@ -468,4 +664,6 @@ public class Main : IPlugin, ISettingProvider, IContextMenu
         source.StartsWith(value, StringComparison.CurrentCultureIgnoreCase);
 
     private sealed record SearchMatch(PromptTemplate Prompt, int Score, List<int> TitleHighlightData);
+
+    private sealed record ClipboardReadResult(bool Success, string Text, string Error);
 }

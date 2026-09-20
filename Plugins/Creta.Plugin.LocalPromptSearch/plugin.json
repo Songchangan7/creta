@@ -1,13 +1,15 @@
 {
   "ID": "E63F73E2A9304B8D9D91968D11B26C58",
-  "ActionKeyword": "pt",
+  "ActionKeyword": "v",
   "ActionKeywords": [
+    "v",
+    "c",
     "pt"
   ],
   "Name": "Local Prompt Search",
-  "Description": "Search local prompt templates and copy them for use in AI tools.",
+  "Description": "Use c text to save a prompt, or v to search local templates.",
   "Author": "OpenAI Codex",
-  "Version": "1.0.0",
+  "Version": "1.1.0",
   "Language": "csharp",
   "Website": "https://github.com/Songchangan7/creta",
   "ExecuteFileName": "Creta.Plugin.LocalPromptSearch.dll",

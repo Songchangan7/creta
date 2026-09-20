@@ -30,4 +30,4 @@ if (Test-Path -LiteralPath $targetDir) {
 
 Copy-Item -LiteralPath $BuildOutput -Destination $targetDir -Recurse -Force
 
-Write-Host "部署完成。请重启 Creta 后测试：pt / pt 周报 / pt reload"
+Write-Host "部署完成。请重启 Creta 后测试：c / c 周报 / v / v 周报 / v reload"

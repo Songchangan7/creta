@@ -10,6 +10,11 @@
             FontWeight="SemiBold"
             Text="Local Prompt Search" />
         <TextBlock
+            Margin="0,0,0,12"
+            Foreground="Gray"
+            Text="c 后面的文字会直接存为 Prompt 正文，可用 #标签；只输入 c 时才保存剪贴板。v 搜索已保存的提示词，pt 仍可作为 v 的别名。"
+            TextWrapping="Wrap" />
+        <TextBlock
             Margin="0,0,0,6"
             Text="Prompt 模板文件路径" />
         <TextBox
