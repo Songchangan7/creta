@@ -1186,6 +1186,40 @@ public sealed class NoteRepository
         }
     }
 
+    public bool SetNotionPageId(string noteId, string notionPageId, out NoteItem updatedNote, out string errorMessage)
+    {
+        updatedNote = null;
+        errorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(noteId))
+        {
+            errorMessage = "Note id cannot be empty.";
+            return false;
+        }
+
+        var note = _notes.FirstOrDefault(x => string.Equals(x.Id, noteId, StringComparison.OrdinalIgnoreCase));
+        if (note is null)
+        {
+            errorMessage = "Note not found.";
+            return false;
+        }
+
+        try
+        {
+            note.NotionPageId = string.IsNullOrWhiteSpace(notionPageId) ? null : notionPageId.Trim();
+            PersistNotes();
+            updatedNote = note;
+            LoadError = string.Empty;
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to update Notion page id: {ex.Message}";
+            LoadError = errorMessage;
+            return false;
+        }
+    }
+
     private void InitializeNotesFile(string notesFilePath)
     {
         var samplePath = Path.Combine(_pluginDirectory, SampleNotesFileName);
@@ -1385,7 +1419,8 @@ public sealed class NoteRepository
             Tags = note.Tags?.ToList() ?? [],
             Source = note.Source,
             LastViewedAt = note.LastViewedAt,
-            Attachments = CloneAttachments(note.Attachments)
+            Attachments = CloneAttachments(note.Attachments),
+            NotionPageId = string.IsNullOrWhiteSpace(note.NotionPageId) ? null : note.NotionPageId.Trim()
         });
     }
 
@@ -1412,6 +1447,7 @@ public sealed class NoteRepository
         note.Tags ??= [];
         note.Attachments = CloneAttachments(note.Attachments);
         note.Source = NormalizeSource(note.Source);
+        note.NotionPageId = string.IsNullOrWhiteSpace(note.NotionPageId) ? null : note.NotionPageId.Trim();
 
         if (string.IsNullOrWhiteSpace(note.Id))
         {

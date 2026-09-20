@@ -140,6 +140,22 @@
 
     <system:String x:Key="creta_plugin_note_settings_tab_storage">Storage</system:String>
     <system:String x:Key="creta_plugin_note_settings_tab_notes">Notes</system:String>
+    <system:String x:Key="creta_plugin_note_settings_tab_notion">Notion</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_enable">Sync new notes to Notion</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_hint">Create an Internal Integration at notion.so/my-integrations and copy the token. Open the target database, add the integration under Connections (otherwise the API returns 404), then paste the database URL or 32-character ID below. New notes are saved locally first, then appended to that database. Edits, deletes, imports, and screenshot uploads are not synced.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_label">Integration token</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_label">Database URL or ID</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test">Test connection</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_save">Save</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_testing">Testing the Notion connection…</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test_success">Connected to "{0}".</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test_failed">Connection failed: {0}</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_required">Enter an integration token first.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_invalid">Enter a valid database URL or 32-character ID.</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_title">Notion settings saved</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_subtitle">New notes will be appended to Notion after they are saved locally.</system:String>
+    <system:String x:Key="creta_plugin_note_notion_sync_failed_title">Notion sync failed</system:String>
+    <system:String x:Key="creta_plugin_note_notion_sync_failed_subtitle">The note was saved locally, but it was not written to Notion: {0}</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_path_label">Notes file path</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_browse">Browse</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_hint">Leave empty to use notes.json in the Creta user data directory, or enter a custom absolute path. Environment variables are supported.</system:String>

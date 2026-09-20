@@ -1824,6 +1824,25 @@ public class NoteRepositoryTests
         ClassicAssert.IsTrue(File.Exists(target.GetAttachmentFullPath(restored.Attachments[0])));
     }
 
+    [Test]
+    public void GivenSavedNoteWhenSetNotionPageIdThenPersistsWithoutChangingUpdatedAt()
+    {
+        var repository = CreateEmptyRepository();
+        ClassicAssert.IsTrue(repository.SaveNote("hello notion", out var savedNote, out _));
+        var updatedAt = savedNote.UpdatedAt;
+
+        ClassicAssert.IsTrue(repository.SetNotionPageId(savedNote.Id, "22222222-2222-2222-2222-222222222222", out var updatedNote, out _));
+
+        ClassicAssert.AreEqual("22222222-2222-2222-2222-222222222222", updatedNote.NotionPageId);
+        ClassicAssert.AreEqual(updatedAt, updatedNote.UpdatedAt);
+
+        var reloaded = new NoteRepository(
+            Path.Combine(_testRoot, "plugin"),
+            Path.Combine(_testRoot, "storage"));
+        reloaded.Load();
+        ClassicAssert.AreEqual("22222222-2222-2222-2222-222222222222", reloaded.Notes[0].NotionPageId);
+    }
+
     private NoteRepository CreateEmptyRepository()
     {
         var pluginDirectory = Path.Combine(_testRoot, "plugin");

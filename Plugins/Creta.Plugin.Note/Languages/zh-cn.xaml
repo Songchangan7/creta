@@ -141,6 +141,22 @@
 
     <system:String x:Key="creta_plugin_note_settings_tab_storage">存储设置</system:String>
     <system:String x:Key="creta_plugin_note_settings_tab_notes">笔记管理</system:String>
+    <system:String x:Key="creta_plugin_note_settings_tab_notion">Notion</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_enable">保存新笔记时同步到 Notion</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_hint">在 notion.so/my-integrations 创建 Internal Integration 并复制 Token。打开目标 Database，通过 Connections 把该 Integration 加进去，否则接口会返回 404。然后把 Database 链接或 32 位 ID 填到下方。保存随手记时会先写入本地，再把新笔记追加到该 Database。编辑、删除和导入不会同步，截图附件也不会上传。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_label">Integration Token</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_label">Database 链接或 ID</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test">测试连接</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_save">保存</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_testing">正在测试 Notion 连接…</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test_success">已连接到「{0}」。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_test_failed">连接失败：{0}</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_token_required">请先填写 Integration Token。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_database_invalid">请填写有效的 Database 链接或 32 位 ID。</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_title">Notion 设置已保存</system:String>
+    <system:String x:Key="creta_plugin_note_settings_notion_saved_subtitle">新笔记会在本地保存成功后追加到 Notion。</system:String>
+    <system:String x:Key="creta_plugin_note_notion_sync_failed_title">Notion 同步失败</system:String>
+    <system:String x:Key="creta_plugin_note_notion_sync_failed_subtitle">笔记已保存在本地，但没有写入 Notion：{0}</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_path_label">笔记保存文件路径</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_browse">浏览</system:String>
     <system:String x:Key="creta_plugin_note_settings_storage_hint">留空时默认保存到 Creta 用户数据目录中的 notes.json；也可以填写自定义绝对路径，支持环境变量。</system:String>
