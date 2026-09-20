@@ -364,6 +364,8 @@
     <system:String x:Key="hotkeys">热键</system:String>
     <system:String x:Key="cretaHotkey">打开 Creta</system:String>
     <system:String x:Key="cretaHotkeyToolTip">输入显示/隐藏 Creta 的快捷键。</system:String>
+    <system:String x:Key="captureSelectedTextAsNote">选中文本时预填随手记</system:String>
+    <system:String x:Key="captureSelectedTextAsNoteToolTip">打开 Creta 时，如果其他窗口有选中文本，会在输入框预填「n 这段文本」，回车即可保存。没有选中文本时仍为普通搜索。</system:String>
     <system:String x:Key="previewHotkey">切换预览</system:String>
     <system:String x:Key="previewHotkeyToolTip">输入在搜索窗口中开启/关闭预览的快捷键。</system:String>
     <system:String x:Key="hotkeyPresets">热键预设</system:String>
@@ -409,6 +411,7 @@
     <system:String x:Key="deleteCustomHotkeyWarning">你确定要删除插件 {0} 的热键吗?</system:String>
     <system:String x:Key="deleteCustomShortcutWarning">你确定要删除捷径 {0} （展开为 {1}）？</system:String>
     <system:String x:Key="shortcut_clipboard_description">从剪贴板获取文本。</system:String>
+    <system:String x:Key="shortcut_selection_description">从当前选中文本获取内容。</system:String>
     <system:String x:Key="shortcut_active_explorer_path">从活动的资源管理器窗口获取路径。</system:String>
     <system:String x:Key="queryWindowShadowEffect">查询窗口阴影效果</system:String>
     <system:String x:Key="shadowEffectCPUUsage">阴影效果将占用大量的GPU资源。 如果您的计算机性能有限，则不建议使用。</system:String>

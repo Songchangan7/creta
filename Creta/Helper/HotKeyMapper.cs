@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ChefKeys;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Creta.Infrastructure;
 using Creta.Infrastructure.Hotkey;
 using Creta.Infrastructure.DialogJump;
 using Creta.Infrastructure.UserSettings;
@@ -137,16 +139,30 @@ internal static class HotKeyMapper
 
     internal static void SetCustomQueryHotkey(CustomPluginHotkey hotkey)
     {
-        SetHotkey(hotkey.Hotkey, (s, e) =>
+        SetHotkey(hotkey.Hotkey, (s, e) => _ = OnCustomQueryHotkeyAsync(hotkey));
+    }
+
+    private static async Task OnCustomQueryHotkeyAsync(CustomPluginHotkey hotkey)
+    {
+        try
         {
             if (_mainViewModel.ShouldIgnoreHotkeys())
                 return;
+
+            if (hotkey.ActionKeyword?.Contains("{selection}", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                await SelectedTextCapture.CaptureAsync();
+            }
 
             App.API.ShowMainWindow();
             // Make sure to go back to the query results page first since it can cause issues if current page is context menu
             App.API.BackToQueryResults();
             App.API.ChangeQuery(hotkey.ActionKeyword, true);
-        });
+        }
+        catch (Exception e)
+        {
+            App.API.LogError(ClassName, $"Failed to handle custom query hotkey: {e.Message}");
+        }
     }
 
     internal static bool CheckAvailability(HotkeyModel currentHotkey)

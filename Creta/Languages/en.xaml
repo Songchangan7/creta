@@ -359,6 +359,8 @@
     <system:String x:Key="hotkeys">Hotkeys</system:String>
     <system:String x:Key="cretaHotkey">Open Creta</system:String>
     <system:String x:Key="cretaHotkeyToolTip">Enter shortcut to show/hide Creta.</system:String>
+    <system:String x:Key="captureSelectedTextAsNote">Prefill note from selected text</system:String>
+    <system:String x:Key="captureSelectedTextAsNoteToolTip">When opening Creta, if another window has selected text, prefill the query with the note keyword and that text. Press Enter to save. If nothing is selected, Creta still opens as a normal search.</system:String>
     <system:String x:Key="previewHotkey">Toggle Preview</system:String>
     <system:String x:Key="previewHotkeyToolTip">Enter shortcut to show/hide preview in search window.</system:String>
     <system:String x:Key="hotkeyPresets">Hotkey Presets</system:String>
@@ -404,6 +406,7 @@
     <system:String x:Key="deleteCustomHotkeyWarning">Are you sure you want to delete {0} plugin hotkey?</system:String>
     <system:String x:Key="deleteCustomShortcutWarning">Are you sure you want to delete shortcut: {0} with expansion {1}?</system:String>
     <system:String x:Key="shortcut_clipboard_description">Get text from clipboard.</system:String>
+    <system:String x:Key="shortcut_selection_description">Get the currently selected text.</system:String>
     <system:String x:Key="shortcut_active_explorer_path">Get path from active explorer.</system:String>
     <system:String x:Key="queryWindowShadowEffect">Query window shadow effect</system:String>
     <system:String x:Key="shadowEffectCPUUsage">Shadow effect has a substantial usage of GPU. Not recommended if your computer performance is limited.</system:String>

@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Creta.Infrastructure;
 using Creta.Infrastructure.Hotkey;
 using Creta.Infrastructure.Logger;
 using Creta.Infrastructure.Storage;
@@ -86,6 +87,20 @@ namespace Creta.Infrastructure.UserSettings
                 if (_showOpenResultHotkey != value)
                 {
                     _showOpenResultHotkey = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _captureSelectedTextAsNote = true;
+        public bool CaptureSelectedTextAsNote
+        {
+            get => _captureSelectedTextAsNote;
+            set
+            {
+                if (_captureSelectedTextAsNote != value)
+                {
+                    _captureSelectedTextAsNote = value;
                     OnPropertyChanged();
                 }
             }
@@ -506,6 +521,7 @@ namespace Creta.Infrastructure.UserSettings
         public ObservableCollection<BaseBuiltinShortcutModel> BuiltinShortcuts { get; set; } = new()
         {
             new AsyncBuiltinShortcutModel("{clipboard}", "shortcut_clipboard_description", () => Win32Helper.StartSTATaskAsync(Clipboard.GetText)),
+            new BuiltinShortcutModel("{selection}", "shortcut_selection_description", () => SelectedTextCapture.LastText),
             new BuiltinShortcutModel("{active_explorer_path}", "shortcut_active_explorer_path", FileExplorerHelper.GetActiveExplorerPath)
         };
 

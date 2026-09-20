@@ -9,7 +9,12 @@ UnhookWindowsHookEx
 CallNextHookEx
 GetModuleHandle
 GetKeyState
+GetAsyncKeyState
+GetGUIThreadInfo
+GUITHREADINFO
 VIRTUAL_KEY
+WM_GETTEXTLENGTH
+EM_GETSEL
 
 EnumWindows
 
