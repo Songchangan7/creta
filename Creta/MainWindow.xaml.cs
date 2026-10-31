@@ -1,5 +1,8 @@
 using System;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Media;
 using System.Threading;
@@ -54,6 +57,7 @@ namespace Creta
 
         // Window Notify Icon
         private NotifyIcon _notifyIcon;
+        private Icon _normalTrayIcon;
 
         // Window Context Menu
         private readonly ContextMenu _contextMenu = new();
@@ -276,7 +280,7 @@ namespace Creta
                     case nameof(MainViewModel.GameModeStatus):
                         _notifyIcon.Icon = _viewModel.GameModeStatus
                             ? Properties.Resources.gamemode
-                            : Properties.Resources.app;
+                            : _normalTrayIcon ?? Properties.Resources.app;
                         break;
                 }
             };
@@ -818,10 +822,11 @@ namespace Creta
 
         private void InitializeNotifyIcon()
         {
+            _normalTrayIcon = LoadNormalTrayIcon();
             _notifyIcon = new NotifyIcon
             {
                 Text = Constant.CretaFullName,
-                Icon = Constant.Version == "1.0.0" ? Properties.Resources.dev : Properties.Resources.app,
+                Icon = _normalTrayIcon,
                 Visible = !_settings.HideNotifyIcon
             };
 
@@ -845,6 +850,40 @@ namespace Creta
                         break;
                 }
             };
+        }
+
+        /// <summary>
+        /// Tray icon follows the replaced brand icon. Version 1.0.0 used to force the embedded dev icon,
+        /// which stays stale when only app.ico or the executable icon is replaced.
+        /// </summary>
+        private static System.Drawing.Icon LoadNormalTrayIcon()
+        {
+            var iconFile = System.IO.Path.Combine(Constant.ApplicationDirectory, "app.ico");
+            try
+            {
+                if (File.Exists(iconFile))
+                    return new System.Drawing.Icon(iconFile);
+            }
+            catch (Exception e)
+            {
+                App.API.LogException(ClassName, "Failed to load tray icon from app.ico", e);
+            }
+
+            try
+            {
+                if (File.Exists(Constant.ExecutablePath))
+                {
+                    var associated = System.Drawing.Icon.ExtractAssociatedIcon(Constant.ExecutablePath);
+                    if (associated != null)
+                        return associated;
+                }
+            }
+            catch (Exception e)
+            {
+                App.API.LogException(ClassName, "Failed to load tray icon from executable", e);
+            }
+
+            return (System.Drawing.Icon)Properties.Resources.app.Clone();
         }
 
         private void UpdateNotifyIconText()
@@ -1388,22 +1427,76 @@ namespace Creta
 
         private void QueryTextBox_OnPaste(object sender, DataObjectPastingEventArgs e)
         {
-            try
+            if (!TryReadPasteText(e.SourceDataObject, out var text))
+                return;
+
+            text = text.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ");
+            var data = new DataObject();
+            data.SetText(text);
+            e.DataObject = data;
+        }
+
+        /// <summary>
+        /// Some apps advertise Unicode text, but OLE GetData returns CLIPBRD_E_BAD_DATA.
+        /// Falling through to another text format still lets Ctrl+V land in the query box.
+        /// </summary>
+        private static bool TryReadPasteText(IDataObject source, out string text)
+        {
+            foreach (var format in new[]
             {
-                var isText = e.SourceDataObject.GetDataPresent(DataFormats.UnicodeText, true);
-                if (isText)
+                DataFormats.UnicodeText,
+                DataFormats.Text,
+                DataFormats.OemText,
+                DataFormats.StringFormat
+            })
+            {
+                if (TryReadString(source, format, out text))
+                    return true;
+            }
+
+            return TryReadFileDrop(source, out text);
+        }
+
+        private static bool TryReadString(IDataObject source, string format, out string text)
+        {
+            text = null;
+            foreach (var autoConvert in new[] { false, true })
+            {
+                try
                 {
-                    var text = e.SourceDataObject.GetData(DataFormats.UnicodeText) as string;
-                    text = text.Replace(Environment.NewLine, " ");
-                    DataObject data = new DataObject();
-                    data.SetData(DataFormats.UnicodeText, text);
-                    e.DataObject = data;
+                    if (!source.GetDataPresent(format, autoConvert))
+                        continue;
+
+                    if (source.GetData(format, autoConvert) is string value)
+                    {
+                        text = value;
+                        return true;
+                    }
+                }
+                catch (Exception ex) when (ex is COMException or ExternalException)
+                {
                 }
             }
-            catch (Exception ex)
+
+            return false;
+        }
+
+        private static bool TryReadFileDrop(IDataObject source, out string text)
+        {
+            text = null;
+            try
             {
-                App.API.LogException(ClassName, "Failed to paste text", ex);
+                if (source.GetData(DataFormats.FileDrop, false) is string[] files && files.Length > 0)
+                {
+                    text = string.Join(" ", files);
+                    return true;
+                }
             }
+            catch (Exception ex) when (ex is COMException or ExternalException)
+            {
+            }
+
+            return false;
         }
 
         private void QueryTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -1533,6 +1626,7 @@ namespace Creta
                 {
                     _hwndSource?.Dispose();
                     _notifyIcon?.Dispose();
+                    _normalTrayIcon?.Dispose();
                     UnregisterSoundEffectsEvent();
                     DisposeSoundEffects();
                     _viewModel.ActualApplicationThemeChanged -= ViewModel_ActualApplicationThemeChanged;
